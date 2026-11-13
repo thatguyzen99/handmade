@@ -81,7 +81,7 @@ The name, author and upstream credit live in one place: `src/design-system/brand
 
 ## Deploying
 
-The studio is on Vercel at [https://handmadeui.vercel.app](https://handmadeui.vercel.app), connected to [`thatguyzen99/melxels`](https://github.com/thatguyzen99/handmade) (`main`). Production already has `NEXT_PUBLIC_SITE_URL=https://handmadeui.vercel.app` and `NEXT_PUBLIC_REPO_URL=https://github.com/thatguyzen99/handmade`. No analytics are included; add your own tag in `src/app/layout.tsx` if you want one. `/r/*` and `/skill/*` are pure functions of the URL and send CDN-friendly `Cache-Control` headers.
+The studio is on Vercel at [https://handmadeui.vercel.app](https://handmadeui.vercel.app), connected to [`thatguyzen99/handmade`](https://github.com/thatguyzen99/handmade) (`main`). Production already has `NEXT_PUBLIC_SITE_URL=https://handmadeui.vercel.app` and `NEXT_PUBLIC_REPO_URL=https://github.com/thatguyzen99/handmade`. No analytics are included; add your own tag in `src/app/layout.tsx` if you want one. `/r/*` and `/skill/*` are pure functions of the URL and send CDN-friendly `Cache-Control` headers.
 
 ## License & credits
 
