@@ -12,14 +12,14 @@ export const uiFiles = [
   "input", "label", "misc", "radio", "radio-group", "select", "separator", "slider", "switch", "tabs", "textarea", "tile-group", "tooltip",
   // extended (Handmade)
   "active-bar", "audio-player", "breadcrumb", "calendar", "chart", "collapsible", "combobox", "command", "composer", "date-picker", "drawer", "dropdown-menu", "dropzone", "empty-state", "filter-builder", "highlights", "input-otp", "kbd",
-  "multi-step-form", "pagination", "pill", "popover", "progress", "question-tool", "scroll-area", "section-header", "segmented-control", "sheet", "skeleton", "sparkline", "spinner", "statistic", "stepper", "table", "toast", "toggle-group", "video-player",
+  "multi-step-form", "pagination", "pill", "popover", "progress", "question-tool", "scroll-area", "section-header", "segmented-control", "sheet", "skeleton", "sparkline", "spinner", "statistic", "stepper", "table", "toast", "toggle-group", "video-player", "mega-menu", "checklist", "progress-popover", "speed-dial", "donut-chart", "bento-grid", "curved-gallery",
 ];
 /** Ready-made widgets, installed by the shadcn CLI into your components folder. */
 export const widgetFiles = [
   "activity-feed", "agenda-widget", "chart-card", "checklist-widget", "music-player", "notifications-list", "pricing-card", "profile-card", "stat-card", "weather-card",
 ];
-export const libFiles = ["utils", "gradients", "media"];
-export const dependencies = ["class-variance-authority", "clsx", "cmdk", "input-otp", "lucide-react", "radix-ui", "recharts", "sonner", "tailwind-merge"];
+export const libFiles = ["utils", "gradients", "media", "motion-style"];
+export const dependencies = ["class-variance-authority", "clsx", "cmdk", "input-otp", "lucide-react", "motion", "radix-ui", "recharts", "sonner", "tailwind-merge"];
 
 type CssTree = { [selector: string]: string | CssTree };
 

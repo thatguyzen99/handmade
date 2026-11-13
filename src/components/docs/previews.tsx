@@ -64,6 +64,14 @@ import { toast } from "@/components/ui/toast";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { SubHeading } from "@/components/studio/section";
+import { FileIcon, ImageIcon, PenLineIcon, LinkIcon, PaletteIcon, CameraIcon, LandmarkIcon, BookOpenIcon } from "lucide-react";
+import { MegaMenu, MegaMenuCardGrid, MegaMenuPreviewList, MegaMenuSimpleList } from "@/components/ui/mega-menu";
+import { Checklist } from "@/components/ui/checklist";
+import { ProgressPopover, useProgressRun } from "@/components/ui/progress-popover";
+import { SpeedDial } from "@/components/ui/speed-dial";
+import { DonutChart } from "@/components/ui/donut-chart";
+import { BentoGrid } from "@/components/ui/bento-grid";
+import { CurvedGallery, DrawPad } from "@/components/ui/curved-gallery";
 
 const NOV = (d: number) => new Date(2026, 10, d);
 
@@ -141,6 +149,138 @@ function PillDemo() {
     </div>
   );
 }
+
+function MegaMenuDemo() {
+  return (
+    <div className="min-h-[22rem]">
+      <MegaMenu
+        label="Handmade"
+        tabs={[
+          {
+            id: "product",
+            label: "Product",
+            panel: (
+              <MegaMenuPreviewList
+                items={[
+                  { id: "studio", title: "Studio", description: "A live theme you can tune.", image: photos.workspace, alt: "A studio workspace" },
+                  { id: "docs", title: "Docs", description: "Every component, with a preview.", image: photos.desk, alt: "A desk with notes" },
+                  { id: "skill", title: "Skill", description: "A prompt an agent can follow.", image: photos.score, alt: "Sheet music on a stand" },
+                ]}
+              />
+            ),
+          },
+          {
+            id: "gallery",
+            label: "Gallery",
+            panel: (
+              <MegaMenuCardGrid
+                items={[
+                  { id: "accra", title: "Accra", description: "City light at dusk.", image: photos.accraSkyline, alt: "Accra skyline" },
+                  { id: "cafe", title: "Café", description: "A quiet table.", image: photos.cafe, alt: "A café interior" },
+                  { id: "dawn", title: "Dawn", description: "First light.", image: photos.dawn, alt: "A dawn sky" },
+                ]}
+              />
+            ),
+          },
+          {
+            id: "resources",
+            label: "Resources",
+            panel: <MegaMenuSimpleList items={[{ id: "get-started", title: "Get started", href: "/docs/get-started" }, { id: "styles", title: "Styles", href: "/docs/styles" }, { id: "changelog", title: "Changelog", href: "/docs/get-started" }]} />,
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+function ChecklistDemo() {
+  return (
+    <Checklist
+      items={[
+        { id: "profile", label: "Add your profile photo" },
+        { id: "theme", label: "Pick a theme" },
+        { id: "invite", label: "Invite a teammate" },
+        { id: "domain", label: "Connect a domain" },
+        { id: "publish", label: "Publish the first page" },
+      ]}
+    />
+  );
+}
+
+function ProgressPopoverDemo() {
+  const run = useProgressRun({ duration: 8000 });
+  return (
+    <div className="space-y-3">
+      <div className="flex justify-end">
+        <Button size="small" variant="neutral" mode="outline" onClick={() => { run.reset(); run.start(); }}>
+          Replay
+        </Button>
+      </div>
+      <ProgressPopover run={run} title="Handmade" />
+    </div>
+  );
+}
+
+function SpeedDialDemo() {
+  return (
+    <SpeedDial
+      items={[
+        { id: "write", label: "Write", icon: <PenLineIcon /> },
+        { id: "image", label: "Image", icon: <ImageIcon /> },
+        { id: "link", label: "Link", icon: <LinkIcon /> },
+        { id: "file", label: "File", icon: <FileIcon /> },
+      ]}
+    />
+  );
+}
+
+function DonutChartDemo() {
+  return (
+    <DonutChart
+      label="Time spent"
+      data={[
+        { id: "design", label: "Design", value: 42, color: "#0A0A0A", icon: <PaletteIcon /> },
+        { id: "photo", label: "Photo", value: 28, color: "#FFCA05", icon: <CameraIcon /> },
+        { id: "type", label: "Type", value: 18, color: "#FAAC18", icon: <BookOpenIcon /> },
+        { id: "place", label: "Place", value: 12, color: "#FFE7A3", icon: <LandmarkIcon /> },
+      ]}
+    />
+  );
+}
+
+function BentoGridDemo() {
+  return (
+    <BentoGrid
+      items={[
+        { id: "studio", title: "Studio", description: "Tune a theme live.", image: photos.workspace, alt: "", span: "wide", tags: ["product"] },
+        { id: "accra", title: "Accra", description: "City at dusk.", image: photos.accraSkyline, alt: "", span: "tall", tags: ["place"] },
+        { id: "cafe", title: "Café", description: "A quiet table.", image: photos.cafe, alt: "", tags: ["place"] },
+        { id: "desk", title: "Desk", description: "Notes and tools.", image: photos.desk, alt: "", tags: ["work"] },
+        { id: "dawn", title: "Dawn", description: "First light.", image: photos.dawn, alt: "", span: "wide", tags: ["sky"] },
+        { id: "vinyl", title: "Vinyl", description: "Evening listening.", image: photos.vinyl, alt: "", tags: ["music"] },
+      ]}
+    />
+  );
+}
+
+function CurvedGalleryDemo() {
+  return (
+    <div className="space-y-8">
+      <CurvedGallery
+        items={[
+          { id: "ama", title: "Ama", image: photos.cafe, alt: "A café", avatar: people.ama.src },
+          { id: "kojo", title: "Kojo", image: photos.accraCity, alt: "Accra", avatar: people.kojo.src },
+          { id: "esther", title: "Esther", image: photos.workspace, alt: "A studio", avatar: people.esther.src },
+          { id: "kemi", title: "Kemi", image: photos.dawn, alt: "Dawn", avatar: people.kemi.src },
+          { id: "melvin", title: "Melvin", image: photos.desk, alt: "A desk", avatar: people.melvin.src },
+          { id: "ava", title: "Ava", image: photos.vinyl, alt: "Vinyl", avatar: people.ava.src },
+        ]}
+      />
+      <DrawPad />
+    </div>
+  );
+}
+
 
 const previews: Record<string, React.ComponentType> = {
   "active-bar": () => <ActiveBarDemo />,
@@ -492,6 +632,13 @@ const previews: Record<string, React.ComponentType> = {
       <ToggleGroupItem value="right" aria-label="Align right"><AlignRightIcon /></ToggleGroupItem>
     </ToggleGroup>
   ),
+  "bento-grid": () => <BentoGridDemo />,
+  checklist: () => <ChecklistDemo />,
+  "curved-gallery": () => <CurvedGalleryDemo />,
+  "donut-chart": () => <DonutChartDemo />,
+  "mega-menu": () => <MegaMenuDemo />,
+  "progress-popover": () => <ProgressPopoverDemo />,
+  "speed-dial": () => <SpeedDialDemo />,
   tooltip: () => (
     <Tooltip>
       <TooltipTrigger asChild>

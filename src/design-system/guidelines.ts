@@ -343,6 +343,17 @@ legend:   flex gap-4 text-ui-xs text-fg-muted with size-2 dots
 sparkline: plain SVG, 1.5px stroke in the primary (danger when falling) over a 18%→0 fill of the same color, h-8`,
   },
   {
+    name: "Motion components",
+    notes: "Use the official motion package (import from motion/react). Springs vary by html[data-style]: Handmade is soft, Brutal is snappier, Glass uses the same motion with its translucent surfaces. Honor prefers-reduced-motion with fades only. Shared helpers live in lib/motion-style.",
+    code: `mega menu:  one dropdown panel, layout spring ~400/30, inner content fades and rises 10px in ~150ms
+checklist:  rolling n/5 counter, Sunrise pill progress, circular checks that squish on press, strike-through draws left to right; at 5/5 the counter becomes a check and the title morphs
+progress popover: yellow (not green) step fills, live log, rolling percent; at 100% the popover fades out at 0.95 and the trigger becomes a live pill
+speed dial: items spring up staggered (~300/20); the chosen icon travels into the FAB with a shared layoutId
+donut chart: ink / yellow / orange / Sunrise segments only; hover thickens a slice, centre counts with useSpring
+bento grid: non-matches fade and scale to 0.95, remaining cards layout-spring ~200/30, rolling result count
+curved gallery + draw pad: cards arch with useScroll / useTransform; canvas strokes are smoothed quadratic curves in ink, yellow, orange or Sunrise`,
+  },
+  {
     name: "Widgets",
     notes: "Each widget is exactly one card on the canvas. Shipped in components/widgets.",
     code: `stat card:   p-5; label text-ui-sm text-fg-muted + icon in a size-8 ring; value text-heading-5; delta Badge success/danger + hint text-body-xs; sparkline right

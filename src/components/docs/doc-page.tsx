@@ -16,7 +16,10 @@ export function ComponentDocView({ doc }: { doc: DocEntry }) {
 
       <section className="space-y-3">
         <SubHeading>Preview</SubHeading>
-        <Specimen bodyClassName="p-6">
+        <Specimen
+          bodyClassName="p-6"
+          className={["mega-menu", "speed-dial", "progress-popover", "curved-gallery", "donut-chart"].includes(doc.slug) ? "overflow-visible" : undefined}
+        >
           <ComponentPreview slug={doc.slug} />
         </Specimen>
       </section>

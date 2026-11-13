@@ -13,7 +13,7 @@ export type DocEntry = {
 export const getStartedHref = "/docs/get-started";
 
 export const componentDocs: DocEntry[] = [
-  {
+{
     slug: 'accordion',
     title: 'Accordion',
     description: 'A stacked set of expandable sections for short, related content.',
@@ -29,7 +29,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'active-bar',
     title: 'Active Bar',
     description: 'The sliding highlight behind the active item in a vertical navigation list.',
@@ -43,7 +43,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'alert',
     title: 'Alert',
     description: 'An inline message for status, warnings or supporting context.',
@@ -60,7 +60,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'audio-player',
     title: 'Audio Player',
     description: 'Play an audio file in a single control bar, with play, skip, a timeline, speed and volume.',
@@ -72,7 +72,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'avatar',
     title: 'Avatar',
     description: 'A photo, initials or fallback for a person, with optional group stacking.',
@@ -87,7 +87,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'badge',
     title: 'Badge',
     description: 'A compact pill for status, counts or short labels.',
@@ -101,7 +101,20 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
+    slug: 'bento-grid',
+    title: 'Bento Grid',
+    description: 'A mixed-span card grid with search. Non-matching cards fade out and the rest glide into place, with a rolling result count.',
+    usage: '<BentoGrid items={items} />',
+    props: [
+    { component: 'BentoGrid', props: [
+        { name: 'items', type: 'BentoItem[]', description: 'Cards to render. span can be default, wide, tall or hero.' },
+        { name: 'query', type: 'string', description: 'Optional controlled search string.' },
+        { name: 'onQueryChange', type: '(value: string) => void', description: 'Called when the search field changes.' },
+      ] },
+    ],
+  },
+{
     slug: 'brand-icons',
     title: 'Brand icons',
     description: 'Inline SVGs for brand logos Lucide does not ship, including X, GitHub, Google and Apple.',
@@ -112,7 +125,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'breadcrumb',
     title: 'Breadcrumb',
     description: 'A path of links that shows where the current page sits in the hierarchy.',
@@ -126,7 +139,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'button',
     title: 'Button',
     description: 'The primary action control. Variants, modes and sizes all share one radius and motion scale.',
@@ -143,7 +156,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'calendar',
     title: 'Calendar',
     description: 'A month grid for picking a single date or a date range.',
@@ -156,7 +169,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'card',
     title: 'Card',
     description: 'The default grouping surface: rounded, white (or raised in dark mode), with a small shadow and no border.',
@@ -170,7 +183,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'chart',
     title: 'Chart',
     description: 'Helpers for Recharts: shared colors, axis, grid, tooltip and legend that follow the theme tokens.',
@@ -184,7 +197,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'checkbox',
     title: 'Checkbox',
     description: 'A binary choice, used in lists, forms and filters.',
@@ -197,7 +210,21 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
+    slug: 'checklist',
+    title: 'Checklist',
+    description: 'An onboarding card with a rolling counter, a Sunrise progress bar, and checkboxes that strike through as they complete.',
+    usage: '<Checklist title="Set up your workspace" doneTitle="You are all set" items={items} />',
+    props: [
+    { component: 'Checklist', props: [
+        { name: 'title', type: 'string', description: 'Heading shown while items remain.' },
+        { name: 'doneTitle', type: 'string', description: 'Heading once every item is checked.' },
+        { name: 'items', type: 'ChecklistItem[]', description: 'Rows with id, label and optional done state.' },
+        { name: 'onChange', type: '(items: ChecklistItem[]) => void', description: 'Fires after a row is toggled.' },
+      ] },
+    ],
+  },
+{
     slug: 'collapsible',
     title: 'Collapsible',
     description: 'Show or hide a section of content, with a trigger and a smooth open state.',
@@ -214,7 +241,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'combobox',
     title: 'Combobox',
     description: 'A searchable single-select: a select-style trigger with a command list in a popover.',
@@ -230,7 +257,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'command',
     title: 'Command Bar',
     description: 'A command menu for quick actions and navigation. Built on cmdk, with a modal dialog variant and an inline form.',
@@ -262,7 +289,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'composer',
     title: 'Composer',
     description: 'A chat input card with attachments, a send or stop control, and activity chrome.',
@@ -280,7 +307,21 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
+    slug: 'curved-gallery',
+    title: 'Curved Gallery',
+    description: 'A horizontal gallery that arches as it scrolls, with an optional shared-layout expand, plus a smoothed canvas draw pad.',
+    usage: '<CurvedGallery items={items} />\n<DrawPad />',
+    props: [
+    { component: 'CurvedGallery', props: [
+        { name: 'items', type: 'GalleryCard[]', description: 'Cards with title, image and optional avatar.' },
+      ] },
+    { component: 'DrawPad', props: [
+        { name: 'className', type: 'string', description: 'Optional class on the pad wrapper.' },
+      ] },
+    ],
+  },
+{
     slug: 'date-picker',
     title: 'Date picker',
     description: 'A popover calendar for a single date, plus a range variant.',
@@ -296,7 +337,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'dialog',
     title: 'Dialog',
     description: 'A modal overlay with a focus trap, for short tasks that need the rest of the page to wait.',
@@ -311,7 +352,20 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
+    slug: 'donut-chart',
+    title: 'Donut Chart',
+    description: 'An SVG ring of categories with orbiting badges. Hover or focus a segment to thicken it, read the amount, and count the centre up.',
+    usage: '<DonutChart data={[{ id: "design", label: "Design", value: 42, color: "#FFCA05" }]} />',
+    props: [
+    { component: 'DonutChart', props: [
+        { name: 'data', type: 'DonutSlice[]', description: 'Slices with id, label, value, color and optional icon.' },
+        { name: 'size', type: 'number', description: 'SVG width and height in pixels. Default 240.' },
+        { name: 'label', type: 'string', description: 'Accessible name for the chart.' },
+      ] },
+    ],
+  },
+{
     slug: 'drawer',
     title: 'Drawer',
     description: 'A bottom or side panel that slides over the page, distinct from Sheet, with a grab handle on the bottom and top placements.',
@@ -330,7 +384,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'dropdown-menu',
     title: 'Dropdown menu',
     description: 'A contextual menu of actions, checkboxes or nested submenus.',
@@ -345,7 +399,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'dropzone',
     title: 'Dropzone',
     description: 'A file drop area with a click-to-upload label and an optional file list.',
@@ -360,7 +414,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'empty-state',
     title: 'Empty & Error States',
     description: 'One shape for "there is nothing here" and "we couldn\'t load this", so a failed fetch is never mistaken for an empty list.',
@@ -381,7 +435,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'filter-builder',
     title: 'Filter Builder',
     description: 'A set of field, operator and value rows for building a structured filter.',
@@ -396,7 +450,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'highlights',
     title: 'Highlights',
     description: 'A compact metric tile with a title, a large value, and an optional statistic underneath.',
@@ -415,7 +469,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'image-placeholder',
     title: 'Image placeholder',
     description: 'A photograph when one is available, or a brand/sky gradient when one is not. Never a grey box.',
@@ -428,7 +482,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'input',
     title: 'Input',
     description: 'A text field with an optional leading icon and error state.',
@@ -441,7 +495,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'input-otp',
     title: 'Input OTP',
     description: 'A one-time code field, grouped into slots.',
@@ -454,7 +508,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'kbd',
     title: 'Kbd',
     description: 'A key cap for shortcuts. Group keys of one shortcut with KbdGroup.',
@@ -468,7 +522,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'label',
     title: 'Label',
     description: 'The accessible label for a field, with optional hint and message slots.',
@@ -482,7 +536,19 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
+    slug: 'mega-menu',
+    title: 'Mega Menu',
+    description: 'A navigation bar whose dropdown stays open between tabs and animates its size to fit the next panel.',
+    usage: '<MegaMenu tabs={[{ id: "product", label: "Product", panel: <MegaMenuSimpleList items={items} /> }]} />',
+    props: [
+    { component: 'MegaMenu', props: [
+        { name: 'tabs', type: 'MegaMenuTab[]', description: 'Tabs with id, label and panel content.' },
+        { name: 'label', type: 'string', description: 'Accessible name for the menubar.' },
+      ] },
+    ],
+  },
+{
     slug: 'multi-step-form',
     title: 'Multi-step Form',
     description: 'A stepped form built on the Stepper, with back, next and submit actions.',
@@ -497,7 +563,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'pagination',
     title: 'Pagination',
     description: 'Page controls for long lists and tables.',
@@ -510,7 +576,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'pill-tag',
     title: 'Pill / Tag',
     description: 'A compact, removable label for status, categories or attachments.',
@@ -527,7 +593,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'popover',
     title: 'Popover',
     description: 'A floating panel anchored to a trigger, for short contextual UI.',
@@ -542,7 +608,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'progress',
     title: 'Progress',
     description: 'A linear bar or a ring for determinate progress.',
@@ -558,7 +624,23 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
+    slug: 'progress-popover',
+    title: 'Progress Popover',
+    description: 'A publishing popover with yellow step fills, a live log and a rolling percent. At 100% it dismisses and the trigger becomes a live pill.',
+    usage: 'const run = useProgressRun()\n<ProgressPopover run={run} title="Handmade" />',
+    props: [
+    { component: 'ProgressPopover', props: [
+        { name: 'run', type: 'ProgressRun', description: 'State from useProgressRun, including start and reset.' },
+        { name: 'title', type: 'string', description: 'Name shown in the pill and popover.' },
+      ] },
+    { component: 'useProgressRun', props: [
+        { name: 'duration', type: 'number', description: 'Length of a full run, in milliseconds. Default 8000.' },
+        { name: 'steps', type: 'ProgressStep[]', description: 'Step labels. Defaults to Build, Sign, Notarize, Upload.' },
+      ] },
+    ],
+  },
+{
     slug: 'question-tool',
     title: 'Question Tool',
     description: 'An AI-style question card with single choice, multiple choice or free-text answers.',
@@ -573,7 +655,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'radio-group',
     title: 'Radio group',
     description: 'A set of mutually exclusive choices.',
@@ -590,7 +672,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'scroll-area',
     title: 'Scroll Area',
     description: 'A scroll container with a thin custom scrollbar that matches the surface.',
@@ -602,7 +684,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'section-header',
     title: 'Section Header',
     description: 'A title, subtitle and actions row for a page section.',
@@ -617,7 +699,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'segmented-control',
     title: 'Segmented control',
     description: 'A compact choice of two or more exclusive options, sitting in a recessed tray.',
@@ -630,7 +712,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'select',
     title: 'Select',
     description: 'A standard select menu for choosing one option from a list.',
@@ -647,7 +729,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'separator',
     title: 'Separator',
     description: 'A hairline divider between sections, horizontally or vertically.',
@@ -658,7 +740,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'sheet',
     title: 'Sheet',
     description: 'A sliding overlay, typically from the right, for secondary views and forms.',
@@ -672,7 +754,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'skeleton',
     title: 'Skeleton',
     description: 'A pulsing placeholder that stands in for content that has not loaded yet.',
@@ -683,7 +765,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'slider',
     title: 'Slider',
     description: 'A range control for a numeric value.',
@@ -697,7 +779,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'sparkline',
     title: 'Sparkline',
     description: 'A tiny line chart for a trend inside a stat or table cell.',
@@ -709,7 +791,20 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
+    slug: 'speed-dial',
+    title: 'Speed Dial',
+    description: 'A round action button. Menu items spring up, and the chosen icon travels into the button with a shared layout animation.',
+    usage: '<SpeedDial items={[{ id: "write", label: "Write", icon: <PenIcon /> }]} />',
+    props: [
+    { component: 'SpeedDial', props: [
+        { name: 'items', type: 'SpeedDialItem[]', description: 'Actions with id, label and icon.' },
+        { name: 'label', type: 'string', description: 'Accessible name for the trigger when nothing is selected.' },
+        { name: 'onSelect', type: '(item: SpeedDialItem) => void', description: 'Called when an item is chosen.' },
+      ] },
+    ],
+  },
+{
     slug: 'spinner',
     title: 'Spinner',
     description: 'A compact loading indicator, for buttons, inline status and pending views.',
@@ -721,7 +816,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'statistic',
     title: 'Statistic',
     description: 'A formatted number with an optional prefix, suffix and trend.',
@@ -739,7 +834,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'stepper',
     title: 'Stepper',
     description: 'A short sequence of steps, with a current step and a trail of completed ones.',
@@ -751,7 +846,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'switch',
     title: 'Switch',
     description: 'A labeled on/off control for a setting.',
@@ -764,7 +859,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'table',
     title: 'Table',
     description: 'A data table with optional sortable headers and tabular numerals.',
@@ -778,7 +873,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'tabs',
     title: 'Tabs',
     description: 'A set of views in the same space, with a underline or segmented trigger row.',
@@ -791,7 +886,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'textarea',
     title: 'Textarea',
     description: 'A multi-line text field for longer copy.',
@@ -804,7 +899,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'tile-group',
     title: 'Tile group',
     description: 'A set of selectable tiles, for plans, templates or similar choices.',
@@ -820,7 +915,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'toast',
     title: 'Toast',
     description: 'A short, fleeting message. Built on Sonner, themed to Handmade tokens.',
@@ -836,7 +931,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'toggle-group',
     title: 'Toggle group',
     description: 'A cluster of toggles for one or many selected options, such as text alignment.',
@@ -851,7 +946,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'tooltip',
     title: 'Tooltip',
     description: 'A short label that appears on hover or focus, for icon-only controls and extra context.',
@@ -865,7 +960,7 @@ export const componentDocs: DocEntry[] = [
       ] },
     ],
   },
-  {
+{
     slug: 'video-player',
     title: 'Video Player',
     description: 'Play a video with a poster, title, description and a compact control bar.',
@@ -878,7 +973,7 @@ export const componentDocs: DocEntry[] = [
         { name: 'description', type: 'string', description: 'Supporting line under the title.' },
       ] },
     ],
-  },
+  }
 
 ];
 
