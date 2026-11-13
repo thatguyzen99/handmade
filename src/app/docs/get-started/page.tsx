@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default function GetStartedPage() {
-  const origin = siteUrl.includes("localhost") ? "https://melxels.vercel.app" : siteUrl;
+  const origin = siteUrl.includes("localhost") ? "https://handmadeui.vercel.app" : siteUrl;
   const registry = `${origin}/r/handmade.json`;
   const skill = `${origin}/skill/handmade.md`;
   return (

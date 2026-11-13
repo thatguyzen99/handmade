@@ -24,7 +24,7 @@ export const author = {
 
 /**
  * Public base URL of the deployed studio. The Vercel project and repo stay
- * named melxels; the live URL is still NEXT_PUBLIC_SITE_URL (https://melxels.vercel.app).
+ * named melxels; the live URL is still NEXT_PUBLIC_SITE_URL (https://handmadeui.vercel.app).
  */
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3100").replace(/\/+$/, "");
 
