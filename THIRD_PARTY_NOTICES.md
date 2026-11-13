@@ -31,7 +31,7 @@ Fonts are loaded from their hosts at runtime, not bundled in this repo.
 
 | Font | License | Source |
 | --- | --- | --- |
-| Instrument Sans / Instrument Serif (defaults) | SIL Open Font License 1.1 | [Instrument](https://fonts.google.com/specimen/Instrument+Sans) via Google Fonts |
+| Familjen Grotesk (default UI and headings) | SIL Open Font License 1.1 | [Familjen](https://fonts.google.com/specimen/Familjen+Grotesk) via Google Fonts |
 | JetBrains Mono (default) | SIL Open Font License 1.1 | [JetBrains](https://fonts.google.com/specimen/JetBrains+Mono) via Google Fonts |
 | Inter / Inter Display, DM Mono (customizer options from upstream) | SIL Open Font License 1.1 | [rsms.me/inter](https://rsms.me/inter/), [Google Fonts](https://fonts.google.com/specimen/DM+Mono) |
 | Optional Google Fonts in the customizer | Each family's own license (mostly OFL) | [fonts.google.com](https://fonts.google.com) |

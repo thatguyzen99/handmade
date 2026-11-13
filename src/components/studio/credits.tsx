@@ -37,7 +37,7 @@ const groups: { title: string; items: { name: string; href: string; note: string
     items: [
       { name: "Lucide", href: "https://lucide.dev", note: "Icon set" },
       { name: "Simple Icons", href: "https://simpleicons.org", note: "Brand logos" },
-      { name: "Instrument Sans & Serif", href: "https://fonts.google.com/specimen/Instrument+Sans", note: "By Instrument" },
+      { name: "Familjen Grotesk", href: "https://fonts.google.com/specimen/Familjen+Grotesk", note: "By Familjen" },
       { name: "JetBrains Mono", href: "https://fonts.google.com/specimen/JetBrains+Mono", note: "By JetBrains" },
       { name: "Inter", href: "https://rsms.me/inter/", note: "By Rasmus Andersson" },
       { name: "Google Fonts", href: "https://fonts.google.com", note: "Optional typefaces" },

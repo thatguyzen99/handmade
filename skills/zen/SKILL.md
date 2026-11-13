@@ -13,9 +13,9 @@ Minimalism with soul: quiet, precise and tactile, and card-based. Every screen i
 ## Stack & conventions
 - React + Tailwind CSS v4. Components follow **shadcn/ui** conventions: Radix UI primitives (`radix-ui`), variants with `class-variance-authority`, a `cn()` helper (clsx + tailwind-merge), `data-slot` attributes, `asChild` via Radix Slot. Colors and type come only from Zen Studio's semantic tokens (defined below).
 - Icons: Lucide (`lucide-react`), the shadcn/ui default. Outline by default, size-5 (20px). Lucide has no brand logos, so use inline SVGs from Simple Icons for those.
-- Fonts: Instrument Sans for UI text, Instrument Serif for headings (text-heading-*), JetBrains Mono for code/numbers. Headings use weight 400.
+- Fonts: Familjen Grotesk for all UI text and headings, JetBrains Mono for code/numbers. Headings use weight 500.
 - Load fonts in the document head:
-  `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap">`
+  `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400;500;600&display=swap">`
 - Default mode: light. Dark mode is class-based (`.dark` on <html>) and handled entirely by tokens — never write `dark:` color overrides for semantic tokens.
 - Configure tailwind-merge so `text-heading-*`, `text-ui-*`, `text-body-*` and `text-overline-*` are treated as font sizes (so they don't conflict with text colors like `text-fg-muted`):
 ```ts
@@ -439,10 +439,10 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --primary-800: #0F007B;
   --primary-900: #09005D;
   --primary-950: #050043;
-  --ds-font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
-  --ds-font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --ds-font-sans: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --ds-font-display: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif;
   --ds-font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --ds-heading-weight: 400;
+  --ds-heading-weight: 500;
   --ds-spacing: 4px;
   --ds-font-scale: 1;
   --ds-radius-xs: 4px;

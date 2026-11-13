@@ -6,7 +6,7 @@
 
 Zen Studio is a systematic design language ("minimalism with soul") built on **shadcn/ui** conventions (Radix primitives, cva, `cn()`, `data-slot`) with its own semantic token layer (`bg-surface` / `text-fg` / `ring-line` colors, `text-ui-sm`-style type). The site, the registry, the copyable prompt and the agent skill all read from `src/design-system/`, so they can't drift apart.
 
-Defaults: Zen cobalt `#2F3CF4` (dark `#7C86FF`), warm stone neutrals, Instrument Sans + Instrument Serif headings, JetBrains Mono, 10px radius and quiet shadows.
+Defaults: Zen cobalt `#2F3CF4` (dark `#7C86FF`), warm stone neutrals, Familjen Grotesk for UI and headings, JetBrains Mono, 10px radius and quiet shadows.
 
 ## What's inside
 
@@ -81,4 +81,4 @@ A standard Next.js app, so it runs on Vercel or any Node host. Set `NEXT_PUBLIC_
 
 ## License & credits
 
-[MIT](LICENSE). **Built on Cards by Oliur (MIT)**: [github.com/oliur/cards](https://github.com/oliur/cards). Also builds on shadcn/ui, Radix UI, the Tailwind CSS palette, Lucide, Simple Icons, Sonner, cmdk, input-otp, Recharts and the Instrument and JetBrains Mono fonts. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Not affiliated with shadcn or Oliur.
+[MIT](LICENSE). **Built on Cards by Oliur (MIT)**: [github.com/oliur/cards](https://github.com/oliur/cards). Also builds on shadcn/ui, Radix UI, the Tailwind CSS palette, Lucide, Simple Icons, Sonner, cmdk, input-otp, Recharts and the Familjen Grotesk and JetBrains Mono fonts. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Not affiliated with shadcn or Oliur.

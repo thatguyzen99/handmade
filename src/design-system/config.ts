@@ -62,10 +62,10 @@ export const defaultConfig: ThemeConfig = {
   primary: "#2F3CF4",
   primaryDark: "#7C86FF",
   neutral: "stone",
-  fontSans: "Instrument Sans",
-  fontDisplay: "Instrument Serif",
+  fontSans: "Familjen Grotesk",
+  fontDisplay: "Familjen Grotesk",
   fontMono: "JetBrains Mono",
-  headingWeight: 400,
+  headingWeight: 500,
   radius: 10, // radius stop 5
   buttonShape: "match",
   density: "default",
@@ -81,6 +81,8 @@ export type FontDef = {
   css?: string;
   /** Where the font files come from (default: Google Fonts). */
   source?: "google" | "rsms";
+  /** Request the variable font axis range (min..max weight) from Google Fonts. */
+  variable?: boolean;
 };
 
 export const RSMS_INTER_CSS = "https://rsms.me/inter/inter.css";
@@ -98,6 +100,7 @@ export const fonts: FontDef[] = [
   { name: "Outfit", category: "sans", weights: [400, 500, 600, 700] },
   { name: "Instrument Sans", category: "sans", weights: [400, 500, 600, 700] },
   { name: "Onest", category: "sans", weights: [400, 500, 600, 700] },
+  { name: "Familjen Grotesk", category: "sans", weights: [400, 500, 600, 700], variable: true },
   { name: "Space Grotesk", category: "sans", weights: [400, 500, 600, 700] },
   { name: "Bricolage Grotesque", category: "sans", weights: [400, 500, 600, 700] },
   { name: "IBM Plex Sans", category: "sans", weights: [400, 500, 600, 700] },
@@ -130,7 +133,12 @@ export function fontStylesheets(config: ThemeConfig): string[] {
   const hrefs: string[] = [];
   if (defs.some((d) => d.source === "rsms")) hrefs.push(RSMS_INTER_CSS);
   if (google.length) {
-    const families = google.map((d) => `family=${d.name.replace(/ /g, "+")}:wght@${d.weights.join(";")}`);
+    const families = google.map((d) => {
+      const axis = d.variable
+        ? `${Math.min(...d.weights)}..${Math.max(...d.weights)}`
+        : d.weights.join(";");
+      return `family=${d.name.replace(/ /g, "+")}:wght@${axis}`;
+    });
     hrefs.push(`https://fonts.googleapis.com/css2?${families.join("&")}&display=swap`);
   }
   return hrefs;
