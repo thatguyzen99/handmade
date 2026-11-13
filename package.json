@@ -1,0 +1,47 @@
+{
+  "name": "zen-studio",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Zen Studio by Melvin Z. Freeman: a customizable design system studio built on Cards by Oliur (MIT).",
+  "scripts": {
+    "theme": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/write-theme.mts",
+    "skill": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/write-skill.mts",
+    "predev": "pnpm theme && pnpm skill",
+    "dev": "next dev",
+    "prebuild": "pnpm theme && pnpm skill",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint && node scripts/check-spacing.mjs && node scripts/check-tokens.mjs && pnpm check:skill",
+    "check:spacing": "node scripts/check-spacing.mjs",
+    "check:tokens": "node scripts/check-tokens.mjs",
+    "check:skill": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/write-skill.mts --check"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "culori": "^4.0.2",
+    "input-otp": "^1.5.0",
+    "lucide-react": "^1.66.0",
+    "next": "16.4.3",
+    "radix-ui": "^1.8.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "recharts": "^3.10.1",
+    "sonner": "^2.0.8",
+    "tailwind-merge": "^3.7.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/culori": "^4.0.1",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@9.15.9"
+}
