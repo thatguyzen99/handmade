@@ -1,6 +1,6 @@
 # Melxels
 
-**A design system studio by [Melvin Z. Freeman](https://x.com/yourdesignerzen)** (Product, Web & Brand Designer, [@yourdesignerzen](https://x.com/yourdesignerzen)). Tune color, neutrals, fonts, radius, density and shadows live, then take the result anywhere: as shadcn/ui components, as an AI prompt, or as an agent skill.
+**A design system studio by [Melvin Z. Freeman](https://x.com/yourdesignerzen)** (Product, Web & Brand Designer, [@yourdesignerzen](https://x.com/yourdesignerzen)). Live at [melxels.vercel.app](https://melxels.vercel.app). Tune color, neutrals, fonts, radius, density and shadows live, then take the result anywhere: as shadcn/ui components, as an AI prompt, or as an agent skill.
 
 > Built on Cards by Oliur (MIT). See [Credits](#license--credits).
 
@@ -17,14 +17,14 @@ Defaults: Melxels purple `#3D0066` (dark `#B17FEB`) on a cream `#F7F4EE` canvas,
 
 ## Installation
 
-The links below use the default settings (`melxels`, with `/r/zen.json` still served as a legacy alias) and `https://YOUR-DOMAIN` as the deployed site URL. The studio gives you links with your own settings encoded in them.
+The links below use the default settings (`melxels`, with `/r/zen.json` still served as a legacy alias) and the live site at [`https://melxels.vercel.app`](https://melxels.vercel.app). The studio gives you links with your own settings encoded in them.
 
 ### Option 1: Install the components (shadcn/ui projects)
 
 You need a project that uses Tailwind CSS v4 and has shadcn/ui set up with Radix:
 
 ```bash
-npx shadcn@latest add https://YOUR-DOMAIN/r/melxels.json
+npx shadcn@latest add https://melxels.vercel.app/r/melxels.json
 ```
 
 This installs the tokens (added to your global CSS), the components in `components/ui/`, the widgets, the `lib/utils` and `lib/gradients` helpers, and the dependencies (`class-variance-authority`, `clsx`, `lucide-react`, `radix-ui`, `tailwind-merge`, `sonner`, `cmdk`, `input-otp`, `recharts`). Then paste the font `<link>` tags the CLI prints (also in the **Copy prompt** dialog) into your document `<head>`.
@@ -36,7 +36,7 @@ Copy the prompt from the studio into any AI builder, chat or rules file (`CLAUDE
 ### Option 3: Add it as an agent skill
 
 ```bash
-mkdir -p .claude/skills/melxels && curl -fsSL https://YOUR-DOMAIN/skill/melxels.md -o .claude/skills/melxels/SKILL.md
+mkdir -p .claude/skills/melxels && curl -fsSL https://melxels.vercel.app/skill/melxels.md -o .claude/skills/melxels/SKILL.md
 ```
 
 [`skills/melxels/SKILL.md`](skills/melxels/SKILL.md) is generated from `src/design-system/` by `pnpm skill`. Don't edit it by hand: it's regenerated on `dev` and `build`, and `pnpm lint` fails if the committed copy is stale.
@@ -57,8 +57,8 @@ pnpm start -p 3100
 
 | Variable | Default | What it does |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3100` | Base URL used in registry, skill and prompt links. Set it to your domain before deploying. |
-| `NEXT_PUBLIC_REPO_URL` | empty | Public repo link shown in credits (hidden when empty). |
+| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3100` locally; `https://melxels.vercel.app` in production | Base URL used in registry, skill and prompt links. |
+| `NEXT_PUBLIC_REPO_URL` | empty locally; `https://github.com/thatguyzen99/melxels` in production | Public repo link shown in credits (hidden when empty). |
 
 The name, author and upstream credit live in one place: `src/design-system/brand.ts`.
 
@@ -79,7 +79,7 @@ The name, author and upstream credit live in one place: `src/design-system/brand
 
 ## Deploying
 
-A standard Next.js app, so it runs on Vercel or any Node host. Set `NEXT_PUBLIC_SITE_URL` (and optionally `NEXT_PUBLIC_REPO_URL`), then deploy. No analytics are included; add your own tag in `src/app/layout.tsx` if you want one. `/r/*` and `/skill/*` are pure functions of the URL and send CDN-friendly `Cache-Control` headers.
+The studio is on Vercel at [https://melxels.vercel.app](https://melxels.vercel.app), connected to [`thatguyzen99/melxels`](https://github.com/thatguyzen99/melxels) (`main`). Production already has `NEXT_PUBLIC_SITE_URL=https://melxels.vercel.app` and `NEXT_PUBLIC_REPO_URL=https://github.com/thatguyzen99/melxels`. No analytics are included; add your own tag in `src/app/layout.tsx` if you want one. `/r/*` and `/skill/*` are pure functions of the URL and send CDN-friendly `Cache-Control` headers.
 
 ## License & credits
 
