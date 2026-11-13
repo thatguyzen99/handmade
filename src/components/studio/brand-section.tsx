@@ -9,7 +9,8 @@ import { DocSection, SubHeading } from "./section";
 
 const swatches = [
   { name: "Black", hex: brandColors.ink, use: "Primary (light)" },
-  { name: "Cream", hex: brandColors.cream, use: "Light canvas / dark primary" },
+  { name: "Canvas", hex: brandColors.canvasLight, use: "Light page background" },
+  { name: "Cream", hex: brandColors.cream, use: "Wells / dark primary" },
   { name: "Purple", hex: brandColors.purple, use: "Accent" },
   { name: "Yellow", hex: brandColors.yellow, use: "Highlight" },
   { name: "Butter", hex: brandColors.butter, use: "Sunrise start" },

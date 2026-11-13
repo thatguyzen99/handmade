@@ -7,7 +7,7 @@
 export { systemName, systemId, siteUrl, repoUrl, author, upstream } from "./brand";
 
 export const aesthetic =
-  "Minimalism with soul: quiet, precise and tactile, and card-based. Every screen is a cream canvas with content grouped into white cards; hairline strokes and generous whitespace do the rest, and color is reserved for intent (actions, status, focus) so it always means something. Depth comes from one crisp, small shadow rather than borders or heavy drop shadows. Typography does the heavy lifting: tight tracking, medium-weight labels and a clear size hierarchy.";
+  "Minimalism with soul: quiet, precise and tactile, and card-based. Every screen is a near-white cream canvas with content grouped into white cards; hairline strokes and generous whitespace do the rest, and color is reserved for intent (actions, status, focus) so it always means something. Depth comes from one crisp, small shadow rather than borders or heavy drop shadows. Typography does the heavy lifting: tight tracking, medium-weight labels and a clear size hierarchy.";
 
 export const principles = [
   {
@@ -20,7 +20,7 @@ export const principles = [
   },
   {
     title: "Cards on a canvas",
-    body: "The page background is always bg-canvas (cream in the Melxels default). All content lives in white cards: rounded-2xl bg-surface shadow-sm. Never put content directly on the canvas except page titles and section headings. Don't nest cards; divide a card's sections with full-bleed h-px bg-line dividers.",
+    body: "The page background is always bg-canvas (near-white cream #FCFBF8 in the Melxels default). All content lives in white cards: rounded-2xl bg-surface shadow-sm. Never put content directly on the canvas except page titles and section headings. Don't nest cards; divide a card's sections with full-bleed h-px bg-line dividers.",
   },
   {
     title: "One shadow, scaled",

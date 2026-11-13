@@ -6,7 +6,7 @@
 
 Melxels is a systematic design language ("minimalism with soul") built on **shadcn/ui** conventions (Radix primitives, cva, `cn()`, `data-slot`) with its own semantic token layer (`bg-surface` / `text-fg` / `ring-line` colors, `text-ui-sm`-style type). The site, the registry, the copyable prompt and the agent skill all read from `src/design-system/`, so they can't drift apart.
 
-Defaults: black `#0A0A0A` primary (cream `#F7F4EE` in dark mode) on a cream canvas, near-black `#111111` in dark mode, purple `#3D0066` (dark `#B17FEB`) as the accent, yellow `#FFCA05` and orange `#FAAC18` as highlights, and Sunrise (`linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%)`) as the featured brand gradient — text on it is ink. Familjen Grotesk for UI and headings, JetBrains Mono, 10px radius and quiet shadows. The Animation Tuner can write easing and duration into the theme export.
+Defaults: black `#0A0A0A` primary (cream `#F7F4EE` in dark mode) on a near-white cream `#FCFBF8` canvas, near-black `#111111` in dark mode, purple `#3D0066` (dark `#B17FEB`) as the accent, yellow `#FFCA05` and orange `#FAAC18` as highlights, and Sunrise (`linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%)`) as the featured brand gradient — text on it is ink. Familjen Grotesk for UI and headings, JetBrains Mono, 10px radius and quiet shadows. The Animation Tuner can write easing and duration into the theme export.
 
 ## What's inside
 

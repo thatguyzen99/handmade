@@ -18,8 +18,8 @@ const fixedNeutrals: Record<Exclude<NeutralName, "tinted">, string[]> = {
   gray: ["#FFFFFF", "#FAFAFA", "#F5F5F5", "#E5E5E5", "#D4D4D4", "#A1A1A1", "#737373", "#525252", "#404040", "#262626", "#171717", "#0A0A0A"],
   slate: ["#FFFFFF", "#F8FAFC", "#F1F5F9", "#E2E8F0", "#CAD5E2", "#90A1B9", "#62748E", "#45556C", "#314158", "#1D293D", "#0F172B", "#020618"],
   zinc: ["#FFFFFF", "#FAFAFA", "#F4F4F5", "#E4E4E7", "#D4D4D8", "#9F9FA9", "#71717B", "#52525C", "#3F3F46", "#27272A", "#18181B", "#09090B"],
-  // Melxels stone: cream canvas (#F7F4EE at 100), warm midtones, true near-black canvas (#111111 at 900).
-  stone: ["#FFFFFF", "#FAF8F3", "#F7F4EE", "#E8E2D6", "#D3CBBA", "#A89F8E", "#7A7368", "#5C564E", "#3F3C38", "#2A2826", "#111111", "#0A0A0A"],
+  // Melxels stone: near-white cream canvas (#FCFBF8 at 50), brand cream at 100 for wells, warm midtones, near-black canvas (#111111 at 900).
+  stone: ["#FFFFFF", "#FCFBF8", "#F7F4EE", "#E8E2D6", "#D3CBBA", "#A89F8E", "#7A7368", "#5C564E", "#3F3C38", "#2A2826", "#111111", "#0A0A0A"],
 };
 
 const toScale = (values: string[]): Scale =>
@@ -125,15 +125,15 @@ export function semanticTokens(config: ThemeConfig, mode: "light" | "dark"): Tok
   const hoverDir = light ? (L < 0.3 ? 1 : -1) : L > 0.85 ? -1 : 1;
 
   const t: TokenMap = {
-    // backgrounds. Light: canvas grey, cards white, wells a touch darker.
+    // backgrounds. Light: near-white cream canvas, white cards, wells a touch darker (brand cream).
     // Dark: lightness = elevation. The canvas is near-black (never crushed #000) and each level up is
     // one shade lighter; wells and trays sit between the canvas and the card they're recessed into.
-    "canvas": light ? n[100] : n[900],
+    "canvas": light ? n[50] : n[900],
     "inverse": pick(950, 0),
     "inverse-hover": mix(pick(950, 0), pick(0, 950), 0.07),
     "track-strong": pick(300, 600),
     "track": pick(200, 700),
-    "subtle": light ? n[50] : shift(n[900], DARK_LEVEL_BASE + 0.01),
+    "subtle": light ? n[100] : shift(n[900], DARK_LEVEL_BASE + 0.01),
     // The well behind segmented tabs: clearly darker than the card in both modes, so the raised tab stands out.
     "tray": light ? n[200] : n[900],
     "surface": light ? n[0] : shift(n[900], DARK_LEVEL_BASE + 0.03),
@@ -145,10 +145,10 @@ export function semanticTokens(config: ThemeConfig, mode: "light" | "dark"): Tok
     // controls that sit on a card (select triggers, outline and raised buttons): white in light mode,
     // a shade lighter than the card in dark mode.
     "control": light ? n[0] : shift(n[900], DARK_LEVEL_BASE + 0.06),
-    "control-hover": light ? n[50] : shift(n[900], DARK_LEVEL_BASE + 0.09),
+    "control-hover": light ? n[100] : shift(n[900], DARK_LEVEL_BASE + 0.09),
     "field-line": light ? n[200] : "transparent",
     // table header row: a faint well on white cards in light mode, a step lighter than the card in dark mode
-    "table-head": light ? n[50] : shift(n[900], DARK_LEVEL_BASE + 0.06),
+    "table-head": light ? n[100] : shift(n[900], DARK_LEVEL_BASE + 0.06),
     // hover tint works on every level: darkens in light mode, lightens in dark mode
     "hover": light ? alpha(n[950], 0.04) : alpha(n[0], 0.06),
     // the chosen item in a menu or list: a soft accent tint, a step past hover

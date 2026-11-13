@@ -60,7 +60,7 @@ ${principles.map((p, i) => `${i + 1}. **${p.title}.** ${p.body}`).join("\n")}
 ## Color usage
 ${colorRules.map((c) => `- ${c}`).join("\n")}
 
-Primary color: \`${primaryFor(config, "light")}\` in light mode, \`${primaryFor(config, "dark")}\` in dark mode. Neutral ramp: ${config.neutral}. Defaults are ink \`#0A0A0A\` on a cream canvas, and cream on a near-black \`#111111\` canvas in dark mode.
+Primary color: \`${primaryFor(config, "light")}\` in light mode, \`${primaryFor(config, "dark")}\` in dark mode. Neutral ramp: ${config.neutral}. Defaults are ink \`#0A0A0A\` on a near-white cream \`#FCFBF8\` canvas, and cream on a near-black \`#111111\` canvas in dark mode.
 Accent (links, focus rings, selection, accent badges, chart-1): purple \`#3D0066\` in light mode (\`text-brand\`, \`bg-brand\`, \`bg-brand-subtle\`), lighter \`#B17FEB\` in dark. Do not use the shadcn \`accent\` token for this — that is a hover tint. Yellow \`#FFCA05\` and orange \`#FAAC18\` are secondary highlights. Featured brand gradient: Sunrise; Solar and Royal remain available.
 
 ## Images
@@ -68,7 +68,7 @@ Wherever an image would go (thumbnails, covers, album art, avatars, heroes), use
 ${gradientGroups.map((group) => `- ${group.title}: ${group.gradients.map((g) => describeGradient(g)).join("; ")}`).join("\n")}
 
 ## Brand marks
-The Melxels wordmark and solid mark live in \`/brand/\` (SVG, recolorable via currentColor). Use them in nav and footer (ink \`#0A0A0A\` in light mode, cream \`#F7F4EE\` in dark). The app icon and favicon is the outline mark with a Sunrise gold outer stroke and a white letter interior (\`/brand/melxels-icon-outline.png\`). Purple and royal-gradient marks are accent alternates, not the default logo. Navy \`#1A1A2E\` is an optional accent and the start of Royal, not the dark canvas.
+The Melxels wordmark and solid mark live in \`/brand/\` (SVG, recolorable via currentColor). Use the wordmark in the footer (ink \`#0A0A0A\` in light mode, cream \`#F7F4EE\` in dark). The header/nav uses the outline app icon (\`/brand/melxels-icon-outline.png\`) as the home link, labelled \`Melxels home\`, at about 32px — not the wordmark. The app icon and favicon is the outline mark with a Sunrise gold outer stroke and a white letter interior (\`/brand/melxels-icon-outline.png\`). Purple and royal-gradient marks are accent alternates, not the default logo. Navy \`#1A1A2E\` is an optional accent and the start of Royal, not the dark canvas.
 
 ## Motion
 Easing and entrance duration are theme tokens, tunable in the Animation Tuner: \`--ease-tactile: cubic-bezier(${config.motion.ease.join(", ")})\` and \`--duration-enter: ${config.motion.duration}ms\`.
@@ -88,7 +88,7 @@ rounded-xs ${r.xs} · rounded-sm ${r.sm} · rounded-md ${r.md} · rounded-lg ${r
 - Alerts, menu items' containers: rounded-xl. Cards and popovers: rounded-2xl. Dialogs and sheets: rounded-3xl.
 
 ## Layout
-Card-based: the page is \`bg-canvas\` (cream in the Melxels default, near-black in dark mode) and every block of content is a white card (\`bg-surface\`). Page titles and section headings sit on the canvas; everything else goes in cards.
+Card-based: the page is \`bg-canvas\` (near-white cream \`#FCFBF8\` in the Melxels default, near-black in dark mode) and every block of content is a white card (\`bg-surface\`). Page titles and section headings sit on the canvas; everything else goes in cards.
 
 ## Spacing (${density.label.toLowerCase()} density — ${unit}pt grid)
 Tailwind's spacing base is ${unit}px (\`--spacing: var(--ds-spacing)\`, set to ${unit}px in the tokens). Every padding, margin, gap and control height is a whole multiple of it — never half steps (\`p-1.5\`, \`gap-2.5\`, \`px-3.5\`) or arbitrary pixel values. Changing density only changes the unit, so always use the step classes below.

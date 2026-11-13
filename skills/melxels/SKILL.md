@@ -8,7 +8,7 @@ description: Applies the Melxels design system (colors, type, radius, spacing, s
 You are building user interfaces with the Melxels design system (Built on Cards by Oliur (MIT)). Apply every rule below to all UI you create or edit in this project. When something isn't covered, extrapolate from these principles rather than falling back to generic defaults.
 
 ## Aesthetic
-Minimalism with soul: quiet, precise and tactile, and card-based. Every screen is a cream canvas with content grouped into white cards; hairline strokes and generous whitespace do the rest, and color is reserved for intent (actions, status, focus) so it always means something. Depth comes from one crisp, small shadow rather than borders or heavy drop shadows. Typography does the heavy lifting: tight tracking, medium-weight labels and a clear size hierarchy.
+Minimalism with soul: quiet, precise and tactile, and card-based. Every screen is a near-white cream canvas with content grouped into white cards; hairline strokes and generous whitespace do the rest, and color is reserved for intent (actions, status, focus) so it always means something. Depth comes from one crisp, small shadow rather than borders or heavy drop shadows. Typography does the heavy lifting: tight tracking, medium-weight labels and a clear size hierarchy.
 
 ## Stack & conventions
 - React + Tailwind CSS v4. Components follow **shadcn/ui** conventions: Radix UI primitives (`radix-ui`), variants with `class-variance-authority`, a `cn()` helper (clsx + tailwind-merge), `data-slot` attributes, `asChild` via Radix Slot. Colors and type come only from Melxels's semantic tokens (defined below).
@@ -25,7 +25,7 @@ const twMerge = extendTailwindMerge({ extend: { classGroups: { "font-size": [{ t
 ## Principles
 1. **Neutral first, color with intent.** 95% of any screen is neutral tokens (surface/canvas backgrounds, fg-* text, line-* strokes). Primary appears on the single most important action. Brand accent (purple, text-brand / bg-brand) is for links, focus, selection and accent badges. Status colors only communicate state, never decoration.
 2. **Semantic tokens only.** Never use raw hex values or Tailwind's default palette. Use semantic tokens (bg-surface, text-fg-muted, ring-line). They flip automatically in dark mode.
-3. **Cards on a canvas.** The page background is always bg-canvas (cream in the Melxels default). All content lives in white cards: rounded-2xl bg-surface shadow-sm. Never put content directly on the canvas except page titles and section headings. Don't nest cards; divide a card's sections with full-bleed h-px bg-line dividers.
+3. **Cards on a canvas.** The page background is always bg-canvas (near-white cream #FCFBF8 in the Melxels default). All content lives in white cards: rounded-2xl bg-surface shadow-sm. Never put content directly on the canvas except page titles and section headings. Don't nest cards; divide a card's sections with full-bleed h-px bg-line dividers.
 4. **One shadow, scaled.** Elevation is a single shadow scaled into a ladder: shadow-xs on resting inputs, shadow-sm on cards, shadow-md on floating layers (popovers, toasts), shadow-lg on dialogs. Buttons, badges and menus sit outside the ladder with their own crisp tokens: shadow-button, shadow-primary, shadow-inverse, shadow-danger, shadow-badge and shadow-menu, a fine ring and a tight drop in light mode, a solid 0.5px outline and a black drop in dark. Shadowed surfaces (cards, popovers, dialogs) get no border or ring: the shadow alone defines the edge, and a stroke on top of it reads as a muddy double edge. Rings are for controls (inputs, checkboxes) that carry no real shadow. Never invent new shadows.
 5. **One radius, scaled.** Every corner derives from a single base radius. Buttons use their own tokens, rounded-button (medium) and rounded-button-sm (compact), which either follow the scale or are pills. Other controls use rounded-lg (base), compact controls rounded-md, small marks rounded-xs/sm, cards rounded-2xl, dialogs rounded-3xl. People (avatars) and toggles are always rounded-full.
 6. **Higher is lighter in dark mode.** In dark mode elevation is shown with lightness, not shadow: the page is a near-black grey (never crushed #000), cards are one shade lighter, and the further above the page something sits, the lighter its surface. Always pick the surface token for the element's height (canvas → surface → raised → floating; subtle for recessed wells) instead of reusing surface everywhere, and never hard-code dark colours. Dark strokes are translucent white so they read the same on every level.
@@ -47,7 +47,7 @@ const twMerge = extendTailwindMerge({ extend: { classGroups: { "font-size": [{ t
 - Brand accent: text-brand, bg-brand and bg-brand-subtle for links, focus, selection and accent badges. Do not reuse bg-primary for those.
 - The featured brand gradient is Sunrise (linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%), also --gradient-sunrise). Text on it is always ink (#0A0A0A), never white. Use it as a small accent, not a large background. Solar and Royal remain available.
 
-Primary color: `#0A0A0A` in light mode, `#F7F4EE` in dark mode. Neutral ramp: stone. Defaults are ink `#0A0A0A` on a cream canvas, and cream on a near-black `#111111` canvas in dark mode.
+Primary color: `#0A0A0A` in light mode, `#F7F4EE` in dark mode. Neutral ramp: stone. Defaults are ink `#0A0A0A` on a near-white cream `#FCFBF8` canvas, and cream on a near-black `#111111` canvas in dark mode.
 Accent (links, focus rings, selection, accent badges, chart-1): purple `#3D0066` in light mode (`text-brand`, `bg-brand`, `bg-brand-subtle`), lighter `#B17FEB` in dark. Do not use the shadcn `accent` token for this — that is a hover tint. Yellow `#FFCA05` and orange `#FAAC18` are secondary highlights. Featured brand gradient: Sunrise; Solar and Royal remain available.
 
 ## Images
@@ -59,7 +59,7 @@ Wherever an image would go (thumbnails, covers, album art, avatars, heroes), use
 - Night: Midnight #0B1026 → #2C3A68; Deep Blue #050A1C → #14305C; Blue Hour #1C2A5A → #5A6CA8; Aubergine #120C2C → #45305F; Moonlit #10181F → #3A4C5C
 
 ## Brand marks
-The Melxels wordmark and solid mark live in `/brand/` (SVG, recolorable via currentColor). Use them in nav and footer (ink `#0A0A0A` in light mode, cream `#F7F4EE` in dark). The app icon and favicon is the outline mark with a Sunrise gold outer stroke and a white letter interior (`/brand/melxels-icon-outline.png`). Purple and royal-gradient marks are accent alternates, not the default logo. Navy `#1A1A2E` is an optional accent and the start of Royal, not the dark canvas.
+The Melxels wordmark and solid mark live in `/brand/` (SVG, recolorable via currentColor). Use the wordmark in the footer (ink `#0A0A0A` in light mode, cream `#F7F4EE` in dark). The header/nav uses the outline app icon (`/brand/melxels-icon-outline.png`) as the home link, labelled `Melxels home`, at about 32px — not the wordmark. The app icon and favicon is the outline mark with a Sunrise gold outer stroke and a white letter interior (`/brand/melxels-icon-outline.png`). Purple and royal-gradient marks are accent alternates, not the default logo. Navy `#1A1A2E` is an optional accent and the start of Royal, not the dark canvas.
 
 ## Motion
 Easing and entrance duration are theme tokens, tunable in the Animation Tuner: `--ease-tactile: cubic-bezier(0.23, 1, 0.32, 1)` and `--duration-enter: 160ms`.
@@ -95,7 +95,7 @@ rounded-xs 4px · rounded-sm 6px · rounded-md 8px · rounded-lg 10px · rounded
 - Alerts, menu items' containers: rounded-xl. Cards and popovers: rounded-2xl. Dialogs and sheets: rounded-3xl.
 
 ## Layout
-Card-based: the page is `bg-canvas` (cream in the Melxels default, near-black in dark mode) and every block of content is a white card (`bg-surface`). Page titles and section headings sit on the canvas; everything else goes in cards.
+Card-based: the page is `bg-canvas` (near-white cream `#FCFBF8` in the Melxels default, near-black in dark mode) and every block of content is a white card (`bg-surface`). Page titles and section headings sit on the canvas; everything else goes in cards.
 
 ## Spacing (default density — 4pt grid)
 Tailwind's spacing base is 4px (`--spacing: var(--ds-spacing)`, set to 4px in the tokens). Every padding, margin, gap and control height is a whole multiple of it — never half steps (`p-1.5`, `gap-2.5`, `px-3.5`) or arbitrary pixel values. Changing density only changes the unit, so always use the step classes below.
@@ -427,7 +427,7 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
 /* Theme values (generated for this configuration) */
 :root {
   --neutral-0: #FFFFFF;
-  --neutral-50: #FAF8F3;
+  --neutral-50: #FCFBF8;
   --neutral-100: #F7F4EE;
   --neutral-200: #E8E2D6;
   --neutral-300: #D3CBBA;
@@ -467,21 +467,21 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --ease-tactile: cubic-bezier(0.23, 1, 0.32, 1);
   --duration-enter: 160ms;
   --gradient-sunrise: linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%);
-  --canvas: #F7F4EE;
+  --canvas: #FCFBF8;
   --inverse: #0A0A0A;
   --inverse-hover: #1B1B1B;
   --track-strong: #D3CBBA;
   --track: #E8E2D6;
-  --subtle: #FAF8F3;
+  --subtle: #F7F4EE;
   --tray: #E8E2D6;
   --surface: #FFFFFF;
   --raised: #FFFFFF;
   --floating: #FFFFFF;
   --field: #FFFFFF;
   --control: #FFFFFF;
-  --control-hover: #FAF8F3;
+  --control-hover: #F7F4EE;
   --field-line: #E8E2D6;
-  --table-head: #FAF8F3;
+  --table-head: #F7F4EE;
   --hover: rgb(10 10 10 / 0.04);
   --selected: rgb(61 0 102 / 0.1);
   --fg: #0A0A0A;
@@ -551,16 +551,16 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --ds-shadow-danger: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #FB2C36, 0 1px 2px 0 rgb(10 10 10 / 0.24), 0 3px 6px -2px rgb(10 10 10 / 0.2);
   --ds-shadow-badge: 0 0 0 1px color-mix(in srgb, currentColor 14%, transparent), 0 1px 2px 0 color-mix(in srgb, currentColor 16%, transparent);
   --ds-shadow-menu: 0 0 0 1px rgb(10 10 10 / 0.08), 0 1px 2px 0 rgb(10 10 10 / 0.12), 0 4px 8px -4px rgb(10 10 10 / 0.16);
-  --background: #F7F4EE;
+  --background: #FCFBF8;
   --foreground: #0A0A0A;
   --card: #FFFFFF;
   --card-foreground: #0A0A0A;
   --popover: #FFFFFF;
   --popover-foreground: #0A0A0A;
-  --secondary: #FAF8F3;
+  --secondary: #F7F4EE;
   --secondary-foreground: #0A0A0A;
   --muted-foreground: #5C564E;
-  --muted: #FAF8F3;
+  --muted: #F7F4EE;
   --accent: rgb(10 10 10 / 0.04);
   --accent-foreground: #0A0A0A;
   --destructive: #FB2C36;

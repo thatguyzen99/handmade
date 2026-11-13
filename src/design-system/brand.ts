@@ -35,6 +35,8 @@ export const repoUrl = (process.env.NEXT_PUBLIC_REPO_URL || "").replace(/\/+$/, 
 /** Melvin's Melxels palette: black/cream primary, purple and warm accents. */
 export const brandColors = {
   cream: "#F7F4EE",
+  /** Light-mode page canvas: a near-white cream, so white cards still lift off the page. */
+  canvasLight: "#FCFBF8",
   orange: "#FAAC18",
   yellow: "#FFCA05",
   /** Pale butter start of the Sunrise gradient (the app icon's outer stroke). */

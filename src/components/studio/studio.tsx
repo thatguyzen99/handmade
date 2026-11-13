@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Popover } from "radix-ui";
 import { ArrowUpRightIcon, BookOpenIcon, CopyIcon, MenuIcon, SlidersHorizontalIcon, TerminalIcon, XIcon } from "lucide-react";
 import { Toaster } from "@/components/ui/toast";
@@ -13,7 +14,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { Wordmark } from "@/components/brand/logo";
 import { people } from "@/lib/media";
 import { gradientCss } from "@/lib/gradients";
 import { AnimationTuner } from "./animation-tuner";
@@ -125,8 +125,8 @@ function Shell({ children }: { children: React.ReactNode }) {
         {/* Studio chrome: keeps default spacing and type size so it always lines up with the sidebar. */}
         <header className="relative z-40" style={{ "--ds-spacing": "4px", "--ds-font-scale": "1" } as React.CSSProperties}>
           <div className="flex h-16 items-center gap-6 px-6">
-            <Link href="/" className="flex min-w-0 items-center gap-2" aria-label={systemName}>
-              <Wordmark className="h-6 w-auto max-w-[9.5rem] sm:h-7 sm:max-w-[12rem]" />
+            <Link href="/" className="flex shrink-0 items-center" aria-label="Melxels home">
+              <Image src="/brand/melxels-icon-outline.png" alt="Melxels home" width={32} height={32} className="size-8 object-contain" priority />
             </Link>
             <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">
               {nav.map((n) => (
