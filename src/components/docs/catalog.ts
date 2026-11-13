@@ -882,8 +882,11 @@ export const componentDocs: DocEntry[] = [
 
 ];
 
+export const stylesHref = "/docs/styles";
+
 export const docsNav = [
   { slug: "get-started", title: "Get started", href: getStartedHref },
+  { slug: "styles", title: "Styles", href: stylesHref },
   ...componentDocs.map((c) => ({ slug: c.slug, title: c.title, href: `/docs/${c.slug}` })),
 ];
 

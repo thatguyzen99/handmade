@@ -1,6 +1,6 @@
 import { describeGradient, gradientGroups } from "@/lib/gradients";
 import { densities, fontStylesheets, radiusStopNumber, radiusStops, resolveHeadingWeight, textScale, type ThemeConfig } from "./config";
-import { aesthetic, colorRules, doAndDont, extendedRecipes, principles, recipes, systemName, upstream } from "./guidelines";
+import { aesthetic, colorRules, doAndDont, extendedRecipes, principles, recipes, systemName, upstream, visualStyleGuide } from "./guidelines";
 import { tailwindTheme } from "./theme";
 import { generateThemeCss, primaryFor, radiusScale, shadowLevels, shadowValue } from "./tokens";
 
@@ -41,6 +41,9 @@ You are building user interfaces with the ${systemName} design system (${upstrea
 
 ## Aesthetic
 ${aesthetic}
+
+## Visual styles
+${visualStyleGuide(config)}
 
 ## Stack & conventions
 - React + Tailwind CSS v4. Components follow **shadcn/ui** conventions: Radix UI primitives (\`radix-ui\`), variants with \`class-variance-authority\`, a \`cn()\` helper (clsx + tailwind-merge), \`data-slot\` attributes, \`asChild\` via Radix Slot. Colors and type come only from ${systemName}'s semantic tokens (defined below).

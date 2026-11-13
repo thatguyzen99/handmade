@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./theme.css";
+@import "./visual-styles.css";
 
 /* The homepage course promo's glow. */
 @keyframes course-glow {

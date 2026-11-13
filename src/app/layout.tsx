@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { defaultConfig, fontStylesheets } from "@/design-system/config";
+import { antiFlashScript } from "@/design-system/anti-flash-script";
 import { author, siteUrl, systemName } from "@/design-system/brand";
 import { generateChromeCss, generateThemeCss } from "@/design-system/tokens";
 import { StudioShell } from "@/components/studio/studio";
@@ -15,8 +16,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="motion-safe:scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="motion-safe:scroll-smooth" data-style="handmade" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: antiFlashScript }} />
         <link rel="preconnect" href="https://rsms.me" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

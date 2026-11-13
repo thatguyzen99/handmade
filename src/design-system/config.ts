@@ -9,6 +9,16 @@ import { brandColors, legacySystemIds, systemId } from "./brand";
 export type NeutralName = "gray" | "slate" | "zinc" | "stone" | "tinted";
 export type Mode = "light" | "dark";
 
+export const visualStyles = ["handmade", "glass", "brutal"] as const;
+export type VisualStyle = (typeof visualStyles)[number];
+
+export const visualStyleMeta: Record<VisualStyle, { label: string; hint: string }> = {
+  handmade: { label: "Handmade", hint: "Ink and cream, soft radius and quiet shadows." },
+  glass: { label: "Glass", hint: "Translucent surfaces, blur, and a Sunrise-tinted backdrop." },
+  brutal: { label: "Brutal", hint: "Hard ink borders, offset shadows, and bold yellow-orange fills." },
+};
+
+
 export type ThemeConfig = {
   primary: string; // hex
   primaryDark: string | null; // hex for dark mode; null derives it from `primary`
@@ -23,6 +33,8 @@ export type ThemeConfig = {
   shadow: ShadowConfig; // the card shadow; the rest of the elevation ladder scales from it
   mode: Mode;
   motion: MotionConfig; // --ease-tactile and --duration-enter, tunable in the Animation Tuner
+  /** Visual language: the default Handmade look, Glassmorphism, or Neubrutalism. Applied as data-style on <html>. */
+  style: VisualStyle;
 };
 
 /** The numbered radius stops offered in the studio (stop 1 = square … stop 7 = roundest). */
@@ -83,6 +95,7 @@ export const defaultConfig: ThemeConfig = {
   shadow: defaultShadow,
   mode: "light",
   motion: defaultMotion,
+  style: "handmade",
 };
 
 export type FontDef = {
@@ -211,6 +224,7 @@ export function sanitizeConfig(input: unknown): ThemeConfig {
     shadow: sanitizeShadow(c.shadow),
     mode: c.mode === "dark" ? "dark" : "light",
     motion: sanitizeMotion(c.motion),
+    style: visualStyles.includes(c.style as VisualStyle) ? (c.style as VisualStyle) : defaultConfig.style,
   };
 }
 

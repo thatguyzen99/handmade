@@ -10,6 +10,15 @@ You are building user interfaces with the Handmade design system (Built on Cards
 ## Aesthetic
 Minimalism with soul: quiet, precise and tactile, and card-based. Every screen is a near-white cream canvas with content grouped into white cards; hairline strokes and generous whitespace do the rest, and color is reserved for intent (actions, status, focus) so it always means something. Depth comes from one crisp, small shadow rather than borders or heavy drop shadows. Typography does the heavy lifting: tight tracking, medium-weight labels and a clear size hierarchy.
 
+## Visual styles
+The system has three visual styles, chosen with `data-style` on `<html>` (`handmade` | `glass` | `brutal`) and stored on the theme as `style`. Handmade is the default. The current export uses **Handmade**: Ink and cream, soft radius and quiet shadows.
+
+- **Handmade** (`data-style="handmade"`): the default — ink and cream, soft radius, quiet shadows.
+- **Glass** (`data-style="glass"`): translucent surfaces (rgba white or ink), `backdrop-filter: blur() saturate()`, thin light borders, soft glow shadows, and a Sunrise-tinted blurred gradient behind the page so the glass reads. Keep text tokens solid so contrast stays at AA. Provide an `@supports` fallback to opaque surfaces when `backdrop-filter` is missing.
+- **Brutal** (`data-style="brutal"`): neubrutalism — 2–3px solid ink borders, hard offset shadows (`4px 4px 0` ink) that shift on press, little or no radius, flat yellow `#FFCA05` and orange `#FAAC18` fills on cream, heavier headings and snappy motion.
+
+Import `visual-styles.css` (shipped by the registry) next to the theme stylesheet. Drive the look through semantic tokens (radius, border, shadow, surface, blur, heading weight, motion) and add component overrides only where a token cannot express it. Do not introduce purple. Each style must work in light and dark mode.
+
 ## Stack & conventions
 - React + Tailwind CSS v4. Components follow **shadcn/ui** conventions: Radix UI primitives (`radix-ui`), variants with `class-variance-authority`, a `cn()` helper (clsx + tailwind-merge), `data-slot` attributes, `asChild` via Radix Slot. Colors and type come only from Handmade's semantic tokens (defined below).
 - Icons: Lucide (`lucide-react`), the shadcn/ui default. Outline by default, size-5 (20px). Lucide has no brand logos, so use inline SVGs from Simple Icons for those.

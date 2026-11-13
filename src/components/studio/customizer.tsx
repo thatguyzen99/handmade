@@ -3,7 +3,7 @@
 import * as React from "react";
 import { MoonIcon, RefreshCwIcon, SunIcon } from "lucide-react";
 import { brandColors } from "@/design-system/brand";
-import { defaultShadow, densities, fontByName, fonts, radiusStops, type Density, type FontDef, type NeutralName, type ShadowConfig, type ThemeConfig } from "@/design-system/config";
+import { defaultShadow, densities, fontByName, fonts, radiusStops, visualStyleMeta, visualStyles, type Density, type FontDef, type NeutralName, type ShadowConfig, type ThemeConfig, type VisualStyle } from "@/design-system/config";
 import { CHROME_CLASS, neutralScale, primaryFor, semanticTokens, shadowValue } from "@/design-system/tokens";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
@@ -39,7 +39,7 @@ export function Customizer() {
         </Button>
       </div>
 
-      {/* Mode is always visible — it's a viewing choice, not a design setting to tuck away. */}
+      {/* Mode and style are always visible — viewing choices, not settings to tuck away. */}
       <div className="space-y-3 border-b border-line px-5 py-4">
         <h3 className="text-ui-sm text-fg">Mode</h3>
         <Tabs value={config.mode} onValueChange={(v) => update({ mode: v as ThemeConfig["mode"] })}>
@@ -48,6 +48,20 @@ export function Customizer() {
             <SegmentedTrigger value="dark"><MoonIcon /> Dark</SegmentedTrigger>
           </SegmentedList>
         </Tabs>
+      </div>
+
+      <div className="space-y-3 border-b border-line px-5 py-4">
+        <h3 className="text-ui-sm text-fg">Style</h3>
+        <Tabs value={config.style ?? "handmade"} onValueChange={(v) => update({ style: v as VisualStyle })}>
+          <SegmentedList>
+            {visualStyles.map((style) => (
+              <SegmentedTrigger key={style} value={style}>
+                {visualStyleMeta[style].label}
+              </SegmentedTrigger>
+            ))}
+          </SegmentedList>
+        </Tabs>
+        <p className="text-body-xs text-fg-subtle">{visualStyleMeta[config.style ?? "handmade"].hint}</p>
       </div>
 
       <Accordion type="multiple" defaultValue={["typography", "primary-color"]}>

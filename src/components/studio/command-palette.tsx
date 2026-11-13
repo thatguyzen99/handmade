@@ -14,6 +14,7 @@ import {
   SwatchBookIcon,
 } from "lucide-react";
 import { systemId } from "@/design-system/brand";
+import { visualStyleMeta, visualStyles, type VisualStyle } from "@/design-system/config";
 import { Button } from "@/components/ui/button";
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandShortcut } from "@/components/ui/command";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
@@ -23,6 +24,7 @@ import { useTheme } from "./theme-provider";
 const studioSections = [
   { href: "/", label: "Home", icon: HomeIcon },
   { href: "/#brand", label: "Brand" },
+  { href: "/#styles", label: "Styles" },
   { href: "/#colors", label: "Color" },
   { href: "/#typography", label: "Typography" },
   { href: "/#spacing", label: "Spacing" },
@@ -97,7 +99,7 @@ export function CommandPalette({ triggerClassName }: { triggerClassName?: string
         </KbdGroup>
       </Button>
 
-      <CommandDialog open={open} onOpenChange={setOpen} title="Command bar" description="Jump to a page, open the docs, or toggle the theme.">
+      <CommandDialog open={open} onOpenChange={setOpen} title="Command bar" description="Jump to a page, open the docs, switch style, or toggle the theme.">
         <Command.Input placeholder="Search pages, docs and commands…" />
         <Command.List>
           <CommandEmpty>No results.</CommandEmpty>
@@ -117,7 +119,7 @@ export function CommandPalette({ triggerClassName }: { triggerClassName?: string
           <CommandGroup heading="Docs">
             {docsNav.map((item) => (
               <CommandItem key={item.href} value={`${item.title} docs`} onSelect={() => go(item.href)}>
-                {item.slug === "get-started" ? <BookOpenIcon /> : <SwatchBookIcon />}
+                {item.slug === "get-started" || item.slug === "styles" ? <BookOpenIcon /> : <SwatchBookIcon />}
                 {item.title}
               </CommandItem>
             ))}
@@ -134,6 +136,25 @@ export function CommandPalette({ triggerClassName }: { triggerClassName?: string
               {config.mode === "dark" ? <SunIcon /> : <MoonIcon />}
               {config.mode === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             </CommandItem>
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="Style">
+            {visualStyles.map((style) => {
+              const label = visualStyleMeta[style].label;
+              return (
+                <CommandItem
+                  key={style}
+                  value={`Switch style: ${label}`}
+                  onSelect={() => {
+                    update({ style: style as VisualStyle });
+                    setOpen(false);
+                  }}
+                >
+                  <SwatchBookIcon />
+                  Switch style: {label}
+                </CommandItem>
+              );
+            })}
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Export">

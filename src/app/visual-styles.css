@@ -1,0 +1,411 @@
+/* Visual styles: Handmade (default), Glass, and Brutal.
+   Set data-style on <html> (or a preview root) to handmade | glass | brutal.
+   Token-first: radius, borders, shadows, surfaces, blur, heading weight, motion.
+   Component overrides only where tokens cannot express the look. No purple. */
+
+/* -------------------------------------------------------------------------- */
+/* Glass — glassmorphism                                                      */
+/* -------------------------------------------------------------------------- */
+
+html[data-style="glass"],
+[data-style="glass"],
+html[data-style="glass"] .ds-chrome {
+  --ds-surface-blur: 20px;
+  --ds-backdrop-filter: blur(var(--ds-surface-blur)) saturate(1.6);
+  --ds-heading-weight: 500;
+  --ease-tactile: cubic-bezier(0.23, 1, 0.32, 1);
+  --duration-enter: 200ms;
+  --ds-border-width: 1px;
+
+  --canvas: rgb(252 251 248 / 0.55);
+  --subtle: rgb(247 244 238 / 0.55);
+  --tray: rgb(247 244 238 / 0.48);
+  --surface: rgb(255 255 255 / 0.62);
+  --raised: rgb(255 255 255 / 0.74);
+  --floating: rgb(255 255 255 / 0.8);
+  --field: rgb(255 255 255 / 0.7);
+  --control: rgb(255 255 255 / 0.7);
+  --control-hover: rgb(255 255 255 / 0.86);
+  --table-head: rgb(247 244 238 / 0.55);
+  --line: rgb(255 255 255 / 0.62);
+  --line-strong: rgb(255 255 255 / 0.82);
+  --field-line: rgb(255 255 255 / 0.7);
+  --line-inverse: rgb(255 255 255 / 0.7);
+
+  --ds-shadow-xs: 0 4px 16px rgb(10 10 10 / 0.05), 0 0 0 1px rgb(255 255 255 / 0.45);
+  --ds-shadow-sm: 0 8px 28px rgb(10 10 10 / 0.07), 0 0 24px rgb(255 202 5 / 0.12), 0 0 0 1px rgb(255 255 255 / 0.5);
+  --ds-shadow-md: 0 16px 40px rgb(10 10 10 / 0.1), 0 0 32px rgb(255 202 5 / 0.14), 0 0 0 1px rgb(255 255 255 / 0.55);
+  --ds-shadow-lg: 0 24px 56px rgb(10 10 10 / 0.14), 0 0 40px rgb(255 202 5 / 0.16), 0 0 0 1px rgb(255 255 255 / 0.6);
+  --ds-shadow-field: 0 2px 10px rgb(10 10 10 / 0.04), 0 0 0 1px rgb(255 255 255 / 0.5);
+  --ds-shadow-control: 0 4px 16px rgb(10 10 10 / 0.06), 0 0 0 1px rgb(255 255 255 / 0.5);
+  --ds-shadow-button: 0 4px 16px rgb(10 10 10 / 0.06), 0 0 0 1px rgb(255 255 255 / 0.5);
+  --ds-shadow-primary: 0 8px 24px rgb(10 10 10 / 0.18), 0 0 20px rgb(255 202 5 / 0.16);
+  --ds-shadow-inverse: 0 8px 24px rgb(10 10 10 / 0.22);
+  --ds-shadow-danger: 0 8px 24px rgb(251 44 54 / 0.22);
+  --ds-shadow-badge: 0 2px 8px rgb(10 10 10 / 0.06), 0 0 0 1px rgb(255 255 255 / 0.4);
+  --ds-shadow-menu: 0 16px 40px rgb(10 10 10 / 0.1), 0 0 0 1px rgb(255 255 255 / 0.55);
+  --shadow-focus: 0 0 0 2px rgb(255 255 255 / 0.7), 0 0 0 4px rgb(10 10 10 / 0.35), 0 0 24px rgb(255 202 5 / 0.28);
+  --shadow-focus-primary: 0 0 0 2px rgb(255 255 255 / 0.7), 0 0 0 4px rgb(10 10 10 / 0.35), 0 0 24px rgb(255 202 5 / 0.28);
+}
+
+html[data-style="glass"].dark,
+.dark [data-style="glass"],
+[data-style="glass"].dark,
+html[data-style="glass"].dark .ds-chrome {
+  --canvas: rgb(17 17 17 / 0.55);
+  --subtle: rgb(28 28 28 / 0.6);
+  --tray: rgb(17 17 17 / 0.55);
+  --surface: rgb(28 28 28 / 0.62);
+  --raised: rgb(36 36 36 / 0.72);
+  --floating: rgb(42 42 42 / 0.78);
+  --field: rgb(22 22 22 / 0.7);
+  --control: rgb(36 36 36 / 0.7);
+  --control-hover: rgb(48 48 48 / 0.82);
+  --table-head: rgb(36 36 36 / 0.6);
+  --line: rgb(255 255 255 / 0.16);
+  --line-strong: rgb(255 255 255 / 0.28);
+  --field-line: rgb(255 255 255 / 0.18);
+  --line-inverse: rgb(255 255 255 / 0.16);
+
+  --ds-shadow-xs: 0 4px 16px rgb(0 0 0 / 0.35), 0 0 0 1px rgb(255 255 255 / 0.1);
+  --ds-shadow-sm: 0 8px 28px rgb(0 0 0 / 0.4), 0 0 28px rgb(255 202 5 / 0.1), 0 0 0 1px rgb(255 255 255 / 0.12);
+  --ds-shadow-md: 0 16px 40px rgb(0 0 0 / 0.5), 0 0 32px rgb(255 202 5 / 0.12), 0 0 0 1px rgb(255 255 255 / 0.14);
+  --ds-shadow-lg: 0 24px 56px rgb(0 0 0 / 0.55), 0 0 40px rgb(255 202 5 / 0.14), 0 0 0 1px rgb(255 255 255 / 0.16);
+  --ds-shadow-field: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 0 0 1px rgb(255 255 255 / 0.1);
+  --ds-shadow-control: 0 4px 16px rgb(0 0 0 / 0.35), 0 0 0 1px rgb(255 255 255 / 0.12);
+  --ds-shadow-button: 0 4px 16px rgb(0 0 0 / 0.35), 0 0 0 1px rgb(255 255 255 / 0.12);
+  --ds-shadow-primary: 0 8px 24px rgb(0 0 0 / 0.45), 0 0 20px rgb(255 202 5 / 0.14);
+  --ds-shadow-inverse: 0 8px 24px rgb(0 0 0 / 0.5);
+  --ds-shadow-danger: 0 8px 24px rgb(251 44 54 / 0.28);
+  --ds-shadow-badge: 0 2px 8px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.1);
+  --ds-shadow-menu: 0 16px 40px rgb(0 0 0 / 0.5), 0 0 0 1px rgb(255 255 255 / 0.14);
+  --shadow-focus: 0 0 0 2px rgb(17 17 17 / 0.8), 0 0 0 4px rgb(247 244 238 / 0.55), 0 0 24px rgb(255 202 5 / 0.22);
+  --shadow-focus-primary: 0 0 0 2px rgb(17 17 17 / 0.8), 0 0 0 4px rgb(247 244 238 / 0.55), 0 0 24px rgb(255 202 5 / 0.22);
+}
+
+/* Sunrise-tinted, blurred backdrop behind the page so glass surfaces can read. */
+html[data-style="glass"] {
+  background-color: #fcfbf8;
+}
+
+html[data-style="glass"].dark {
+  background-color: #111111;
+}
+
+html[data-style="glass"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 640px at 8% -8%, #ffe7a3 0%, transparent 58%),
+    radial-gradient(900px 520px at 108% 8%, #faac18 0%, transparent 52%),
+    radial-gradient(820px 720px at 50% 118%, #ffca05 0%, transparent 58%);
+  opacity: 0.55;
+  filter: blur(48px);
+}
+
+html[data-style="glass"].dark::before {
+  opacity: 0.22;
+}
+
+html[data-style="glass"] body {
+  background-color: transparent;
+}
+
+/* Isolated previews get their own wash so glass can be compared on a Handmade page. */
+[data-style="glass"]:not(html) {
+  background-color: #fcfbf8;
+  background-image:
+    radial-gradient(420px 220px at 10% 0%, rgb(255 231 163 / 0.7), transparent 70%),
+    radial-gradient(360px 200px at 110% 20%, rgb(250 172 24 / 0.45), transparent 70%),
+    radial-gradient(380px 240px at 50% 120%, rgb(255 202 5 / 0.4), transparent 70%);
+  isolation: isolate;
+}
+
+.dark [data-style="glass"]:not(html),
+[data-style="glass"].dark:not(html) {
+  background-color: #111111;
+  background-image:
+    radial-gradient(420px 220px at 10% 0%, rgb(255 231 163 / 0.22), transparent 70%),
+    radial-gradient(360px 200px at 110% 20%, rgb(250 172 24 / 0.16), transparent 70%),
+    radial-gradient(380px 240px at 50% 120%, rgb(255 202 5 / 0.14), transparent 70%);
+}
+
+[data-style="glass"] :is(
+  .bg-surface,
+  .bg-raised,
+  .bg-floating,
+  .bg-field,
+  .bg-control,
+  .bg-subtle,
+  .bg-tray,
+  header,
+  [data-slot="card"],
+  [data-slot="dialog-content"],
+  [data-slot="sheet-content"],
+  [data-slot="drawer-content"],
+  [data-slot="popover-content"],
+  [data-slot="dropdown-menu-content"],
+  [data-slot="select-content"],
+  [data-slot="tooltip-content"],
+  [data-slot="hover-card-content"],
+  [data-slot="command"],
+  [data-slot="input"],
+  [data-slot="textarea"],
+  [data-slot="select-trigger"],
+  [data-slot="alert"],
+  [data-slot="docs-sidebar"],
+  .ds-chrome
+) {
+  -webkit-backdrop-filter: var(--ds-backdrop-filter);
+  backdrop-filter: var(--ds-backdrop-filter);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html[data-style="glass"],
+  [data-style="glass"] {
+    --ds-backdrop-filter: none;
+    --canvas: #fcfbf8;
+    --subtle: #f7f4ee;
+    --tray: #f7f4ee;
+    --surface: #ffffff;
+    --raised: #ffffff;
+    --floating: #ffffff;
+    --field: #ffffff;
+    --control: #ffffff;
+    --control-hover: #f7f4ee;
+    --table-head: #f7f4ee;
+    --line: #e8e4dc;
+    --line-strong: #d4cfc4;
+    --field-line: #e8e4dc;
+  }
+
+  html[data-style="glass"].dark,
+  .dark [data-style="glass"],
+  [data-style="glass"].dark {
+    --canvas: #111111;
+    --subtle: #1c1c1c;
+    --tray: #111111;
+    --surface: #1c1c1c;
+    --raised: #242424;
+    --floating: #2a2a2a;
+    --field: #161616;
+    --control: #242424;
+    --control-hover: #303030;
+    --table-head: #242424;
+    --line: rgb(255 255 255 / 0.16);
+    --line-strong: rgb(255 255 255 / 0.28);
+    --field-line: rgb(255 255 255 / 0.18);
+  }
+
+  html[data-style="glass"] body {
+    background-color: var(--canvas);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Brutal — neubrutalism                                                      */
+/* -------------------------------------------------------------------------- */
+
+html[data-style="brutal"],
+[data-style="brutal"],
+html[data-style="brutal"] .ds-chrome {
+  --ds-radius-xs: 0px;
+  --ds-radius-sm: 0px;
+  --ds-radius-md: 0px;
+  --ds-radius-lg: 0px;
+  --ds-radius-xl: 2px;
+  --ds-radius-2xl: 2px;
+  --ds-radius-3xl: 2px;
+  --ds-radius-button: 0px;
+  --ds-radius-button-sm: 0px;
+  --ds-heading-weight: 700;
+  --ease-tactile: cubic-bezier(0.2, 0, 0, 1);
+  --duration-enter: 80ms;
+  --ds-border-width: 2px;
+
+  --canvas: #f7f4ee;
+  --subtle: #f7f4ee;
+  --tray: #faac18;
+  --surface: #f7f4ee;
+  --raised: #ffca05;
+  --floating: #f7f4ee;
+  --field: #fcfbf8;
+  --control: #f7f4ee;
+  --control-hover: #ffe7a3;
+  --table-head: #ffca05;
+  --line: #0a0a0a;
+  --line-strong: #0a0a0a;
+  --field-line: #0a0a0a;
+  --line-focus: #0a0a0a;
+  --line-inverse: #0a0a0a;
+
+  --primary: #ffca05;
+  --primary-hover: #faac18;
+  --primary-foreground: #0a0a0a;
+
+  --ds-shadow-xs: 2px 2px 0 0 #0a0a0a;
+  --ds-shadow-sm: 4px 4px 0 0 #0a0a0a;
+  --ds-shadow-md: 6px 6px 0 0 #0a0a0a;
+  --ds-shadow-lg: 8px 8px 0 0 #0a0a0a;
+  --ds-shadow-field: 2px 2px 0 0 #0a0a0a;
+  --ds-shadow-control: 3px 3px 0 0 #0a0a0a;
+  --ds-shadow-button: 4px 4px 0 0 #0a0a0a;
+  --ds-shadow-primary: 4px 4px 0 0 #0a0a0a;
+  --ds-shadow-inverse: 4px 4px 0 0 #0a0a0a;
+  --ds-shadow-danger: 4px 4px 0 0 #0a0a0a;
+  --ds-shadow-badge: 2px 2px 0 0 #0a0a0a;
+  --ds-shadow-menu: 6px 6px 0 0 #0a0a0a;
+  --shadow-focus: 0 0 0 2px #f7f4ee, 0 0 0 4px #0a0a0a;
+  --shadow-focus-primary: 0 0 0 2px #f7f4ee, 0 0 0 4px #0a0a0a;
+  --shadow-focus-danger: 0 0 0 2px #f7f4ee, 0 0 0 4px #0a0a0a;
+}
+
+html[data-style="brutal"].dark,
+.dark [data-style="brutal"],
+[data-style="brutal"].dark,
+html[data-style="brutal"].dark .ds-chrome {
+  --canvas: #111111;
+  --subtle: #1a1a1a;
+  --tray: #faac18;
+  --surface: #111111;
+  --raised: #ffca05;
+  --floating: #1a1a1a;
+  --field: #111111;
+  --control: #1a1a1a;
+  --control-hover: #ffca05;
+  --table-head: #ffca05;
+  --line: #f7f4ee;
+  --line-strong: #f7f4ee;
+  --field-line: #f7f4ee;
+  --line-focus: #f7f4ee;
+  --line-inverse: #f7f4ee;
+
+  --primary: #ffca05;
+  --primary-hover: #faac18;
+  --primary-foreground: #0a0a0a;
+
+  --ds-shadow-xs: 2px 2px 0 0 #f7f4ee;
+  --ds-shadow-sm: 4px 4px 0 0 #f7f4ee;
+  --ds-shadow-md: 6px 6px 0 0 #f7f4ee;
+  --ds-shadow-lg: 8px 8px 0 0 #f7f4ee;
+  --ds-shadow-field: 2px 2px 0 0 #f7f4ee;
+  --ds-shadow-control: 3px 3px 0 0 #f7f4ee;
+  --ds-shadow-button: 4px 4px 0 0 #f7f4ee;
+  --ds-shadow-primary: 4px 4px 0 0 #f7f4ee;
+  --ds-shadow-inverse: 4px 4px 0 0 #f7f4ee;
+  --ds-shadow-danger: 4px 4px 0 0 #f7f4ee;
+  --ds-shadow-badge: 2px 2px 0 0 #f7f4ee;
+  --ds-shadow-menu: 6px 6px 0 0 #f7f4ee;
+  --shadow-focus: 0 0 0 2px #111111, 0 0 0 4px #f7f4ee;
+  --shadow-focus-primary: 0 0 0 2px #111111, 0 0 0 4px #f7f4ee;
+  --shadow-focus-danger: 0 0 0 2px #111111, 0 0 0 4px #f7f4ee;
+}
+
+/* Isolated brutal previews sit on cream (or ink in dark) so the offset shadows read. */
+[data-style="brutal"]:not(html) {
+  background-color: #f7f4ee;
+}
+
+.dark [data-style="brutal"]:not(html),
+[data-style="brutal"].dark:not(html) {
+  background-color: #111111;
+}
+
+/* Hard ink borders where a surface already has a shadow, plus cards and overlays. */
+[data-style="brutal"] :is(
+  [data-slot="card"],
+  [data-slot="button"],
+  [data-slot="input"],
+  [data-slot="textarea"],
+  [data-slot="select-trigger"],
+  [data-slot="dialog-content"],
+  [data-slot="sheet-content"],
+  [data-slot="drawer-content"],
+  [data-slot="popover-content"],
+  [data-slot="dropdown-menu-content"],
+  [data-slot="select-content"],
+  [data-slot="tooltip-content"],
+  [data-slot="hover-card-content"],
+  [data-slot="command"],
+  [data-slot="alert"],
+  [data-slot="badge"],
+  [data-slot="kbd"],
+  .ds-chrome
+) {
+  border: 2px solid var(--fg);
+}
+
+[data-style="brutal"] header {
+  border-bottom: 2px solid var(--fg);
+}
+
+[data-style="brutal"] [data-slot="button"],
+[data-style="brutal"] [data-slot="card-title"],
+[data-style="brutal"] [data-slot="dialog-title"],
+[data-style="brutal"] [data-slot="section-header-title"] {
+  font-weight: 700;
+}
+
+[data-style="brutal"] :is(
+  [data-slot="button"],
+  [data-slot="select-trigger"],
+  [data-slot="tile"]
+) {
+  transition-property: transform, box-shadow, background-color, color, border-color;
+  transition-duration: var(--duration-enter);
+  transition-timing-function: var(--ease-tactile);
+}
+
+[data-style="brutal"] :is(
+  [data-slot="button"],
+  [data-slot="select-trigger"],
+  [data-slot="tile"]
+):active:not(:disabled) {
+  transform: translate(3px, 3px);
+  scale: 1;
+  box-shadow: 1px 1px 0 0 var(--fg);
+}
+
+/* Ghost and link buttons stay borderless — a hard box around text-only actions feels wrong. */
+[data-style="brutal"] [data-slot="button"].bg-transparent {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+[data-style="brutal"] [data-slot="button"].bg-transparent:active:not(:disabled) {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Public aliases so rounded-* / shadow-* follow the style even if :root resolved first. */
+html[data-style="glass"],
+html[data-style="brutal"],
+[data-style="glass"],
+[data-style="brutal"],
+html[data-style="glass"] .ds-chrome,
+html[data-style="brutal"] .ds-chrome {
+  --radius-xs: var(--ds-radius-xs);
+  --radius-sm: var(--ds-radius-sm);
+  --radius-md: var(--ds-radius-md);
+  --radius-lg: var(--ds-radius-lg);
+  --radius-xl: var(--ds-radius-xl);
+  --radius-2xl: var(--ds-radius-2xl);
+  --radius-3xl: var(--ds-radius-3xl);
+  --radius-button: var(--ds-radius-button);
+  --radius-button-sm: var(--ds-radius-button-sm);
+  --shadow-xs: var(--ds-shadow-xs);
+  --shadow-sm: var(--ds-shadow-sm);
+  --shadow-md: var(--ds-shadow-md);
+  --shadow-lg: var(--ds-shadow-lg);
+  --shadow-field: var(--ds-shadow-field);
+  --shadow-control: var(--ds-shadow-control);
+  --shadow-button: var(--ds-shadow-button);
+  --shadow-primary: var(--ds-shadow-primary);
+  --shadow-inverse: var(--ds-shadow-inverse);
+  --shadow-danger: var(--ds-shadow-danger);
+  --shadow-badge: var(--ds-shadow-badge);
+  --shadow-menu: var(--ds-shadow-menu);
+}

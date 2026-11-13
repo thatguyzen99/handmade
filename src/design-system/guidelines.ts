@@ -4,6 +4,9 @@
  * Edit this file to change the aesthetic's rules.
  */
 
+import type { ThemeConfig } from "./config";
+import { visualStyleMeta } from "./config";
+
 export { systemName, systemId, siteUrl, repoUrl, author, upstream } from "./brand";
 
 export const aesthetic =
@@ -71,6 +74,18 @@ export const colorRules = [
   "Brand accent: text-brand, bg-brand and bg-brand-subtle for links, focus, selection and accent badges. Do not reuse bg-primary for those.",
   "The featured brand gradient is Sunrise (linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%), also --gradient-sunrise). Text on it is always ink (#0A0A0A), never white. Use it as a small accent, not a large background. Solar remains available.",
 ];
+
+
+export function visualStyleGuide(config: ThemeConfig) {
+  const current = visualStyleMeta[config.style ?? "handmade"];
+  return `The system has three visual styles, chosen with \`data-style\` on \`<html>\` (\`handmade\` | \`glass\` | \`brutal\`) and stored on the theme as \`style\`. Handmade is the default. The current export uses **${current.label}**: ${current.hint}
+
+- **Handmade** (\`data-style="handmade"\`): the default — ink and cream, soft radius, quiet shadows.
+- **Glass** (\`data-style="glass"\`): translucent surfaces (rgba white or ink), \`backdrop-filter: blur() saturate()\`, thin light borders, soft glow shadows, and a Sunrise-tinted blurred gradient behind the page so the glass reads. Keep text tokens solid so contrast stays at AA. Provide an \`@supports\` fallback to opaque surfaces when \`backdrop-filter\` is missing.
+- **Brutal** (\`data-style="brutal"\`): neubrutalism — 2–3px solid ink borders, hard offset shadows (\`4px 4px 0\` ink) that shift on press, little or no radius, flat yellow \`#FFCA05\` and orange \`#FAAC18\` fills on cream, heavier headings and snappy motion.
+
+Import \`visual-styles.css\` (shipped by the registry) next to the theme stylesheet. Drive the look through semantic tokens (radius, border, shadow, surface, blur, heading weight, motion) and add component overrides only where a token cannot express it. Do not introduce purple. Each style must work in light and dark mode.`;
+}
 
 export const doAndDont = {
   do: [

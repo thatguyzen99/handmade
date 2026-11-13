@@ -102,5 +102,11 @@ async function readRegistryFiles() {
       content: await read(`components/widgets/${name}.tsx`),
     })),
     ...libFiles.map(async (name) => ({ path: `lib/${name}.ts`, type: "registry:lib", content: await read(`lib/${name}.ts`) })),
+    {
+      path: "app/visual-styles.css",
+      type: "registry:file",
+      target: "src/app/visual-styles.css",
+      content: await readFile(join(process.cwd(), "src/app/visual-styles.css"), "utf8"),
+    },
   ]);
 }

@@ -1,6 +1,6 @@
 # Handmade
 
-**A design system studio by [Melvin Z. Freeman](https://x.com/yourdesignerzen)** (Product, Web & Brand Designer, [@yourdesignerzen](https://x.com/yourdesignerzen)). Live at [melxels.vercel.app](https://melxels.vercel.app). Tune color, neutrals, fonts, radius, density and shadows live, then take the result anywhere: as shadcn/ui components, as an AI prompt, or as an agent skill.
+**A design system studio by [Melvin Z. Freeman](https://x.com/yourdesignerzen)** (Product, Web & Brand Designer, [@yourdesignerzen](https://x.com/yourdesignerzen)). Live at [melxels.vercel.app](https://melxels.vercel.app). Tune color, neutrals, fonts, radius, density, shadows and visual style live, then take the result anywhere: as shadcn/ui components, as an AI prompt, or as an agent skill.
 
 > Built on Cards by Oliur (MIT). See [Credits](#license--credits).
 
@@ -13,7 +13,8 @@ Defaults: black `#0A0A0A` primary and accent (cream `#F7F4EE` in dark mode) on a
 - **Core components:** accordion, alert, avatar, badge, brand icons, button, card, checkbox, dialog, image placeholder, input, label, radio group, select, separator, slider, switch, tabs, textarea, tile group, tooltip and more.
 - **Extended components:** dropdown menu, popover, command palette, combobox, toast (Sonner), sheet and drawer, sortable table, pagination, breadcrumb, progress and progress ring, skeleton, empty state, kbd, stepper, segmented control, toggle and toggle group, calendar, date and date-range picker, input OTP, dropzone, chart helpers and sparkline.
 - **Widgets** (`src/components/widgets`): KPI stat card with sparkline, chart card, activity feed, agenda, checklist, weather, music player, profile, pricing and notifications.
-- **Docs:** a `/docs/get-started` guide and a page for every component, with a live preview, usage and a props table.
+- **Docs:** a `/docs/get-started` guide, a `/docs/styles` guide for the Handmade, Glass and Brutal visual styles, and a page for every component, with a live preview, usage and a props table.
+- **Visual styles:** `data-style` on `<html>` switches the whole system between Handmade (default), Glass (glassmorphism) and Brutal (neubrutalism). Both light and dark are supported. The registry ships `visual-styles.css` so an install can choose one.
 - **Page patterns:** dashboard, marketing hero + features, auth, onboarding, settings, pricing section, checkout, inbox list-detail and file manager.
 
 ## Installation
@@ -28,7 +29,7 @@ You need a project that uses Tailwind CSS v4 and has shadcn/ui set up with Radix
 npx shadcn@latest add https://melxels.vercel.app/r/handmade.json
 ```
 
-This installs the tokens (added to your global CSS), the components in `components/ui/`, the widgets, the `lib/utils` and `lib/gradients` helpers, and the dependencies (`class-variance-authority`, `clsx`, `lucide-react`, `radix-ui`, `tailwind-merge`, `sonner`, `cmdk`, `input-otp`, `recharts`). Then paste the font `<link>` tags the CLI prints (also in the **Copy prompt** dialog) into your document `<head>`.
+This installs the tokens (added to your global CSS), `visual-styles.css` (set `data-style` on `<html>` to `handmade`, `glass` or `brutal`), the components in `components/ui/`, the widgets, the `lib/utils` and `lib/gradients` helpers, and the dependencies (`class-variance-authority`, `clsx`, `lucide-react`, `radix-ui`, `tailwind-merge`, `sonner`, `cmdk`, `input-otp`, `recharts`). Then paste the font `<link>` tags the CLI prints (also in the **Copy prompt** dialog) into your document `<head>`.
 
 ### Option 2: Paste the AI prompt
 

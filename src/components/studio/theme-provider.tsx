@@ -47,6 +47,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (!ready) return;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
     document.documentElement.classList.toggle("dark", config.mode === "dark");
+    document.documentElement.dataset.style = config.style ?? "handmade";
   }, [config, ready]);
 
   const value = React.useMemo<Ctx>(

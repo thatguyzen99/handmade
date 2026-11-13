@@ -55,8 +55,13 @@ export default function GetStartedPage() {
           <code className="font-mono text-ui-xs text-fg">/skill/zen.md</code> still work as aliases.
         </p>
         <p className="text-body-md text-fg-muted">
-          The studio on the home page can also mint a prompt, a registry URL and a skill with your custom fonts, color
-          and radius already baked in. Browse every component, with a live preview and a props table, from the sidebar.
+          The studio on the home page can also mint a prompt, a registry URL and a skill with your custom fonts, color,
+          radius and style already baked in. Browse every component, with a live preview and a props table, from the sidebar.
+          Three visual styles — Handmade, Glass and Brutal — are documented in the{" "}
+          <Link href="/docs/styles" className="text-brand underline-offset-4 hover:underline">
+            styles guide
+          </Link>
+          .
         </p>
       </section>
 

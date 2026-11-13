@@ -7,7 +7,7 @@ import { MenuIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetBody, SheetContent, SheetHeader } from "@/components/ui/sheet";
-import { componentDocs, getStartedHref } from "./catalog";
+import { componentDocs, getStartedHref, stylesHref } from "./catalog";
 
 const itemClass = cn(
   "block rounded-md px-3 py-2 text-ui-sm text-fg-muted outline-none transition",
@@ -23,6 +23,9 @@ export function DocsNav({ onNavigate }: { onNavigate?: () => void }) {
         <div className="px-3 pb-2 text-overline-xs text-fg-subtle">Guide</div>
         <Link href={getStartedHref} onClick={onNavigate} className={itemClass} data-active={pathname === getStartedHref || pathname === "/docs"}>
           Get started
+        </Link>
+        <Link href={stylesHref} onClick={onNavigate} className={itemClass} data-active={pathname === stylesHref}>
+          Styles
         </Link>
       </div>
       <div>

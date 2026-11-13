@@ -30,9 +30,12 @@ import { PromptDialog } from "./prompt-dialog";
 import { DocSection } from "./section";
 import { CommandPalette } from "./command-palette";
 import { ThemeProvider } from "./theme-provider";
+import { StyleSwitcher, ThemeToggle } from "./style-switcher";
+import { StylesSection } from "./styles-section";
 
 const nav = [
   { href: "/#brand", label: "Brand" },
+  { href: "/#styles", label: "Styles" },
   { href: "/#colors", label: "Color" },
   { href: "/#typography", label: "Typography" },
   { href: "/#spacing", label: "Spacing" },
@@ -63,6 +66,7 @@ export function HomeSections() {
       <Hero />
       <div>
         <Brand />
+        <StylesSection />
         <Colors />
         <Typography />
         <Spacing />
@@ -142,6 +146,8 @@ function Shell({ children }: { children: React.ReactNode }) {
               ))}
             </nav>
             <div className="ml-auto flex items-center gap-2">
+              <StyleSwitcher />
+              <ThemeToggle />
               <Avatar
                 size="32"
                 color="blue"
@@ -205,7 +211,7 @@ function Hero() {
       <div aria-hidden className="h-1 w-14 rounded-full" style={{ backgroundImage: gradientCss("sunrise") }} />
       <h1 className="max-w-3xl text-heading-2 text-fg">A calm, card-based design language for products, sites and brands.</h1>
       <p className="max-w-2xl text-body-lg text-fg-muted">
-        {systemName} is {author.name}&apos;s working system. Tune the color, type and radius on the left; every token, component, widget and pattern on this page updates live, and the prompt, skill and registry you copy carry all of it.
+        {systemName} is {author.name}&apos;s working system. Tune the color, type, radius and style on the left; every token, component, widget and pattern on this page updates live, and the prompt, skill and registry you copy carry all of it.
       </p>
       <div className="flex flex-wrap items-center gap-3">
         <PromptDialog>
