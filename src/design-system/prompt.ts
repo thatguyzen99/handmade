@@ -62,9 +62,15 @@ ${colorRules.map((c) => `- ${c}`).join("\n")}
 
 Primary color: \`${primaryFor(config, "light")}\` in light mode, \`${primaryFor(config, "dark")}\` in dark mode. Neutral ramp: ${config.neutral}.
 
-## Image placeholders
-Wherever an image would go (thumbnails, covers, album art, app icons), and no real image exists, use one of these top-to-bottom sky gradients. Never use stock photos, generated art or grey boxes. They stay the same in light and dark mode. Write them as \`linear-gradient(to bottom in oklab, top, bottom)\`.
-${gradientGroups.map((group) => `- ${group.title}: ${group.gradients.map((g) => `${g.name} ${g.top} → ${g.bottom}`).join("; ")}`).join("\n")}
+## Images
+Wherever an image would go (thumbnails, covers, album art, avatars, heroes), use a real photograph when one is available — free-licensed photos from Pexels or Unsplash, stored under \`/images/\`. Prefer Black/African people for portraits and people photos. Any imagery of people or places in Africa must be modern, aspirational and middle-class (professionals, creatives, modern cities like Accra or Monrovia, studios, cafés) — never poverty or hardship. Melvin Z. Freeman's portrait is \`/images/melvin.jpg\` (swap that one file to update every Melvin avatar). When no photo is available, use one of these brand or sky gradients — never a grey box. They stay the same in light and dark mode. Write them as \`linear-gradient(<direction> in oklab, from, to)\`.
+${gradientGroups.map((group) => `- ${group.title}: ${group.gradients.map((g) => "from" in g && (g as { from?: string }).from ? `${g.name} ${(g as { from: string }).from} → ${(g as { to: string }).to} (${(g as { dir: string }).dir})` : `${g.name} ${(g as { top: string }).top} → ${(g as { bottom: string }).bottom}`).join("; ")}`).join("\n")}
+
+## Brand marks
+The Melxels wordmark and mark live in \`/brand/\` (SVG, recolorable). Use the wordmark in nav and footer (purple \`#3D0066\` in light mode, cream \`#F7F4EE\` in dark). Use the mark as the app icon; in dark mode fill it cream so the navy end of the royal gradient does not vanish on a navy canvas.
+
+## Motion
+Easing and entrance duration are theme tokens, tunable in the Animation Tuner: \`--ease-tactile: cubic-bezier(${config.motion.ease.join(", ")})\` and \`--duration-enter: ${config.motion.duration}ms\`.
 
 ## Typography
 Type scales with density (${density.label.toLowerCase()}: ×${scale}); sizes below are already scaled and line-heights snap to the 4px grid. Use only these styles (Tailwind class \`text-{token}\`). Each sets size, line-height, letter-spacing and weight. Headings automatically use the display font.

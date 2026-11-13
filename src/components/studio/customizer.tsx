@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { MoonIcon, RefreshCwIcon, SunIcon } from "lucide-react";
+import { brandColors } from "@/design-system/brand";
 import { defaultShadow, densities, fontByName, fonts, radiusStops, type Density, type FontDef, type NeutralName, type ShadowConfig, type ThemeConfig } from "@/design-system/config";
 import { CHROME_CLASS, neutralScale, primaryFor, semanticTokens, shadowValue } from "@/design-system/tokens";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -89,6 +90,30 @@ export function Customizer() {
           <div className="space-y-2">
             <Label>Dark</Label>
             <ColorField value={primaryFor(config, "dark")} onChange={(primaryDark) => update({ primaryDark })} aria-label="Primary color in dark mode" contentClassName={CHROME_CLASS} />
+          </div>
+        </div>
+        <div className="space-y-2">
+          <Label>Melxels samples</Label>
+          <div className="flex flex-wrap gap-2">
+            {(
+              [
+                { name: "Purple", value: brandColors.purple, dark: brandColors.primaryDark },
+                { name: "Yellow", value: brandColors.yellow, dark: brandColors.yellow },
+                { name: "Orange", value: brandColors.orange, dark: brandColors.orange },
+                { name: "Navy", value: brandColors.navy, dark: brandColors.primaryDark },
+                { name: "Cream", value: brandColors.cream, dark: brandColors.cream },
+              ] as const
+            ).map((s) => (
+              <button
+                key={s.name}
+                type="button"
+                title={s.name}
+                aria-label={`Use ${s.name} as primary`}
+                onClick={() => update({ primary: s.value, primaryDark: s.dark })}
+                className="flex h-8 w-8 items-center justify-center rounded-md ring-1 ring-line outline-none hover:ring-line-strong focus-visible:shadow-focus"
+                style={{ background: s.value }}
+              />
+            ))}
           </div>
         </div>
       </Section>

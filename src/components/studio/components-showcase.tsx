@@ -20,6 +20,7 @@ import { Tile, TileGroup } from "@/components/ui/tile-group";
 import { Tooltip } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { DocSection, Specimen } from "./section";
+import { people } from "@/lib/media";
 
 const variants = ["primary", "neutral", "danger"] as const;
 const modes = ["solid", "outline", "soft", "ghost"] as const;
@@ -242,11 +243,11 @@ export function ComponentsShowcase() {
           <Specimen label="Avatar, tooltip & progress">
             <div className="space-y-5">
               <div className="flex items-end gap-3">
-                <Avatar size="64" color="blue">AL</Avatar>
-                <Avatar size="48" color="purple">MK</Avatar>
-                <Avatar size="40" color="orange">JS</Avatar>
-                <Avatar size="32" color="green">RW</Avatar>
-                <Avatar size="24" color="red">EP</Avatar>
+                <Avatar size="64" color="blue" src={people.ava.src} alt={people.ava.alt} objectPosition={people.ava.objectPosition}>AL</Avatar>
+                <Avatar size="48" color="purple" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar>
+                <Avatar size="40" color="orange" src={people.jun.src} alt={people.jun.alt} objectPosition={people.jun.objectPosition}>JS</Avatar>
+                <Avatar size="32" color="green" src={people.rae.src} alt={people.rae.alt} objectPosition={people.rae.objectPosition}>RW</Avatar>
+                <Avatar size="24" color="red" src={people.esther.src} alt={people.esther.alt} objectPosition={people.esther.objectPosition}>EP</Avatar>
                 <AvatarGroup className="ml-auto">
                   {["blue", "yellow", "green", "purple"].map((c, i) => (
                     <Avatar key={c} size="32" color={c as "blue"}>{"ABCD"[i]}</Avatar>

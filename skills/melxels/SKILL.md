@@ -1,17 +1,17 @@
 ---
-name: zen
-description: Applies the Zen Studio design system (colors, type, radius, spacing, shadows and component rules) to any UI work. Use whenever creating, editing or reviewing UI, components, pages or styles in this project.
+name: melxels
+description: Applies the Melxels design system (colors, type, radius, spacing, shadows and component rules) to any UI work. Use whenever creating, editing or reviewing UI, components, pages or styles in this project.
 ---
 
-# Zen Studio — design system instructions
+# Melxels — design system instructions
 
-You are building user interfaces with the Zen Studio design system (Built on Cards by Oliur (MIT)). Apply every rule below to all UI you create or edit in this project. When something isn't covered, extrapolate from these principles rather than falling back to generic defaults.
+You are building user interfaces with the Melxels design system (Built on Cards by Oliur (MIT)). Apply every rule below to all UI you create or edit in this project. When something isn't covered, extrapolate from these principles rather than falling back to generic defaults.
 
 ## Aesthetic
 Minimalism with soul: quiet, precise and tactile, and card-based. Every screen is a very light grey canvas with content grouped into white cards; hairline strokes and generous whitespace do the rest, and color is reserved for intent (actions, status, focus) so it always means something. Depth comes from one crisp, small shadow rather than borders or heavy drop shadows. Typography does the heavy lifting: tight tracking, medium-weight labels and a clear size hierarchy.
 
 ## Stack & conventions
-- React + Tailwind CSS v4. Components follow **shadcn/ui** conventions: Radix UI primitives (`radix-ui`), variants with `class-variance-authority`, a `cn()` helper (clsx + tailwind-merge), `data-slot` attributes, `asChild` via Radix Slot. Colors and type come only from Zen Studio's semantic tokens (defined below).
+- React + Tailwind CSS v4. Components follow **shadcn/ui** conventions: Radix UI primitives (`radix-ui`), variants with `class-variance-authority`, a `cn()` helper (clsx + tailwind-merge), `data-slot` attributes, `asChild` via Radix Slot. Colors and type come only from Melxels's semantic tokens (defined below).
 - Icons: Lucide (`lucide-react`), the shadcn/ui default. Outline by default, size-5 (20px). Lucide has no brand logos, so use inline SVGs from Simple Icons for those.
 - Fonts: Familjen Grotesk for all UI text and headings, JetBrains Mono for code/numbers. Headings use weight 500.
 - Load fonts in the document head:
@@ -45,14 +45,21 @@ const twMerge = extendTailwindMerge({ extend: { classGroups: { "font-size": [{ t
 - Status: use {state}-subtle backgrounds with {state} icons/text for inline messages; solid {state} fills only for small high-signal marks (badges, dots).
 - Text on primary uses text-primary-foreground (automatically black or white for contrast).
 
-Primary color: `#2F3CF4` in light mode, `#7C86FF` in dark mode. Neutral ramp: stone.
+Primary color: `#3D0066` in light mode, `#B17FEB` in dark mode. Neutral ramp: stone.
 
-## Image placeholders
-Wherever an image would go (thumbnails, covers, album art, app icons), and no real image exists, use one of these top-to-bottom sky gradients. Never use stock photos, generated art or grey boxes. They stay the same in light and dark mode. Write them as `linear-gradient(to bottom in oklab, top, bottom)`.
+## Images
+Wherever an image would go (thumbnails, covers, album art, avatars, heroes), use a real photograph when one is available — free-licensed photos from Pexels or Unsplash, stored under `/images/`. Prefer Black/African people for portraits and people photos. Any imagery of people or places in Africa must be modern, aspirational and middle-class (professionals, creatives, modern cities like Accra or Monrovia, studios, cafés) — never poverty or hardship. Melvin Z. Freeman's portrait is `/images/melvin.jpg` (swap that one file to update every Melvin avatar). When no photo is available, use one of these brand or sky gradients — never a grey box. They stay the same in light and dark mode. Write them as `linear-gradient(<direction> in oklab, from, to)`.
+- Brand: Solar #FFCA05 → #FAAC18 (to right); Royal #1B1A2E → #3D0066 (to right)
 - Morning: First Light #A9C8E8 → #FBDCC8; Dawn Rose #B7B4DC → #F9CFCB; Soft Haze #D5DEE8 → #F7E8D8; Golden Hour #BFD9E6 → #FDE3A8; Mist #C9D8DE → #EEF1EA
 - Day: Clear Sky #5BA4EC → #CFE7F8; High Noon #2F86E0 → #9AD0F5; Summer #49B4EA → #E6F6FB; Thin Cloud #9CC4E8 → #F1F5F8; Coastal #4FA3C7 → #D4EFE6
 - Sunset: Dusk #6C63A8 → #F8A878; Ember #B4506A → #F9B26C; Coral #E8748A → #FCC98F; Afterglow #3E4A89 → #EE8D83; Last Light #8D5FA6 → #F6C1A0
 - Night: Midnight #0B1026 → #2C3A68; Deep Blue #050A1C → #14305C; Blue Hour #1C2A5A → #5A6CA8; Aubergine #120C2C → #45305F; Moonlit #10181F → #3A4C5C
+
+## Brand marks
+The Melxels wordmark and mark live in `/brand/` (SVG, recolorable). Use the wordmark in nav and footer (purple `#3D0066` in light mode, cream `#F7F4EE` in dark). Use the mark as the app icon; in dark mode fill it cream so the navy end of the royal gradient does not vanish on a navy canvas.
+
+## Motion
+Easing and entrance duration are theme tokens, tunable in the Animation Tuner: `--ease-tactile: cubic-bezier(0.23, 1, 0.32, 1)` and `--duration-enter: 160ms`.
 
 ## Typography
 Type scales with density (default: ×1); sizes below are already scaled and line-heights snap to the 4px grid. Use only these styles (Tailwind class `text-{token}`). Each sets size, line-height, letter-spacing and weight. Headings automatically use the display font.
@@ -417,28 +424,28 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
 /* Theme values (generated for this configuration) */
 :root {
   --neutral-0: #FFFFFF;
-  --neutral-50: #FAFAF9;
-  --neutral-100: #F5F5F4;
-  --neutral-200: #E7E5E4;
-  --neutral-300: #D6D3D1;
-  --neutral-400: #A6A09B;
-  --neutral-500: #79716B;
-  --neutral-600: #57534D;
-  --neutral-700: #44403B;
-  --neutral-800: #292524;
-  --neutral-900: #1C1917;
-  --neutral-950: #0C0A09;
-  --primary-50: #EEF7FF;
-  --primary-100: #D5EBFF;
-  --primary-200: #B9DAFF;
-  --primary-300: #95BEFF;
-  --primary-400: #6E99FF;
-  --primary-500: #2F3CF4;
-  --primary-600: #2117CD;
-  --primary-700: #1700A2;
-  --primary-800: #0F007B;
-  --primary-900: #09005D;
-  --primary-950: #050043;
+  --neutral-50: #FAF8F3;
+  --neutral-100: #F7F4EE;
+  --neutral-200: #E8E2D6;
+  --neutral-300: #D3CBBA;
+  --neutral-400: #A89F8E;
+  --neutral-500: #7A7368;
+  --neutral-600: #5C564E;
+  --neutral-700: #3E3B48;
+  --neutral-800: #2A2840;
+  --neutral-900: #1A1A2E;
+  --neutral-950: #10101C;
+  --primary-50: #F9F4FF;
+  --primary-100: #F4E5FF;
+  --primary-200: #E9D2FF;
+  --primary-300: #D7B6FF;
+  --primary-400: #BE93F2;
+  --primary-500: #3D0066;
+  --primary-600: #2F0054;
+  --primary-700: #220040;
+  --primary-800: #16002E;
+  --primary-900: #0E0021;
+  --primary-950: #080016;
   --ds-font-sans: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif;
   --ds-font-display: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif;
   --ds-font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -454,48 +461,50 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --ds-radius-3xl: 24px;
   --ds-radius-button: 10px;
   --ds-radius-button-sm: 8px;
-  --canvas: #F5F5F4;
-  --inverse: #0C0A09;
-  --inverse-hover: #1D1B1A;
-  --track-strong: #D6D3D1;
-  --track: #E7E5E4;
-  --subtle: #FAFAF9;
-  --tray: #E7E5E4;
+  --ease-tactile: cubic-bezier(0.23, 1, 0.32, 1);
+  --duration-enter: 160ms;
+  --canvas: #F7F4EE;
+  --inverse: #10101C;
+  --inverse-hover: #21212C;
+  --track-strong: #D3CBBA;
+  --track: #E8E2D6;
+  --subtle: #FAF8F3;
+  --tray: #E8E2D6;
   --surface: #FFFFFF;
   --raised: #FFFFFF;
   --floating: #FFFFFF;
   --field: #FFFFFF;
   --control: #FFFFFF;
-  --control-hover: #FAFAF9;
-  --field-line: #E7E5E4;
-  --table-head: #FAFAF9;
-  --hover: rgb(12 10 9 / 0.04);
-  --selected: rgb(12 10 9 / 0.08);
-  --fg: #0C0A09;
-  --fg-muted: #57534D;
-  --fg-subtle: #A6A09B;
-  --fg-disabled: #D6D3D1;
+  --control-hover: #FAF8F3;
+  --field-line: #E8E2D6;
+  --table-head: #FAF8F3;
+  --hover: rgb(16 16 28 / 0.04);
+  --selected: rgb(16 16 28 / 0.08);
+  --fg: #10101C;
+  --fg-muted: #5C564E;
+  --fg-subtle: #A89F8E;
+  --fg-disabled: #D3CBBA;
   --fg-inverse: #FFFFFF;
-  --line-focus: #0C0A09;
-  --line-strong: #D6D3D1;
-  --line: #E7E5E4;
+  --line-focus: #10101C;
+  --line-strong: #D3CBBA;
+  --line: #E8E2D6;
   --line-inverse: #FFFFFF;
-  --primary: #2F3CF4;
-  --primary-hover: #3E4AF5;
-  --primary-active: #1E00C2;
+  --primary: #3D0066;
+  --primary-hover: #4B1271;
+  --primary-active: #633391;
   --primary-foreground: #FFFFFF;
-  --switch-on: #2F3CF4;
-  --switch-on-hover: #2418DB;
-  --primary-subtle-stronger: rgb(47 60 244 / 0.24);
-  --primary-subtle-strong: rgb(47 60 244 / 0.16);
-  --primary-subtle: rgb(47 60 244 / 0.1);
+  --switch-on: #3D0066;
+  --switch-on-hover: #4F1C7B;
+  --primary-subtle-stronger: rgb(61 0 102 / 0.24);
+  --primary-subtle-strong: rgb(61 0 102 / 0.16);
+  --primary-subtle: rgb(61 0 102 / 0.1);
   --black: #0A0A0A;
   --white: #FFFFFF;
-  --neutral-fg: #292524;
-  --neutral: #79716B;
-  --neutral-line: #E7E5E4;
-  --neutral-subtle: #F5F5F4;
-  --overlay: rgb(12 10 9 / 0.24);
+  --neutral-fg: #2A2840;
+  --neutral: #7A7368;
+  --neutral-line: #E8E2D6;
+  --neutral-subtle: #F7F4EE;
+  --overlay: rgb(16 16 28 / 0.24);
   --danger: #FB2C36;
   --danger-fg: #82181A;
   --danger-line: #FFC9C9;
@@ -512,110 +521,110 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --info-fg: #1C398E;
   --info-line: #BEDBFF;
   --info-subtle: #EFF6FF;
-  --highlight: #8E51FF;
-  --highlight-fg: #4D179A;
-  --highlight-line: #DDD6FF;
-  --highlight-subtle: #F5F3FF;
-  --caution: #FFB900;
-  --caution-fg: #7B3306;
-  --caution-line: #FEE685;
-  --caution-subtle: #FFFBEB;
+  --highlight: #FFCA05;
+  --highlight-fg: #1A1A2E;
+  --highlight-line: #FFE38A;
+  --highlight-subtle: #FFF9E0;
+  --caution: #FAAC18;
+  --caution-fg: #1A1A2E;
+  --caution-line: #FFE3A3;
+  --caution-subtle: #FFF6E0;
   --ds-shadow-xs: 0 0.5px 1.5px 0px rgb(0 0 0 / 0.07);
   --ds-shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.08);
   --ds-shadow-md: 0 4px 12px 0px rgb(0 0 0 / 0.14);
   --ds-shadow-lg: 0 8px 24px 0px rgb(0 0 0 / 0.22), 0 0 0 1px rgb(14 18 27 / 0.04);
   --ds-shadow-field: 0 0.5px 1.5px 0px rgb(0 0 0 / 0.07);
   --ds-shadow-control: 0 0.5px 1.5px 0px rgb(0 0 0 / 0.07);
-  --ds-shadow-button: 0 0 0 1px rgb(12 10 9 / 0.08), 0 1px 2px 0 rgb(12 10 9 / 0.12);
-  --ds-shadow-primary: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #2F3CF4, 0 1px 2px 0 rgb(12 10 9 / 0.24), 0 3px 6px -2px rgb(12 10 9 / 0.2);
-  --ds-shadow-inverse: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #0C0A09, 0 1px 2px 0 rgb(12 10 9 / 0.24), 0 3px 6px -2px rgb(12 10 9 / 0.2);
-  --ds-shadow-danger: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #FB2C36, 0 1px 2px 0 rgb(12 10 9 / 0.24), 0 3px 6px -2px rgb(12 10 9 / 0.2);
+  --ds-shadow-button: 0 0 0 1px rgb(16 16 28 / 0.08), 0 1px 2px 0 rgb(16 16 28 / 0.12);
+  --ds-shadow-primary: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #3D0066, 0 1px 2px 0 rgb(16 16 28 / 0.24), 0 3px 6px -2px rgb(16 16 28 / 0.2);
+  --ds-shadow-inverse: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #10101C, 0 1px 2px 0 rgb(16 16 28 / 0.24), 0 3px 6px -2px rgb(16 16 28 / 0.2);
+  --ds-shadow-danger: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #FB2C36, 0 1px 2px 0 rgb(16 16 28 / 0.24), 0 3px 6px -2px rgb(16 16 28 / 0.2);
   --ds-shadow-badge: 0 0 0 1px color-mix(in srgb, currentColor 14%, transparent), 0 1px 2px 0 color-mix(in srgb, currentColor 16%, transparent);
-  --ds-shadow-menu: 0 0 0 1px rgb(12 10 9 / 0.08), 0 1px 2px 0 rgb(12 10 9 / 0.12), 0 4px 8px -4px rgb(12 10 9 / 0.16);
-  --background: #F5F5F4;
-  --foreground: #0C0A09;
+  --ds-shadow-menu: 0 0 0 1px rgb(16 16 28 / 0.08), 0 1px 2px 0 rgb(16 16 28 / 0.12), 0 4px 8px -4px rgb(16 16 28 / 0.16);
+  --background: #F7F4EE;
+  --foreground: #10101C;
   --card: #FFFFFF;
-  --card-foreground: #0C0A09;
+  --card-foreground: #10101C;
   --popover: #FFFFFF;
-  --popover-foreground: #0C0A09;
-  --secondary: #FAFAF9;
-  --secondary-foreground: #0C0A09;
-  --muted-foreground: #57534D;
-  --muted: #FAFAF9;
-  --accent: rgb(12 10 9 / 0.04);
-  --accent-foreground: #0C0A09;
+  --popover-foreground: #10101C;
+  --secondary: #FAF8F3;
+  --secondary-foreground: #10101C;
+  --muted-foreground: #5C564E;
+  --muted: #FAF8F3;
+  --accent: rgb(16 16 28 / 0.04);
+  --accent-foreground: #10101C;
   --destructive: #FB2C36;
   --destructive-foreground: #FFFFFF;
-  --border: #E7E5E4;
-  --input: #E7E5E4;
-  --ring: #2F3CF4;
-  --chart-1: #2B7FFF;
-  --chart-2: #00C950;
-  --chart-3: #FF6900;
-  --chart-4: #8E51FF;
-  --chart-5: #FB2C36;
+  --border: #E8E2D6;
+  --input: #E8E2D6;
+  --ring: #3D0066;
+  --chart-1: #3D0066;
+  --chart-2: #FFCA05;
+  --chart-3: #FAAC18;
+  --chart-4: #00C950;
+  --chart-5: #2B7FFF;
   --sidebar: #FFFFFF;
-  --sidebar-foreground: #0C0A09;
-  --sidebar-primary: #2F3CF4;
+  --sidebar-foreground: #10101C;
+  --sidebar-primary: #3D0066;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: rgb(12 10 9 / 0.04);
-  --sidebar-accent-foreground: #0C0A09;
-  --sidebar-border: #E7E5E4;
-  --sidebar-ring: #2F3CF4;
+  --sidebar-accent: rgb(16 16 28 / 0.04);
+  --sidebar-accent-foreground: #10101C;
+  --sidebar-border: #E8E2D6;
+  --sidebar-ring: #3D0066;
 }
 
 .dark {
-  --primary-50: #F3F6FF;
-  --primary-100: #E3EAFF;
-  --primary-200: #CED9FF;
-  --primary-300: #B2BFFF;
-  --primary-400: #929EFF;
-  --primary-500: #7C86FF;
-  --primary-600: #5C62D1;
-  --primary-700: #4245A2;
-  --primary-800: #2D2E79;
-  --primary-900: #1F1F5B;
-  --primary-950: #141542;
-  --canvas: #1C1917;
+  --primary-50: #F9F4FF;
+  --primary-100: #F4E5FF;
+  --primary-200: #EAD1FF;
+  --primary-300: #D7B5FF;
+  --primary-400: #BF92F6;
+  --primary-500: #B17FEB;
+  --primary-600: #8A5BBE;
+  --primary-700: #673F92;
+  --primary-800: #4A296C;
+  --primary-900: #361C51;
+  --primary-950: #26123A;
+  --canvas: #1A1A2E;
   --inverse: #FFFFFF;
-  --inverse-hover: #EEEEEE;
-  --track-strong: #57534D;
-  --track: #44403B;
-  --subtle: #252220;
-  --tray: #1C1917;
-  --surface: #2A2725;
-  --raised: #322F2C;
-  --floating: #3A3634;
-  --field: #23201E;
-  --control: #322F2C;
-  --control-hover: #3A3634;
+  --inverse-hover: #EEEEEF;
+  --track-strong: #5C564E;
+  --track: #3E3B48;
+  --subtle: #232438;
+  --tray: #1A1A2E;
+  --surface: #28283E;
+  --raised: #2F3046;
+  --floating: #37384E;
+  --field: #212136;
+  --control: #2F3046;
+  --control-hover: #37384E;
   --field-line: transparent;
-  --table-head: #322F2C;
+  --table-head: #2F3046;
   --hover: rgb(255 255 255 / 0.06);
   --selected: rgb(255 255 255 / 0.12);
   --fg: #FFFFFF;
-  --fg-muted: #A6A09B;
-  --fg-subtle: #79716B;
-  --fg-disabled: #57534D;
-  --fg-inverse: #0C0A09;
+  --fg-muted: #A89F8E;
+  --fg-subtle: #7A7368;
+  --fg-disabled: #5C564E;
+  --fg-inverse: #10101C;
   --line-focus: #FFFFFF;
   --line-strong: rgb(255 255 255 / 0.18);
   --line: rgb(255 255 255 / 0.07);
-  --line-inverse: #2A2725;
-  --primary: #7C86FF;
-  --primary-hover: #858EFF;
-  --primary-active: #A5B3FF;
-  --primary-foreground: #FFFFFF;
-  --switch-on: #7C86FF;
-  --switch-on-hover: #909CFF;
-  --primary-subtle-stronger: rgb(124 134 255 / 0.24);
-  --primary-subtle-strong: rgb(124 134 255 / 0.16);
-  --primary-subtle: rgb(124 134 255 / 0.1);
+  --line-inverse: #28283E;
+  --primary: #B17FEB;
+  --primary-hover: #A677DD;
+  --primary-active: #DEABFF;
+  --primary-foreground: #10101C;
+  --switch-on: #B17FEB;
+  --switch-on-hover: #C795FF;
+  --primary-subtle-stronger: rgb(177 127 235 / 0.24);
+  --primary-subtle-strong: rgb(177 127 235 / 0.16);
+  --primary-subtle: rgb(177 127 235 / 0.1);
   --black: #0A0A0A;
   --white: #FFFFFF;
-  --neutral-fg: #E7E5E4;
-  --neutral: #79716B;
-  --neutral-line: #44403B;
+  --neutral-fg: #E8E2D6;
+  --neutral: #7A7368;
+  --neutral-line: #3E3B48;
   --neutral-subtle: rgb(255 255 255 / 0.1);
   --overlay: rgb(0 0 0 / 0.6);
   --danger: #FB2C36;
@@ -634,56 +643,56 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --info-fg: #BEDBFF;
   --info-line: rgb(43 127 255 / 0.24);
   --info-subtle: rgb(43 127 255 / 0.16);
-  --highlight: #8E51FF;
-  --highlight-fg: #DDD6FF;
-  --highlight-line: rgb(142 81 255 / 0.24);
-  --highlight-subtle: rgb(142 81 255 / 0.16);
-  --caution: #FFB900;
-  --caution-fg: #FEE685;
-  --caution-line: rgb(255 185 0 / 0.24);
-  --caution-subtle: rgb(255 185 0 / 0.16);
+  --highlight: #FFCA05;
+  --highlight-fg: #FFE38A;
+  --highlight-line: rgb(255 202 5 / 0.24);
+  --highlight-subtle: rgb(255 202 5 / 0.16);
+  --caution: #FAAC18;
+  --caution-fg: #FFE3A3;
+  --caution-line: rgb(250 172 24 / 0.24);
+  --caution-subtle: rgb(250 172 24 / 0.16);
   --ds-shadow-xs: 0 0.5px 1.5px 0px rgb(0 0 0 / 0.28);
-  --ds-shadow-sm: 0 0 0 1px #393634, 0 1px 3px 0px rgb(0 0 0 / 0.32);
-  --ds-shadow-md: 0 0 0 1px #484442, 0 4px 12px 0px rgb(0 0 0 / 0.56);
-  --ds-shadow-lg: 0 0 0 1px #484442, 0 8px 24px 0px rgb(0 0 0 / 0.8);
+  --ds-shadow-sm: 0 0 0 1px #37374C, 0 1px 3px 0px rgb(0 0 0 / 0.32);
+  --ds-shadow-md: 0 0 0 1px #45465A, 0 4px 12px 0px rgb(0 0 0 / 0.56);
+  --ds-shadow-lg: 0 0 0 1px #45465A, 0 8px 24px 0px rgb(0 0 0 / 0.8);
   --ds-shadow-field: inset 0 1px 3px 0px rgb(0 0 0 / 0.32);
   --ds-shadow-control: 0 1px 3px 0px rgb(0 0 0 / 0.32);
-  --ds-shadow-button: 0 0 0 0.5px #494643, 0 1px 2px 0 rgb(0 0 0 / 0.5);
-  --ds-shadow-primary: 0 0 0 0.5px #7C86FF, 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --ds-shadow-button: 0 0 0 0.5px #47475F, 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --ds-shadow-primary: 0 0 0 0.5px #B17FEB, 0 1px 2px 0 rgb(0 0 0 / 0.5);
   --ds-shadow-inverse: 0 0 0 0.5px #FFFFFF, 0 1px 2px 0 rgb(0 0 0 / 0.5);
   --ds-shadow-danger: 0 0 0 0.5px #FB2C36, 0 1px 2px 0 rgb(0 0 0 / 0.5);
   --ds-shadow-badge: 0 0 0 0.5px color-mix(in srgb, currentColor 34%, #000), 0 1px 2px 0 rgb(0 0 0 / 0.5);
-  --ds-shadow-menu: 0 0 0 0.5px #494643, 0 1px 2px 0 rgb(0 0 0 / 0.5), 0 4px 8px -4px rgb(0 0 0 / 0.5);
-  --background: #1C1917;
+  --ds-shadow-menu: 0 0 0 0.5px #47475F, 0 1px 2px 0 rgb(0 0 0 / 0.5), 0 4px 8px -4px rgb(0 0 0 / 0.5);
+  --background: #1A1A2E;
   --foreground: #FFFFFF;
-  --card: #2A2725;
+  --card: #28283E;
   --card-foreground: #FFFFFF;
-  --popover: #3A3634;
+  --popover: #37384E;
   --popover-foreground: #FFFFFF;
-  --secondary: #252220;
+  --secondary: #232438;
   --secondary-foreground: #FFFFFF;
-  --muted-foreground: #A6A09B;
-  --muted: #252220;
+  --muted-foreground: #A89F8E;
+  --muted: #232438;
   --accent: rgb(255 255 255 / 0.06);
   --accent-foreground: #FFFFFF;
   --destructive: #FB2C36;
   --destructive-foreground: #FFFFFF;
   --border: rgb(255 255 255 / 0.07);
   --input: rgb(255 255 255 / 0.07);
-  --ring: #7C86FF;
-  --chart-1: #2B7FFF;
-  --chart-2: #00C950;
-  --chart-3: #FF6900;
-  --chart-4: #8E51FF;
-  --chart-5: #FB2C36;
-  --sidebar: #2A2725;
+  --ring: #B17FEB;
+  --chart-1: #B17FEB;
+  --chart-2: #FFCA05;
+  --chart-3: #FAAC18;
+  --chart-4: #00C950;
+  --chart-5: #2B7FFF;
+  --sidebar: #28283E;
   --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #7C86FF;
-  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-primary: #B17FEB;
+  --sidebar-primary-foreground: #10101C;
   --sidebar-accent: rgb(255 255 255 / 0.06);
   --sidebar-accent-foreground: #FFFFFF;
   --sidebar-border: rgb(255 255 255 / 0.07);
-  --sidebar-ring: #7C86FF;
+  --sidebar-ring: #B17FEB;
 }
 
 /* Tailwind mapping, type scale, elevation, base styles */
@@ -944,12 +953,13 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --shadow-focus-danger: 0 0 0 2px var(--surface), 0 0 0 4px rgb(251 44 54 / 0.24);
 
   --ease-tactile: cubic-bezier(0.23, 1, 0.32, 1);
-  --animate-in: ds-in 160ms cubic-bezier(0.16, 1, 0.3, 1);
-  --animate-menu-in: ds-menu-in 150ms cubic-bezier(0.23, 1, 0.32, 1);
-  --animate-menu-out: ds-menu-out 120ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  --duration-enter: 160ms;
+  --animate-in: ds-in var(--duration-enter) var(--ease-tactile);
+  --animate-menu-in: ds-menu-in 150ms var(--ease-tactile);
+  --animate-menu-out: ds-menu-out 120ms var(--ease-tactile) forwards;
   --animate-menu-fade-in: ds-fade 150ms ease-out;
   --animate-menu-fade-out: ds-fade-out 120ms ease-out forwards;
-  --animate-accordion-down: ds-accordion-down 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-accordion-down: ds-accordion-down 200ms var(--ease-tactile);
   --animate-accordion-up: ds-accordion-up 160ms ease-out;
 }
 

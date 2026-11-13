@@ -17,7 +17,8 @@ const fixedNeutrals: Record<Exclude<NeutralName, "tinted">, string[]> = {
   gray: ["#FFFFFF", "#FAFAFA", "#F5F5F5", "#E5E5E5", "#D4D4D4", "#A1A1A1", "#737373", "#525252", "#404040", "#262626", "#171717", "#0A0A0A"],
   slate: ["#FFFFFF", "#F8FAFC", "#F1F5F9", "#E2E8F0", "#CAD5E2", "#90A1B9", "#62748E", "#45556C", "#314158", "#1D293D", "#0F172B", "#020618"],
   zinc: ["#FFFFFF", "#FAFAFA", "#F4F4F5", "#E4E4E7", "#D4D4D8", "#9F9FA9", "#71717B", "#52525C", "#3F3F46", "#27272A", "#18181B", "#09090B"],
-  stone: ["#FFFFFF", "#FAFAF9", "#F5F5F4", "#E7E5E4", "#D6D3D1", "#A6A09B", "#79716B", "#57534D", "#44403B", "#292524", "#1C1917", "#0C0A09"],
+  // Melxels stone: cream canvas (#F7F4EE at 100) and navy canvas (#1A1A2E at 900), warm in between.
+  stone: ["#FFFFFF", "#FAF8F3", "#F7F4EE", "#E8E2D6", "#D3CBBA", "#A89F8E", "#7A7368", "#5C564E", "#3E3B48", "#2A2840", "#1A1A2E", "#10101C"],
 };
 
 const toScale = (values: string[]): Scale =>
@@ -102,8 +103,8 @@ export const stateColors = {
   warning: { fg: "#7E2A0C", base: "#FF6900", line: "#FFD6A7", subtle: "#FFF7ED" }, // orange
   success: { fg: "#0D542B", base: "#00C950", line: "#B9F8CF", subtle: "#F0FDF4" }, // green
   info: { fg: "#1C398E", base: "#2B7FFF", line: "#BEDBFF", subtle: "#EFF6FF" }, // blue
-  highlight: { fg: "#4D179A", base: "#8E51FF", line: "#DDD6FF", subtle: "#F5F3FF" }, // violet
-  caution: { fg: "#7B3306", base: "#FFB900", line: "#FEE685", subtle: "#FFFBEB" }, // amber
+  highlight: { fg: "#1A1A2E", base: "#FFCA05", line: "#FFE38A", subtle: "#FFF9E0" }, // Melxels yellow
+  caution: { fg: "#1A1A2E", base: "#FAAC18", line: "#FFE3A3", subtle: "#FFF6E0" }, // Melxels orange
 } as const;
 export type StateName = keyof typeof stateColors | "neutral";
 
@@ -116,7 +117,7 @@ export function semanticTokens(config: ThemeConfig, mode: "light" | "dark"): Tok
   const pick = (lightStep: Step, darkStep: Step) => n[light ? lightStep : darkStep];
 
   const primary = primaryFor(config, mode);
-  const onPrimary = wcagContrast(primary, "#FFFFFF") >= 3 ? "#FFFFFF" : n[950];
+  const onPrimary = wcagContrast(primary, "#FFFFFF") >= 4.5 ? "#FFFFFF" : n[950];
   const L = toOklch(parse(primary))!.l;
   const hoverDir = light ? (L < 0.3 ? 1 : -1) : L > 0.85 ? -1 : 1;
 
@@ -217,11 +218,11 @@ export function semanticTokens(config: ThemeConfig, mode: "light" | "dark"): Tok
     border: t["line"],
     input: t["line"],
     ring: t["primary"],
-    "chart-1": t["info"],
-    "chart-2": t["success"],
-    "chart-3": t["warning"],
-    "chart-4": t["highlight"],
-    "chart-5": t["danger"],
+    "chart-1": t["primary"],
+    "chart-2": t["highlight"],
+    "chart-3": t["caution"],
+    "chart-4": t["success"],
+    "chart-5": t["info"],
     sidebar: t["surface"],
     "sidebar-foreground": t["fg"],
     "sidebar-primary": t["primary"],
@@ -334,6 +335,10 @@ export function staticTokens(config: ThemeConfig): TokenMap {
   // buttons: medium follows rounded-lg, compact sizes rounded-md — unless they're pills
   t["ds-radius-button"] = config.buttonShape === "pill" ? "9999px" : radii.lg;
   t["ds-radius-button-sm"] = config.buttonShape === "pill" ? "9999px" : radii.md;
+  const ease = config.motion?.ease ?? [0.23, 1, 0.32, 1];
+  const duration = config.motion?.duration ?? 160;
+  t["ease-tactile"] = `cubic-bezier(${ease.join(", ")})`;
+  t["duration-enter"] = `${duration}ms`;
   return t;
 }
 

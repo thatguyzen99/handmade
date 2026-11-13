@@ -13,6 +13,7 @@ import { Slider } from "@/components/ui/slider";
 import { SegmentedList, SegmentedTrigger, Tabs } from "@/components/ui/tabs";
 import { Tile, TileGroup } from "@/components/ui/tile-group";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
+import { people, photos } from "@/lib/media";
 import type { GradientId } from "@/lib/gradients";
 import { cn } from "@/lib/utils";
 
@@ -286,13 +287,13 @@ export function AnalyticsCard() {
 export function BlogCard() {
   return (
     <Card className="overflow-hidden">
-      <ImagePlaceholder gradient="first-light" className="aspect-video" />
+      <ImagePlaceholder gradient="first-light" src={photos.desk} alt="Wireframes in a notebook" className="aspect-video" />
       <div className="space-y-3 p-5">
         <Badge status="highlight">Design</Badge>
         <h3 className="text-heading-6 text-fg">Why every corner should come from one number</h3>
         <p className="text-body-sm text-fg-muted">A single base radius keeps a whole interface in step, from the smallest badge up to the largest dialog.</p>
         <div className="flex items-center gap-3 pt-1">
-          <Avatar size="32" color="purple">MK</Avatar>
+          <Avatar size="32" color="purple" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar>
           <div className="min-w-0">
             <div className="truncate text-ui-sm text-fg">Milo Kovac</div>
             <div className="truncate text-body-xs text-fg-muted">Mar 12 · 6 min read</div>
@@ -309,7 +310,7 @@ export function AppDownloadCard() {
   return (
     <Card className="p-5">
       <div className="flex items-center gap-4">
-        <ImagePlaceholder gradient="midnight" className="flex size-16 shrink-0 items-center justify-center rounded-2xl text-white">
+        <ImagePlaceholder gradient="royal" className="flex size-16 shrink-0 items-center justify-center rounded-2xl text-white">
           <MicIcon className="size-8" />
         </ImagePlaceholder>
         <div className="min-w-0 space-y-1">
@@ -342,10 +343,10 @@ export function AppDownloadCard() {
 
 /* ---------- Music player ---------- */
 
-const tracks: { title: string; artist: string; length: number; gradient: GradientId }[] = [
-  { title: "Slow Tide", artist: "Harbour Lights", length: 214, gradient: "dusk" },
-  { title: "Paper Skies", artist: "Nova Ames", length: 187, gradient: "midnight" },
-  { title: "Long Way Round", artist: "The Quiet Hours", length: 243, gradient: "clear-sky" },
+const tracks: { title: string; artist: string; length: number; gradient: GradientId; src: string }[] = [
+  { title: "Slow Tide", artist: "Harbour Lights", length: 214, gradient: "dusk", src: photos.vinyl },
+  { title: "Paper Skies", artist: "Nova Ames", length: 187, gradient: "midnight", src: photos.record },
+  { title: "Long Way Round", artist: "The Quiet Hours", length: 243, gradient: "clear-sky", src: photos.score },
 ];
 
 const formatTime = (seconds: number) => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, "0")}`;
@@ -371,7 +372,7 @@ export function MusicCard() {
 
   return (
     <Card className="space-y-4 p-4">
-      <ImagePlaceholder gradient={track.gradient} className="aspect-[4/3] rounded-xl" />
+      <ImagePlaceholder gradient={track.gradient} src={track.src} alt={`${track.title} album art`} className="aspect-[4/3] rounded-xl" />
       <div className="px-1">
         <h3 className="truncate text-ui-md text-fg">{track.title}</h3>
         <p className="truncate text-body-sm text-fg-muted">{track.artist}</p>
@@ -469,7 +470,7 @@ export function StorageCard() {
         <div className="flex items-center justify-between gap-3">
           <AvatarGroup className="-space-x-1">
             <Avatar size="32" color="blue">AL</Avatar>
-            <Avatar size="32" color="purple">MK</Avatar>
+            <Avatar size="32" color="purple" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar>
             <Avatar size="32" color="orange">JS</Avatar>
             <Avatar size="32" color="green">RW</Avatar>
           </AvatarGroup>

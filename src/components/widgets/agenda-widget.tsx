@@ -6,6 +6,7 @@ import { AvatarGroup, Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardDivider } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { people } from "@/lib/media";
 
 const week = [9, 10, 11, 12, 13, 14, 15];
 const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -73,7 +74,10 @@ export function AgendaWidget({ className }: { className?: string }) {
             </div>
             {e.people && (
               <AvatarGroup className="max-sm:hidden">
-                {e.people.map((p, i) => <Avatar key={p} size="24" color={(["blue", "purple", "green", "orange"] as const)[i % 4]}>{p}</Avatar>)}
+                {e.people.map((p, i) => {
+                  const person = Object.values(people).find((x) => x.initials === p);
+                  return <Avatar key={p} size="24" color={(["blue", "purple", "green", "orange"] as const)[i % 4]} src={person?.src} alt={person?.alt ?? p} objectPosition={person?.objectPosition}>{p}</Avatar>;
+                })}
               </AvatarGroup>
             )}
           </li>

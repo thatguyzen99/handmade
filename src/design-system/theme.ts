@@ -263,12 +263,13 @@ export const tailwindTheme = String.raw`@custom-variant dark (&:where(.dark, .da
   --shadow-focus-danger: 0 0 0 2px var(--surface), 0 0 0 4px rgb(251 44 54 / 0.24);
 
   --ease-tactile: cubic-bezier(0.23, 1, 0.32, 1);
-  --animate-in: ds-in 160ms cubic-bezier(0.16, 1, 0.3, 1);
-  --animate-menu-in: ds-menu-in 150ms cubic-bezier(0.23, 1, 0.32, 1);
-  --animate-menu-out: ds-menu-out 120ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  --duration-enter: 160ms;
+  --animate-in: ds-in var(--duration-enter) var(--ease-tactile);
+  --animate-menu-in: ds-menu-in 150ms var(--ease-tactile);
+  --animate-menu-out: ds-menu-out 120ms var(--ease-tactile) forwards;
   --animate-menu-fade-in: ds-fade 150ms ease-out;
   --animate-menu-fade-out: ds-fade-out 120ms ease-out forwards;
-  --animate-accordion-down: ds-accordion-down 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-accordion-down: ds-accordion-down 200ms var(--ease-tactile);
   --animate-accordion-up: ds-accordion-up 160ms ease-out;
 }
 

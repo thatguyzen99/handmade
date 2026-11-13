@@ -5,6 +5,7 @@ import { HeartIcon, ListMusicIcon, PauseIcon, PlayIcon, RepeatIcon, ShuffleIcon,
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
+import { photos } from "@/lib/media";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +27,7 @@ export function MusicPlayer({ className }: { className?: string }) {
   return (
     <Card data-slot="music-player" className={cn("space-y-5 p-5 tabular-nums", className)}>
       <div className="flex items-center gap-4">
-        <ImagePlaceholder gradient="afterglow" className="size-16 shrink-0 rounded-xl shadow-sm" />
+        <ImagePlaceholder gradient="afterglow" src={photos.album} alt="Album art" className="size-16 shrink-0 rounded-xl shadow-sm" />
         <div className="min-w-0 flex-1">
           <div className="truncate text-ui-md text-fg">Harmattan Light</div>
           <div className="truncate text-body-sm text-fg-muted">Ebo Taylor · Studio sessions</div>

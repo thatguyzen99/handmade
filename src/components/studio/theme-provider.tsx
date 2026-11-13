@@ -34,7 +34,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const fromHash = decodeConfig(new URLSearchParams(window.location.hash.slice(1)).get("t"));
     let stored: ThemeConfig | null = null;
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem("zen:theme");
       stored = raw ? sanitizeConfig(JSON.parse(raw)) : null;
     } catch {}
     const initial = fromHash ?? stored;

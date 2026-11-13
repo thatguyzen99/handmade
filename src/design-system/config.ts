@@ -4,7 +4,7 @@
  * everything else (spacing grid, type scale, state colors) is fixed by the system.
  */
 
-import { systemId } from "./brand";
+import { brandColors, legacySystemIds, systemId } from "./brand";
 
 export type NeutralName = "gray" | "slate" | "zinc" | "stone" | "tinted";
 export type Mode = "light" | "dark";
@@ -22,6 +22,7 @@ export type ThemeConfig = {
   density: Density; // scales the spacing unit (paddings, margins, gaps, control heights) and the type scale with it
   shadow: ShadowConfig; // the card shadow; the rest of the elevation ladder scales from it
   mode: Mode;
+  motion: MotionConfig; // --ease-tactile and --duration-enter, tunable in the Animation Tuner
 };
 
 /** The numbered radius stops offered in the studio (stop 1 = square … stop 7 = roundest). */
@@ -29,6 +30,16 @@ export const radiusStops = [0, 4, 6, 8, 10, 12, 16] as const;
 export const radiusStopNumber = (px: number) => radiusStops.indexOf(px as (typeof radiusStops)[number]) + 1;
 
 export type ButtonShape = "match" | "pill";
+
+export type MotionConfig = {
+  /** Cubic-bezier for --ease-tactile (x1, y1, x2, y2). */
+  ease: [number, number, number, number];
+  /** Entrance duration in ms, used as --duration-enter. */
+  duration: number;
+};
+
+export const defaultMotion: MotionConfig = { ease: [0.23, 1, 0.32, 1], duration: 160 };
+
 
 /**
  * Density presets. Each sets the spacing unit every Tailwind step multiplies, plus a gentler
@@ -58,9 +69,9 @@ export type ShadowConfig = {
 export const defaultShadow: ShadowConfig = { y: 1, blur: 3, spread: 0, opacity: 8, opacityDark: 32, color: "neutral" };
 
 export const defaultConfig: ThemeConfig = {
-  // Zen cobalt: one saturated accent on a warm stone canvas.
-  primary: "#2F3CF4",
-  primaryDark: "#7C86FF",
+  // Melxels: purple accent on a cream canvas; navy canvas in dark mode.
+  primary: brandColors.primary,
+  primaryDark: brandColors.primaryDark,
   neutral: "stone",
   fontSans: "Familjen Grotesk",
   fontDisplay: "Familjen Grotesk",
@@ -71,6 +82,7 @@ export const defaultConfig: ThemeConfig = {
   density: "default",
   shadow: defaultShadow,
   mode: "light",
+  motion: defaultMotion,
 };
 
 export type FontDef = {
@@ -169,7 +181,7 @@ export function configId(config: ThemeConfig) {
 
 /** Reads an id from configId, or the name of the default system. */
 export function configFromId(id: string): ThemeConfig | null {
-  if (id === systemId) return defaultConfig;
+  if (id === systemId || (legacySystemIds as readonly string[]).includes(id)) return defaultConfig;
   return decodeConfig(id.replace(/-/g, "+").replace(/_/g, "/"));
 }
 
@@ -198,8 +210,20 @@ export function sanitizeConfig(input: unknown): ThemeConfig {
     density: densities.some((d) => d.id === c.density) ? (c.density as Density) : defaultConfig.density,
     shadow: sanitizeShadow(c.shadow),
     mode: c.mode === "dark" ? "dark" : "light",
+    motion: sanitizeMotion(c.motion),
   };
 }
+
+function sanitizeMotion(input: unknown): MotionConfig {
+  const m = (input ?? {}) as Partial<MotionConfig>;
+  const num = (v: unknown, min: number, max: number, fallback: number) =>
+    typeof v === "number" && Number.isFinite(v) ? Math.min(max, Math.max(min, v)) : fallback;
+  const ease = Array.isArray(m.ease) && m.ease.length === 4
+    ? (m.ease.map((n, i) => num(n, i % 2 === 0 ? 0 : -1, i % 2 === 0 ? 1 : 2, defaultMotion.ease[i])) as MotionConfig["ease"])
+    : defaultMotion.ease;
+  return { ease, duration: Math.round(num(m.duration, 50, 2000, defaultMotion.duration)) };
+}
+
 
 function sanitizeShadow(input: unknown): ShadowConfig {
   const s = (input ?? {}) as Partial<ShadowConfig>;

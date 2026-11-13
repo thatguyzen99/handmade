@@ -18,6 +18,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Dropzone } from "@/components/ui/dropzone";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
+import { Mark } from "@/components/brand/logo";
+import { systemName } from "@/design-system/brand";
+import { people, photos } from "@/lib/media";
 import { Input, Textarea } from "@/components/ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Kbd } from "@/components/ui/kbd";
@@ -85,8 +88,8 @@ function SideNav({ className }: { className?: string }) {
   return (
     <Card className={cn("flex flex-col gap-1 p-2", className)}>
       <div className="flex items-center gap-2 px-2 py-3">
-        <span className="flex size-7 items-center justify-center rounded-md bg-primary text-ui-xs text-primary-foreground">Z</span>
-        <span className="text-ui-sm text-fg">Zen Studio</span>
+        <Mark className="size-7" />
+        <span className="text-ui-sm text-fg">{systemName}</span>
       </div>
       {navItems.map((n) => (
         <a
@@ -200,13 +203,13 @@ function MarketingPattern() {
         <div className="mx-auto max-w-3xl space-y-6 text-center">
           <Badge variant="soft" status="primary" className="mx-auto">New · Widgets and page patterns</Badge>
           <h4 className="text-heading-1 text-fg max-sm:text-heading-3">Design systems with a quiet kind of confidence.</h4>
-          <p className="mx-auto max-w-xl text-body-lg text-fg-muted">Zen Studio turns a few honest choices into a complete, card-based system you can ship, share and hand to any AI.</p>
+          <p className="mx-auto max-w-xl text-body-lg text-fg-muted">{`${systemName} turns a few honest choices into a complete, card-based system you can ship, share and hand to any AI.`}</p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button>Start designing <ArrowRightIcon /></Button>
             <Button variant="neutral" mode="raised">See the components</Button>
           </div>
           <div className="flex items-center justify-center gap-3 text-body-sm text-fg-muted">
-            <AvatarGroup>{["AO", "KM", "LP", "TE"].map((p, i) => <Avatar key={p} size="24" color={(["purple", "green", "orange", "blue"] as const)[i]}>{p}</Avatar>)}</AvatarGroup>
+            <AvatarGroup>{[people.ama, people.kojo, people.lena, people.telling].map((p, i) => <Avatar key={p.initials} size="24" color={(["purple", "green", "orange", "blue"] as const)[i]} src={p.src} alt={p.alt} objectPosition={p.objectPosition}>{p.initials}</Avatar>)}</AvatarGroup>
             Loved by 2,400 designers
           </div>
         </div>
@@ -214,7 +217,7 @@ function MarketingPattern() {
         <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl bg-canvas shadow-sm ring-1 ring-inset ring-line">
           <div className="flex items-center gap-2 border-b border-line bg-surface px-4 py-3">
             {[0, 1, 2].map((i) => <span key={i} className="size-3 rounded-full bg-track" />)}
-            <span className="mx-auto rounded-md bg-subtle px-3 py-1 text-body-xs text-fg-subtle">zen.studio/dashboard</span>
+            <span className="mx-auto rounded-md bg-subtle px-3 py-1 text-body-xs text-fg-subtle">melxels.app/dashboard</span>
           </div>
           <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-3">
             {stats.slice(0, 3).map((s) => <StatCard key={s.label} {...s} />)}
@@ -242,9 +245,9 @@ function AuthPattern() {
     <PatternFrame id="pattern-auth" title="Auth / sign-in" description="Split screen: brand panel and a form with password or email-code sign-in.">
       <Card className="grid grid-cols-1 overflow-hidden lg:grid-cols-2">
         <div className="relative min-h-64 max-lg:hidden">
-          <ImagePlaceholder gradient="blue-hour" className="absolute inset-0" />
+          <ImagePlaceholder gradient="royal" src={photos.hero} alt="Mosaïk tower in Accra" className="absolute inset-0" />
           <div className="relative flex h-full flex-col justify-between p-8 text-white">
-            <div className="flex items-center gap-2 text-ui-md"><span className="flex size-7 items-center justify-center rounded-md bg-white text-ui-xs text-black">Z</span> Zen Studio</div>
+            <div className="flex items-center gap-2 text-ui-md"><Mark variant="solid" className="size-7 text-white" /><span>{systemName}</span></div>
             <figure className="space-y-4">
               <blockquote className="text-heading-5">“It finally feels like my work, not a template. The system makes the calm decisions so I can make the bold ones.”</blockquote>
               <figcaption className="text-body-sm">Ama Owusu · Founder, Wayfold</figcaption>
@@ -276,7 +279,7 @@ function AuthPattern() {
               <Button className="w-full" onClick={() => toast.success("Signed in", { description: "Welcome back, Melvin." })}>Sign in</Button>
             </TabsContent>
             <TabsContent value="code" className="space-y-4">
-              <p className="text-body-sm text-fg-muted">Enter the 6-digit code sent to <span className="text-fg">melvin@zen.studio</span>.</p>
+              <p className="text-body-sm text-fg-muted">Enter the 6-digit code sent to <span className="text-fg">melvin@melxels.com</span>.</p>
               <InputOTP maxLength={6} aria-label="Sign-in code">
                 <InputOTPGroup>{[0, 1, 2, 3, 4, 5].map((i) => <InputOTPSlot key={i} index={i} />)}</InputOTPGroup>
               </InputOTP>
@@ -329,13 +332,13 @@ function OnboardingPattern() {
               <div className="space-y-1"><h4 className="text-heading-6 text-fg">Pick a starting style</h4><p className="text-body-sm text-fg-muted">You can fine-tune everything later in the studio.</p></div>
               <TileGroup defaultValue="calm" aria-label="Style" className="grid-cols-2 gap-3 sm:grid-cols-4">
                 {[
-                  { v: "calm", g: "first-light" as const, t: "Calm" },
-                  { v: "bold", g: "ember" as const, t: "Bold" },
-                  { v: "fresh", g: "coastal" as const, t: "Fresh" },
-                  { v: "night", g: "midnight" as const, t: "Night" },
+                  { v: "calm", g: "first-light" as const, t: "Calm", src: photos.dawn, alt: "Alpine dawn" },
+                  { v: "bold", g: "ember" as const, t: "Bold", src: photos.workspace, alt: "Studio workshop" },
+                  { v: "fresh", g: "solar" as const, t: "Fresh", src: photos.mosaik, alt: "Mosaïk, Accra" },
+                  { v: "night", g: "royal" as const, t: "Night", src: photos.nightCity, alt: "City at night" },
                 ].map((o) => (
                   <Tile key={o.v} value={o.v} className="gap-2 p-2">
-                    <ImagePlaceholder gradient={o.g} className="h-16 w-full rounded-concentric-2" />
+                    <ImagePlaceholder gradient={o.g} src={o.src} alt={o.alt} className="h-16 w-full rounded-concentric-2" />
                     <span className="text-ui-sm">{o.t}</span>
                   </Tile>
                 ))}
@@ -345,8 +348,8 @@ function OnboardingPattern() {
           {step >= 2 && (
             <>
               <div className="space-y-1"><h4 className="text-heading-6 text-fg">Name your workspace</h4><p className="text-body-sm text-fg-muted">This shows up on shared links and invoices.</p></div>
-              <div className="space-y-2"><Label htmlFor="ob-name">Workspace name</Label><Input id="ob-name" defaultValue="Zen Studio" /></div>
-              <div className="space-y-2"><Label htmlFor="ob-url">Workspace URL</Label><Input id="ob-url" defaultValue="zen" leading={<span className="text-body-sm text-fg-subtle">studio.app/</span>} /></div>
+              <div className="space-y-2"><Label htmlFor="ob-name">Workspace name</Label><Input id="ob-name" defaultValue={systemName} /></div>
+              <div className="space-y-2"><Label htmlFor="ob-url">Workspace URL</Label><Input id="ob-url" defaultValue="melxels" leading={<span className="text-body-sm text-fg-subtle">melxels.app/</span>} /></div>
               <div className="flex items-center justify-between"><Label htmlFor="ob-invite" className="text-body-sm">Invite teammates after setup</Label><Switch id="ob-invite" /></div>
             </>
           )}
@@ -401,7 +404,7 @@ function SettingsPattern() {
             <CardDivider />
             <CardContent className="space-y-5">
               <div className="flex flex-wrap items-center gap-4">
-                <Avatar size="64" color="blue">MF</Avatar>
+                <Avatar size="64" color="blue" src={people.melvin.src} alt={people.melvin.alt} objectPosition={people.melvin.objectPosition}>{people.melvin.initials}</Avatar>
                 <div className="flex gap-2">
                   <Button variant="neutral" mode="outline" size="small"><UploadIcon /> Upload</Button>
                   <Button variant="neutral" mode="ghost" size="small">Remove</Button>
@@ -411,7 +414,7 @@ function SettingsPattern() {
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div className="space-y-2"><Label htmlFor="st-first">First name</Label><Input id="st-first" defaultValue="Melvin" /></div>
                 <div className="space-y-2"><Label htmlFor="st-last">Last name</Label><Input id="st-last" defaultValue="Freeman" /></div>
-                <div className="space-y-2"><Label htmlFor="st-email">Email</Label><Input id="st-email" type="email" defaultValue="melvin@zen.studio" leading={<MailIcon />} /></div>
+                <div className="space-y-2"><Label htmlFor="st-email">Email</Label><Input id="st-email" type="email" defaultValue="melvin@melxels.com" leading={<MailIcon />} /></div>
                 <div className="space-y-2">
                   <Label>Time zone</Label>
                   <Select defaultValue="accra">
@@ -484,7 +487,7 @@ function PricingPattern() {
           <Accordion type="single" collapsible defaultValue="q1">
             {[
               { v: "q1", q: "Can I switch plans later?", a: "Yes. Upgrades apply immediately and downgrades at the end of your billing period." },
-              { v: "q2", q: "Do you offer refunds?", a: "If Zen Studio isn’t right for you, ask within 14 days for a full refund." },
+              { v: "q2", q: "Do you offer refunds?", a: "If Melxels isn’t right for you, ask within 14 days for a full refund." },
               { v: "q3", q: "Can I use it for client work?", a: "Every plan includes a commercial license for anything you design with it." },
             ].map((f) => (
               <AccordionItem key={f.v} value={f.v}>
@@ -502,8 +505,8 @@ function PricingPattern() {
 /* ---------- 7. Checkout summary ---------- */
 
 const lineItems = [
-  { name: "Studio plan", note: "Yearly · 1 seat", price: 228, g: "first-light" as const },
-  { name: "Brand kit add-on", note: "Logo, type and color sheets", price: 49, g: "golden-hour" as const },
+  { name: "Studio plan", note: "Yearly · 1 seat", price: 228, g: "solar" as const, src: photos.desk, alt: "Desk with wireframes" },
+  { name: "Brand kit add-on", note: "Logo, type and color sheets", price: 49, g: "royal" as const, src: photos.coffee, alt: "Latte" },
 ];
 
 function CheckoutPattern() {
@@ -520,7 +523,7 @@ function CheckoutPattern() {
             <CardDivider />
             <CardContent className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div className="space-y-2"><Label htmlFor="co-name">Full name</Label><Input id="co-name" defaultValue="Melvin Z. Freeman" /></div>
-              <div className="space-y-2"><Label htmlFor="co-email">Email</Label><Input id="co-email" defaultValue="melvin@zen.studio" /></div>
+              <div className="space-y-2"><Label htmlFor="co-email">Email</Label><Input id="co-email" defaultValue="melvin@melxels.com" /></div>
             </CardContent>
           </Card>
           <Card>
@@ -549,7 +552,7 @@ function CheckoutPattern() {
           <ul className="space-y-4 p-5">
             {lineItems.map((i) => (
               <li key={i.name} className="flex items-center gap-3">
-                <ImagePlaceholder gradient={i.g} className="size-12 shrink-0 rounded-lg" />
+                <ImagePlaceholder gradient={i.g} src={i.src} alt={i.alt} className="size-12 shrink-0 rounded-lg" />
                 <div className="min-w-0 flex-1"><div className="text-ui-sm text-fg">{i.name}</div><div className="text-body-xs text-fg-subtle">{i.note}</div></div>
                 <span className="text-ui-sm text-fg">{money(i.price)}</span>
               </li>
@@ -557,13 +560,13 @@ function CheckoutPattern() {
           </ul>
           <CardDivider />
           <div className="flex gap-2 p-5">
-            <Input size="small" defaultValue="ZEN10" leading={<TagIcon />} aria-label="Promo code" />
+            <Input size="small" defaultValue="MELX10" leading={<TagIcon />} aria-label="Promo code" />
             <Button variant="neutral" mode="outline" size="small">Apply</Button>
           </div>
           <CardDivider />
           <dl className="space-y-2 p-5 text-body-sm">
             <div className="flex justify-between"><dt className="text-fg-muted">Subtotal</dt><dd className="text-fg">{money(subtotal)}</dd></div>
-            <div className="flex justify-between"><dt className="text-fg-muted">Discount (ZEN10)</dt><dd className="text-success-fg">−{money(discount)}</dd></div>
+            <div className="flex justify-between"><dt className="text-fg-muted">Discount (MELX10)</dt><dd className="text-success-fg">−{money(discount)}</dd></div>
             <div className="flex justify-between"><dt className="text-fg-muted">VAT 12.5%</dt><dd className="text-fg">{money(tax)}</dd></div>
             <div className="flex justify-between border-t border-line pt-3 text-ui-md"><dt className="text-fg">Total</dt><dd className="text-fg">{money(subtotal - discount + tax)}</dd></div>
           </dl>
@@ -580,10 +583,10 @@ function CheckoutPattern() {
 /* ---------- 8. Inbox / list-detail ---------- */
 
 const threads = [
-  { id: 1, from: "Ama Owusu", initials: "AO", color: "purple" as const, subject: "Wayfold homepage, round 4", preview: "Love the new hero. Can we try the serif on the stats too?", time: "10:42", unread: true, starred: true },
-  { id: 2, from: "Kojo Mensah", initials: "KM", color: "green" as const, subject: "Jeety onboarding sign-off", preview: "All approved on our side. Sending the PO this afternoon.", time: "09:15", unread: true, starred: false },
-  { id: 3, from: "Telling", initials: "TE", color: "orange" as const, subject: "Print proofs are ready", preview: "The tote and poster proofs are in the shared folder.", time: "Yesterday", unread: false, starred: false },
-  { id: 4, from: "Lena Park", initials: "LP", color: "blue" as const, subject: "Icon grid question", preview: "Should the 20px set share the 24px keylines or have its own?", time: "Tue", unread: false, starred: true },
+  { id: 1, from: people.ama.name, initials: people.ama.initials, src: people.ama.src, alt: people.ama.alt, objectPosition: people.ama.objectPosition, color: "purple" as const, subject: "Wayfold homepage, round 4", preview: "Love the new hero. Can we try the serif on the stats too?", time: "10:42", unread: true, starred: true },
+  { id: 2, from: people.kojo.name, initials: people.kojo.initials, src: people.kojo.src, alt: people.kojo.alt, objectPosition: people.kojo.objectPosition, color: "green" as const, subject: "Jeety onboarding sign-off", preview: "All approved on our side. Sending the PO this afternoon.", time: "09:15", unread: true, starred: false },
+  { id: 3, from: people.telling.name, initials: people.telling.initials, src: people.telling.src, alt: people.telling.alt, objectPosition: people.telling.objectPosition, color: "orange" as const, subject: "Print proofs are ready", preview: "The tote and poster proofs are in the shared folder.", time: "Yesterday", unread: false, starred: false },
+  { id: 4, from: people.lena.name, initials: people.lena.initials, src: people.lena.src, alt: people.lena.alt, objectPosition: people.lena.objectPosition, color: "blue" as const, subject: "Icon grid question", preview: "Should the 20px set share the 24px keylines or have its own?", time: "Tue", unread: false, starred: true },
 ];
 
 function InboxPattern() {
@@ -608,7 +611,7 @@ function InboxPattern() {
                   onClick={() => setActive(m.id)}
                   className={cn("flex w-full gap-3 px-4 py-3 text-left outline-none transition-colors focus-visible:shadow-focus", m.id === active ? "bg-primary-subtle" : "hover:bg-hover")}
                 >
-                  <Avatar size="32" color={m.color}>{m.initials}</Avatar>
+                  <Avatar size="32" color={m.color} src={m.src} alt={m.alt} objectPosition={m.objectPosition}>{m.initials}</Avatar>
                   <div className="min-w-0 flex-1 space-y-1">
                     <div className="flex items-baseline justify-between gap-2">
                       <span className={cn("truncate text-ui-sm", m.unread ? "text-fg" : "text-fg-muted")}>{m.from}</span>
@@ -647,7 +650,7 @@ function InboxPattern() {
               <div className="flex flex-wrap gap-2"><Badge size="small">Client</Badge><Badge size="small" status="highlight">Review</Badge></div>
             </div>
             <div className="flex items-start gap-3">
-              <Avatar size="40" color={t.color}>{t.initials}</Avatar>
+              <Avatar size="40" color={t.color} src={t.src} alt={t.alt} objectPosition={t.objectPosition}>{t.initials}</Avatar>
               <div className="min-w-0 flex-1 space-y-3">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <div><span className="text-ui-sm text-fg">{t.from}</span> <span className="text-body-xs text-fg-subtle">to me</span></div>
@@ -655,7 +658,7 @@ function InboxPattern() {
                 </div>
                 <div className="space-y-3 text-body-sm text-fg-muted">
                   <p>Hi Melvin,</p>
-                  <p>{t.preview} The team loved how quiet the cards feel, and the cobalt only showing up on the one action is exactly what we wanted.</p>
+                  <p>{t.preview} The team loved how quiet the cards feel, and the purple only showing up on the one action is exactly what we wanted.</p>
                   <p>Could you send the updated file before Monday?</p>
                 </div>
                 <div className="flex w-fit items-center gap-3 rounded-xl bg-subtle p-3 ring-1 ring-inset ring-line">
@@ -764,7 +767,7 @@ function FileManagerPattern() {
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
               {files.map((f, i) => (
                 <Card key={f.name} className="overflow-hidden">
-                  <ImagePlaceholder gradient={(["soft-haze", "dawn-rose", "summer", "thin-cloud"] as const)[i]} className="h-24" />
+                  <ImagePlaceholder gradient={(["soft-haze", "dawn-rose", "summer", "thin-cloud"] as const)[i]} src={[photos.desk, photos.cafe, photos.vinyl, photos.workspace][i]} alt="" className="h-24" />
                   <div className="space-y-1 p-3"><div className="truncate text-ui-sm text-fg">{f.name}</div><div className="text-body-xs text-fg-subtle">{f.size}</div></div>
                 </Card>
               ))}

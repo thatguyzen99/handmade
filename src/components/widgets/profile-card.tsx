@@ -7,15 +7,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDivider } from "@/components/ui/card";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { cn } from "@/lib/utils";
+import { people, photos } from "@/lib/media";
 
 /** Profile card: gradient cover, an avatar that overlaps it, name + role, availability, three stats, two actions. */
 export function ProfileCard({ className }: { className?: string }) {
   return (
     <Card data-slot="profile-card" className={cn("overflow-hidden", className)}>
-      <ImagePlaceholder gradient="golden-hour" className="h-24" />
+      <ImagePlaceholder gradient="golden-hour" src={photos.cover} alt="Accra skyline at golden hour" className="h-24" />
       <div className="-mt-10 space-y-4 px-5 pb-5">
         <div className="flex items-end justify-between gap-3">
-          <Avatar size="64" color="blue" className="ring-4 ring-surface">MF</Avatar>
+          <Avatar size="64" color="blue" className="ring-4 ring-surface" src={people.melvin.src} alt={people.melvin.alt} objectPosition={people.melvin.objectPosition}>{people.melvin.initials}</Avatar>
           <Badge status="success" dot>Open to projects</Badge>
         </div>
         <div className="space-y-1">

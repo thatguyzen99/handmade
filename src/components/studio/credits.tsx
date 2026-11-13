@@ -1,4 +1,5 @@
 import { ArrowUpRightIcon } from "lucide-react";
+import { Wordmark } from "@/components/brand/logo";
 import { author, repoUrl, systemName, upstream } from "@/design-system/brand";
 
 const groups: { title: string; items: { name: string; href: string; note: string }[] }[] = [
@@ -33,6 +34,12 @@ const groups: { title: string; items: { name: string; href: string; note: string
     ],
   },
   {
+    title: "Photos",
+    items: [
+      { name: "Pexels", href: "https://www.pexels.com/license/", note: "Free-licensed photographs in /images/ (see THIRD_PARTY_NOTICES)" },
+    ],
+  },
+  {
     title: "Icons & type",
     items: [
       { name: "Lucide", href: "https://lucide.dev", note: "Icon set" },
@@ -55,7 +62,8 @@ const legalLinks = [
 
 export function Credits() {
   return (
-    <footer className="space-y-4 py-8">
+    <footer className="space-y-6 py-8">
+      <Wordmark className="h-6 w-auto" />
       <h2 className="text-ui-xs text-fg-muted">Credits</h2>
       <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
         {groups.map((g) => (

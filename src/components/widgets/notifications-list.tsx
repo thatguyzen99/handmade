@@ -9,14 +9,16 @@ import { Card, CardDivider } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { TabList, TabTrigger, Tabs } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { people } from "@/lib/media";
+import { systemName } from "@/design-system/brand";
 
-type Note = { id: number; who: string; initials: string; color: "blue" | "purple" | "orange" | "green" | "red"; text: React.ReactNode; time: string; unread: boolean; kind: "mention" | "system"; actions?: boolean };
+type Note = { id: number; who: string; initials: string; color: "blue" | "purple" | "orange" | "green" | "red"; src?: string; alt?: string; objectPosition?: string; text: React.ReactNode; time: string; unread: boolean; kind: "mention" | "system"; actions?: boolean };
 
 const seed: Note[] = [
-  { id: 1, who: "Ama Owusu", initials: "AO", color: "purple", text: <>mentioned you in <b>Wayfold / Home v4</b></>, time: "2m ago", unread: true, kind: "mention" },
-  { id: 2, who: "Kojo Mensah", initials: "KM", color: "green", text: <>invited you to <b>Jeety Design</b></>, time: "1h ago", unread: true, kind: "mention", actions: true },
+  { id: 1, who: people.ama.name, initials: people.ama.initials, color: "purple", src: people.ama.src, alt: people.ama.alt, objectPosition: people.ama.objectPosition, text: <>mentioned you in <b>Wayfold / Home v4</b></>, time: "2m ago", unread: true, kind: "mention" },
+  { id: 2, who: people.kojo.name, initials: people.kojo.initials, color: "green", src: people.kojo.src, alt: people.kojo.alt, objectPosition: people.kojo.objectPosition, text: <>invited you to <b>Jeety Design</b></>, time: "1h ago", unread: true, kind: "mention", actions: true },
   { id: 3, who: "Billing", initials: "$", color: "orange", text: <>Invoice <b>INV-1045</b> is 16 days overdue</>, time: "3h ago", unread: true, kind: "system" },
-  { id: 4, who: "Zen Studio", initials: "Z", color: "blue", text: <>Your registry export is ready</>, time: "Yesterday", unread: false, kind: "system" },
+  { id: 4, who: systemName, initials: "M", color: "blue", text: <>Your registry export is ready</>, time: "Yesterday", unread: false, kind: "system" },
 ];
 
 /** Notifications list: line tabs (All / Mentions / Unread), rows with avatar, sentence, time and an unread dot, inline accept/decline. */
@@ -49,7 +51,7 @@ export function NotificationsList({ className }: { className?: string }) {
         <ul className="divide-y divide-line">
           {shown.map((n) => (
             <li key={n.id} className={cn("relative flex gap-3 px-5 py-4 transition-colors hover:bg-hover", n.unread && "bg-primary-subtle/40")}>
-              <Avatar size="32" color={n.color}>{n.initials}</Avatar>
+              <Avatar size="32" color={n.color} src={n.src} alt={n.alt} objectPosition={n.objectPosition}>{n.initials}</Avatar>
               <div className="min-w-0 flex-1 space-y-1">
                 <p className="text-body-sm text-fg-muted [&_b]:font-[inherit] [&_b]:text-fg"><span className="text-ui-sm text-fg">{n.who}</span> {n.text}</p>
                 <time className="block text-body-xs text-fg-subtle">{n.time}</time>

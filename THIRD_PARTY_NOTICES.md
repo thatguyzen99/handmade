@@ -1,10 +1,10 @@
 # Third-party notices
 
-Zen Studio's own code is MIT-licensed (see [LICENSE](LICENSE)). It builds on the following work, each under its own license.
+Melxels' own code is MIT-licensed (see [LICENSE](LICENSE)). It builds on the following work, each under its own license.
 
 ## Upstream
 
-Built on Cards by Oliur (MIT). Zen Studio is a modified version of [Cards](https://github.com/oliur/cards), Copyright (c) 2026 Oliur, used under the MIT License. The original copyright and permission notice are kept in [LICENSE](LICENSE).
+Built on Cards by Oliur (MIT). Melxels is a modified version of [Cards](https://github.com/oliur/cards), Copyright (c) 2026 Oliur, used under the MIT License. The original copyright and permission notice are kept in [LICENSE](LICENSE).
 
 ## Design references
 
@@ -35,6 +35,32 @@ Fonts are loaded from their hosts at runtime, not bundled in this repo.
 | JetBrains Mono (default) | SIL Open Font License 1.1 | [JetBrains](https://fonts.google.com/specimen/JetBrains+Mono) via Google Fonts |
 | Inter / Inter Display, DM Mono (customizer options from upstream) | SIL Open Font License 1.1 | [rsms.me/inter](https://rsms.me/inter/), [Google Fonts](https://fonts.google.com/specimen/DM+Mono) |
 | Optional Google Fonts in the customizer | Each family's own license (mostly OFL) | [fonts.google.com](https://fonts.google.com) |
+
+
+## Photos
+
+Studio photography is from [Pexels](https://www.pexels.com/license/) (free to use, attribution appreciated). Photographers:
+
+| File | Photographer | Source |
+| --- | --- | --- |
+| people/ama.webp | Ramy Photographer | [Pexels 36551042](https://www.pexels.com/photo/36551042/) |
+| people/telling.webp | Akorede Daramola | [Pexels 35644501](https://www.pexels.com/photo/35644501/) |
+| people/lena.webp | Kindel Media | [Pexels 7688203](https://www.pexels.com/photo/7688203/) |
+| people/ava.webp | Christina Morillo | [Pexels 1181519](https://www.pexels.com/photo/1181519/) |
+| people/rae.webp | Christina Morillo | [Pexels 1181686](https://www.pexels.com/photo/1181686/) |
+| people/esther.webp | Muhammad-Taha Ibrahim | [Pexels 33837391](https://www.pexels.com/photo/33837391/) |
+| people/kemi.webp | Korede Adenola | [Pexels 18460107](https://www.pexels.com/photo/18460107/) |
+| people/kojo.webp | Mikhail Nilov | [Pexels 9301743](https://www.pexels.com/photo/9301743/) |
+| people/milo.webp | victor Wellrich | [Pexels 17556066](https://www.pexels.com/photo/17556066/) |
+| people/jun.webp | Philip Boakye | [Pexels 6673189](https://www.pexels.com/photo/6673189/) |
+| accra-skyline.webp | Prince Enos | [Pexels 31782030](https://www.pexels.com/photo/31782030/) |
+| accra-city.webp | Prince Enos | [Pexels 31781975](https://www.pexels.com/photo/31781975/) |
+| mosaik.webp | Clément GADO | [Pexels 27981484](https://www.pexels.com/photo/27981484/) |
+| cafe.webp | Connor Forsyth | [Pexels 26492562](https://www.pexels.com/photo/26492562/) |
+| vinyl.webp | Oleksii Piekhov | [Pexels 18337073](https://www.pexels.com/photo/18337073/) |
+| Other stills (desk, coffee, sky, score, record, dawn, night city, workspace) | Pexels contributors | [pexels.com](https://www.pexels.com/) |
+
+The Melxels wordmark and mark in `public/brand/` are original work by Melvin Z. Freeman.
 
 ## tactile-design license
 

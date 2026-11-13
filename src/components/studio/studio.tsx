@@ -13,6 +13,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { Wordmark } from "@/components/brand/logo";
+import { people } from "@/lib/media";
+import { AnimationTuner } from "./animation-tuner";
+import { Brand } from "./brand-section";
 import { ComponentsShowcase } from "./components-showcase";
 import { ExtendedComponents } from "./extended-components";
 import { Widgets } from "./widgets";
@@ -21,9 +25,11 @@ import { Customizer } from "./customizer";
 import { Colors, Shape, Spacing, Typography } from "./foundations";
 import { Patterns } from "./patterns";
 import { PromptDialog } from "./prompt-dialog";
+import { DocSection } from "./section";
 import { ThemeProvider } from "./theme-provider";
 
 const nav = [
+  { href: "/#brand", label: "Brand" },
   { href: "/#colors", label: "Color" },
   { href: "/#typography", label: "Typography" },
   { href: "/#spacing", label: "Spacing" },
@@ -31,6 +37,7 @@ const nav = [
   { href: "/#components", label: "Components" },
   { href: "/#widgets", label: "Widgets" },
   { href: "/#patterns", label: "Patterns" },
+  { href: "/animation", label: "Animation" },
 ];
 
 /** Shared chrome for every page: theme, header, customizer sidebar and credits. */
@@ -45,22 +52,13 @@ export function StudioShell({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** The Zen mark: an ensō-like open ring with a dot, drawn in the primary. */
-function ZenMark({ className }: { className?: string }) {
-  return (
-    <svg aria-hidden viewBox="0 0 24 24" fill="none" className={cn("text-primary", className)}>
-      <path d="M19.5 8.2A8.5 8.5 0 1 0 20.5 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      <circle cx="12" cy="12" r="2.5" fill="currentColor" />
-    </svg>
-  );
-}
-
 /** Homepage content. */
 export function HomeSections() {
   return (
     <>
       <Hero />
       <div>
+        <Brand />
         <Colors />
         <Typography />
         <Spacing />
@@ -69,6 +67,16 @@ export function HomeSections() {
         <ExtendedComponents />
         <Widgets />
         <Patterns />
+        <DocSection
+          id="animation"
+          title="Animation Tuner"
+          description="Fine-tune an entrance animation with live knobs, then copy CSS or Framer Motion, or apply easing and duration to the theme export."
+        >
+          <p className="text-body-sm text-fg-muted">
+            Prefer a focused page? <Link href="/animation" className="text-primary underline-offset-4 hover:underline">Open the Animation Tuner</Link>.
+          </p>
+          <AnimationTuner />
+        </DocSection>
       </div>
     </>
   );
@@ -116,9 +124,8 @@ function Shell({ children }: { children: React.ReactNode }) {
         {/* Studio chrome: keeps default spacing and type size so it always lines up with the sidebar. */}
         <header className="relative z-40" style={{ "--ds-spacing": "4px", "--ds-font-scale": "1" } as React.CSSProperties}>
           <div className="flex h-16 items-center gap-6 px-6">
-            <Link href="/" className="flex items-center gap-2 text-ui-md text-fg">
-              <ZenMark className="size-6" />
-              {systemName}
+            <Link href="/" className="flex min-w-0 items-center gap-2" aria-label={systemName}>
+              <Wordmark className="h-6 w-auto max-w-[9.5rem] sm:h-7 sm:max-w-[12rem]" />
             </Link>
             <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">
               {nav.map((n) => (
@@ -128,6 +135,16 @@ function Shell({ children }: { children: React.ReactNode }) {
               ))}
             </nav>
             <div className="ml-auto flex items-center gap-2">
+              <Avatar
+                size="32"
+                color="blue"
+                src={people.melvin.src}
+                alt={people.melvin.alt}
+                objectPosition={people.melvin.objectPosition}
+                className="max-sm:hidden"
+              >
+                {people.melvin.initials}
+              </Avatar>
               <Button variant="neutral" mode="raised" className="xl:hidden" aria-label="Customize" onClick={() => setPanelOpen((o) => !o)}>
                 <SlidersHorizontalIcon /> <span className="max-sm:hidden">Customize</span>
               </Button>
@@ -187,7 +204,7 @@ function Hero() {
       </div>
       <a href={author.xUrl} target="_blank" rel="noreferrer" className="group block max-w-2xl rounded-2xl outline-none focus-visible:shadow-focus">
         <Card className="flex items-center gap-4 p-5 transition group-hover:shadow-md">
-          <Avatar size="48" color="blue">MF</Avatar>
+          <Avatar size="48" color="blue" src={people.melvin.src} alt={people.melvin.alt} objectPosition={people.melvin.objectPosition}>{people.melvin.initials}</Avatar>
           <div className="min-w-0 flex-1 space-y-1">
             <div className="text-ui-md text-fg">Designed by {author.name}</div>
             <p className="text-body-sm text-fg-muted">{author.role}. Follow along on X {author.handle}.</p>

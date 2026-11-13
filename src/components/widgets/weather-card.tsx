@@ -2,6 +2,7 @@ import * as React from "react";
 import { CloudRainIcon, CloudSunIcon, DropletsIcon, MapPinIcon, SunIcon, WindIcon } from "lucide-react";
 import { Card, CardDivider } from "@/components/ui/card";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
+import { photos } from "@/lib/media";
 import { cn } from "@/lib/utils";
 
 const hours = [
@@ -17,7 +18,7 @@ export function WeatherCard({ className }: { className?: string }) {
   return (
     <Card data-slot="weather-card" className={cn("overflow-hidden tabular-nums", className)}>
       <div className="relative">
-        <ImagePlaceholder gradient="high-noon" className="absolute inset-0" />
+        <ImagePlaceholder gradient="high-noon" src={photos.weather} alt="Accra skyline under a clear sky" className="absolute inset-0" />
         {/* A light scrim keeps white text readable on the pale end of the sky. */}
         <div aria-hidden className="absolute inset-0 bg-black/20" />
         <div className="relative flex items-start justify-between gap-4 p-5 text-white">

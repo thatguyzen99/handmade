@@ -18,6 +18,7 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { SegmentedList, SegmentedTrigger, Tabs } from "@/components/ui/tabs";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
+import { people, photos } from "@/lib/media";
 import {
   AppDownloadCard,
   BlogCard,
@@ -142,9 +143,9 @@ function InviteCard({ className }: { className?: string }) {
       </div>
       <div className="flex items-center justify-between">
         <AvatarGroup>
-          <Avatar size="32" color="blue">A</Avatar>
-          <Avatar size="32" color="purple">M</Avatar>
-          <Avatar size="32" color="orange">J</Avatar>
+          <Avatar size="32" color="blue" src={people.ava.src} alt={people.ava.alt} objectPosition={people.ava.objectPosition}>A</Avatar>
+          <Avatar size="32" color="purple" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>M</Avatar>
+          <Avatar size="32" color="orange" src={people.jun.src} alt={people.jun.alt} objectPosition={people.jun.objectPosition}>J</Avatar>
         </AvatarGroup>
         <StatusBadge status="success">3 active</StatusBadge>
       </div>
@@ -166,7 +167,7 @@ function SkillDialog({ className }: { className?: string }) {
         </Tabs>
         <pre className="rounded-xl bg-subtle p-4 font-mono text-body-xs whitespace-pre text-fg-muted ring-1 ring-inset ring-line">
           <span className="text-fg-subtle">$ </span>{`mkdir -p .claude/skills/zen && \\
-  curl -fsSL …/skill/zen.md \\
+  curl -fsSL …/skill/melxels.md \\
   -o .claude/skills/zen/SKILL.md`}
         </pre>
         <ul className="mt-4 space-y-2 text-body-sm text-fg-muted">
@@ -257,7 +258,7 @@ const fanThemes: { id: string; config: ThemeConfig; rotate: string; z: string }[
 function Fan() {
   return (
     <Canvas n={5} stage={800}>
-      <ImagePlaceholder gradient="first-light" className="absolute inset-0" />
+      <ImagePlaceholder gradient="solar" src={photos.hero} alt="Mosaïk tower in Accra" className="absolute inset-0" />
       {fanThemes.map((t) => <ScopedTheme key={t.id} id={t.id} config={t.config} />)}
       <div className="absolute inset-0 flex items-center justify-center">
         {fanThemes.map((t) => (
@@ -360,7 +361,7 @@ function Parts() {
         {tile("Checkbox", <div className="flex items-center gap-2"><Checkbox defaultChecked /><Label className="text-body-sm">Remember me</Label></div>)}
         {tile("Slider", <Slider defaultValue={[64]} className="w-full" />)}
         {tile("Progress", <div className="w-full space-y-2"><Progress value={72} /><div className="text-body-xs text-fg-muted">72% complete</div></div>)}
-        {tile("Avatars", <AvatarGroup><Avatar size="40" color="blue">AL</Avatar><Avatar size="40" color="purple">MK</Avatar><Avatar size="40" color="orange">JS</Avatar><Avatar size="40" color="green">RW</Avatar></AvatarGroup>)}
+        {tile("Avatars", <AvatarGroup><Avatar size="40" color="blue" src={people.ava.src} alt={people.ava.alt} objectPosition={people.ava.objectPosition}>AL</Avatar><Avatar size="40" color="purple" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar><Avatar size="40" color="orange" src={people.jun.src} alt={people.jun.alt} objectPosition={people.jun.objectPosition}>JS</Avatar><Avatar size="40" color="green" src={people.rae.src} alt={people.rae.alt} objectPosition={people.rae.objectPosition}>RW</Avatar></AvatarGroup>)}
       </div>
     </Canvas>
   );

@@ -10,7 +10,7 @@ export const uiFiles = [
   // core (from Cards)
   "accordion", "alert", "avatar", "badge", "brand-icons", "button", "card", "checkbox", "dialog", "image-placeholder",
   "input", "label", "misc", "radio", "radio-group", "select", "separator", "slider", "switch", "tabs", "textarea", "tile-group", "tooltip",
-  // extended (Zen Studio)
+  // extended (Melxels)
   "breadcrumb", "calendar", "chart", "combobox", "command", "date-picker", "dropdown-menu", "dropzone", "empty-state", "input-otp", "kbd",
   "pagination", "popover", "progress", "segmented-control", "sheet", "skeleton", "sparkline", "stepper", "table", "toast", "toggle-group",
 ];
@@ -18,7 +18,7 @@ export const uiFiles = [
 export const widgetFiles = [
   "activity-feed", "agenda-widget", "chart-card", "checklist-widget", "music-player", "notifications-list", "pricing-card", "profile-card", "stat-card", "weather-card",
 ];
-export const libFiles = ["utils", "gradients"];
+export const libFiles = ["utils", "gradients", "media"];
 export const dependencies = ["class-variance-authority", "clsx", "cmdk", "input-otp", "lucide-react", "radix-ui", "recharts", "sonner", "tailwind-merge"];
 
 type CssTree = { [selector: string]: string | CssTree };

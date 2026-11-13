@@ -39,14 +39,15 @@ function Avatar({
   color,
   src,
   alt,
+  objectPosition,
   children,
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Root> &
-  Omit<VariantProps<typeof avatarVariants>, "size"> & { size?: VariantProps<typeof avatarVariants>["size"] | keyof typeof stockSizes; src?: string; alt?: string }) {
+  Omit<VariantProps<typeof avatarVariants>, "size"> & { size?: VariantProps<typeof avatarVariants>["size"] | keyof typeof stockSizes; src?: string; alt?: string; objectPosition?: string }) {
   const resolvedSize = size && size in stockSizes ? stockSizes[size as keyof typeof stockSizes] : (size as VariantProps<typeof avatarVariants>["size"]);
   return (
     <AvatarPrimitive.Root data-slot="avatar" className={cn(avatarVariants({ size: resolvedSize, color }), className)} {...props}>
-      {src && <AvatarPrimitive.Image src={src} alt={alt} className="size-full object-cover" />}
+      {src && <AvatarPrimitive.Image src={src} alt={alt} className="size-full object-cover" style={objectPosition ? { objectPosition } : undefined} />}
       {isComposed(children) ? children : <AvatarPrimitive.Fallback className="[font-family:inherit]">{children}</AvatarPrimitive.Fallback>}
     </AvatarPrimitive.Root>
   );

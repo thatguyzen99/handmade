@@ -151,7 +151,7 @@ function MenusSpecimen() {
               <p className="text-body-xs text-fg-muted">Anyone with the link can view.</p>
             </div>
             <div className="flex gap-2">
-              <Input size="small" readOnly defaultValue="zen.studio/f/brand-kit" aria-label="Share link" />
+              <Input size="small" readOnly defaultValue="melxels.app/f/brand-kit" aria-label="Share link" />
               <Button size="small" onClick={() => toast.success("Link copied")}>Copy</Button>
             </div>
             <div className="flex items-center justify-between">
@@ -168,7 +168,7 @@ function MenusSpecimen() {
             <div className="text-ui-sm text-fg">Share this file</div>
             <p className="text-body-xs text-fg-muted">Anyone with the link can view.</p>
           </div>
-          <Input size="small" readOnly defaultValue="zen.studio/f/brand-kit" aria-label="Share link preview" />
+          <Input size="small" readOnly defaultValue="melxels.app/f/brand-kit" aria-label="Share link preview" />
           <div className="flex items-center justify-between"><span className="text-body-sm text-fg">Allow editing</span><Switch aria-label="Allow editing preview" defaultChecked /></div>
         </div>
       </div>
@@ -564,7 +564,7 @@ function OtpSpecimen() {
               <InputOTPSlot index={5} />
             </InputOTPGroup>
           </InputOTP>
-          <p className="text-body-xs text-fg-muted">Sent to m•••@zen.studio. <button type="button" className="text-primary underline-offset-4 hover:underline">Resend</button></p>
+          <p className="text-body-xs text-fg-muted">Sent to m•••@melxels.com. <button type="button" className="text-primary underline-offset-4 hover:underline">Resend</button></p>
         </div>
         <div className="space-y-2">
           <Label>PIN <span className="text-fg-muted">(error)</span></Label>

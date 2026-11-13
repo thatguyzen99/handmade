@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 function Sparkline({ points, className, tone = "primary", fill = true, width = 120, height = 32 }: {
   points: number[];
   className?: string;
-  tone?: "primary" | "success" | "danger" | "neutral";
+  tone?: "primary" | "success" | "danger" | "neutral" | "highlight" | "caution";
   fill?: boolean;
   width?: number;
   height?: number;
@@ -21,7 +21,7 @@ function Sparkline({ points, className, tone = "primary", fill = true, width = 1
   const coords = points.map((p, i) => [i * step, height - 2 - ((p - min) / span) * (height - 4)] as const);
   const line = coords.map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`).join(" ");
   const area = `${line} L${width} ${height} L0 ${height} Z`;
-  const color = { primary: "var(--primary)", success: "var(--success)", danger: "var(--danger)", neutral: "var(--fg-subtle)" }[tone];
+  const color = { primary: "var(--primary)", success: "var(--success)", danger: "var(--danger)", neutral: "var(--fg-subtle)", highlight: "var(--highlight)", caution: "var(--caution)" }[tone];
   return (
     <svg aria-hidden data-slot="sparkline" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" className={cn("h-8 w-full overflow-visible", className)}>
       {fill && (

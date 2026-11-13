@@ -1,4 +1,4 @@
-import { systemId } from "@/design-system/brand";
+import { legacySystemIds, systemId } from "@/design-system/brand";
 import { configId, configFromId, type ThemeConfig } from "@/design-system/config";
 
 /**
@@ -18,7 +18,8 @@ export function resolveConfigItem(request: Request, item: string, ext: string): 
   const id = item.slice(0, -ext.length);
   const config = configFromId(id);
   if (!config) return notFound();
-  if (id !== systemId) {
+  const isDefaultId = id === systemId || (legacySystemIds as readonly string[]).includes(id);
+  if (!isDefaultId) {
     const canonical = configId(config);
     if (canonical !== id) {
       const url = new URL(request.url);

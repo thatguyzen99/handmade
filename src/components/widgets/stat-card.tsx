@@ -23,7 +23,7 @@ export function StatCard({ label, value, delta, up = true, points, icon, hint = 
       </div>
       <div className="flex items-end justify-between gap-4">
         <div className="text-ui-xl text-fg">{value}</div>
-        <Sparkline points={points} tone={up ? "primary" : "danger"} className="h-8 w-20 shrink-0" />
+        <Sparkline points={points} tone={up ? "highlight" : "danger"} className="h-8 w-20 shrink-0" />
       </div>
       <div className="flex items-center gap-2">
         <Badge status={up ? "success" : "danger"} size="small">{delta}</Badge>

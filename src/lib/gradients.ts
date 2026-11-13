@@ -1,6 +1,13 @@
 /** Sky gradients used wherever an image would go. They stay the same in light and dark mode, like a photo would. */
 export const gradientGroups = [
   {
+    title: "Brand",
+    gradients: [
+      { id: "solar", name: "Solar", from: "#FFCA05", to: "#FAAC18", dir: "to right" as const },
+      { id: "royal", name: "Royal", from: "#1B1A2E", to: "#3D0066", dir: "to right" as const },
+    ],
+  },
+  {
     title: "Morning",
     gradients: [
       { id: "first-light", name: "First Light", top: "#A9C8E8", bottom: "#FBDCC8" },
@@ -47,6 +54,9 @@ export const gradients = gradientGroups.flatMap<(typeof gradientGroups)[number][
 export type GradientId = (typeof gradients)[number]["id"];
 
 export function gradientCss(id: GradientId) {
-  const { top, bottom } = gradients.find((gradient) => gradient.id === id)!;
-  return `linear-gradient(to bottom in oklab, ${top}, ${bottom})`;
+  const g = gradients.find((gradient) => gradient.id === id)!;
+  if ("from" in g && g.from) {
+    return `linear-gradient(${g.dir} in oklab, ${g.from}, ${g.to})`;
+  }
+  return `linear-gradient(to bottom in oklab, ${g.top}, ${g.bottom})`;
 }

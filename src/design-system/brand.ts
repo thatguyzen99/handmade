@@ -4,13 +4,16 @@
  */
 
 /** Display name of the design system. */
-export const systemName = "Zen Studio";
+export const systemName = "Melxels";
 
 /**
- * Short id used in URLs and file names: `/r/zen.json`, `/skill/zen.md`,
- * `.claude/skills/zen/SKILL.md`. Lowercase letters and dashes only.
+ * Short id used in URLs and file names: `/r/melxels.json`, `/skill/melxels.md`,
+ * `.claude/skills/melxels/SKILL.md`. Lowercase letters and dashes only.
  */
-export const systemId = "zen";
+export const systemId = "melxels";
+
+/** Previous id, still served at `/r/zen.json` and `/skill/zen.md`. */
+export const legacySystemIds = ["zen"] as const;
 
 export const author = {
   name: "Melvin Z. Freeman",
@@ -29,6 +32,24 @@ export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:31
 export const repoUrl = (process.env.NEXT_PUBLIC_REPO_URL || "").replace(/\/+$/, "");
 
 /** The open-source project this studio is built on. Keep this credit. */
+/** Melvin's Melxels palette, sampled from his brand sheet. */
+export const brandColors = {
+  cream: "#F7F4EE",
+  orange: "#FAAC18",
+  yellow: "#FFCA05",
+  purple: "#3D0066",
+  navy: "#1A1A2E",
+  /** Slightly different navy used as the start of the royal gradient. */
+  navyDeep: "#1B1A2E",
+  /** Light-mode primary (purple on cream). */
+  primary: "#3D0066",
+  /**
+   * Dark-mode primary: a lighter, still-saturated purple derived from #3D0066.
+   * 5.8:1 on navy (AA for text). White on it fails AA, so button labels use navy.
+   */
+  primaryDark: "#B17FEB",
+} as const;
+
 export const upstream = {
   name: "Cards",
   author: "Oliur",
