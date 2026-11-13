@@ -62,10 +62,10 @@ Accent (links, focus rings, selection, accent badges, chart-1): ink `#0A0A0A` in
 ## Images
 Wherever an image would go (thumbnails, covers, album art, avatars, heroes), use a real photograph when one is available — free-licensed photos from Pexels or Unsplash, stored under `/images/`. Prefer Black/African people for portraits and people photos. Any imagery of people or places in Africa must be modern, aspirational and middle-class (professionals, creatives, modern cities like Accra or Monrovia, studios, cafés) — never poverty or hardship. Melvin Z. Freeman's portrait is `/images/melvin.jpg` (swap that one file to update every Melvin avatar). When no photo is available, use one of these brand or sky gradients — never a grey box. They stay the same in light and dark mode. Write two-stop gradients as `linear-gradient(<direction> in oklab, from, to)`. The featured brand gradient is Sunrise, written exactly as `linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%)`; any text over it is ink `#0A0A0A`.
 - Brand: Sunrise #FFE7A3 0% → #FFCA05 50% → #FAAC18 100% (90deg); Solar #FFCA05 → #FAAC18 (to right)
-- Morning: First Light #A9C8E8 → #FBDCC8; Dawn Rose #B7B4DC → #F9CFCB; Soft Haze #D5DEE8 → #F7E8D8; Golden Hour #BFD9E6 → #FDE3A8; Mist #C9D8DE → #EEF1EA
+- Morning: First Light #A9C8E8 → #FBDCC8; Dawn Rose #E2B8B4 → #F9CFCB; Soft Haze #D5DEE8 → #F7E8D8; Golden Hour #BFD9E6 → #FDE3A8; Mist #C9D8DE → #EEF1EA
 - Day: Clear Sky #5BA4EC → #CFE7F8; High Noon #2F86E0 → #9AD0F5; Summer #49B4EA → #E6F6FB; Thin Cloud #9CC4E8 → #F1F5F8; Coastal #4FA3C7 → #D4EFE6
-- Sunset: Dusk #6C63A8 → #F8A878; Ember #B4506A → #F9B26C; Coral #E8748A → #FCC98F; Afterglow #3E4A89 → #EE8D83; Last Light #8D5FA6 → #F6C1A0
-- Night: Midnight #0B1026 → #2C3A68; Deep Blue #050A1C → #14305C; Blue Hour #1C2A5A → #5A6CA8; Aubergine #120C2C → #45305F; Moonlit #10181F → #3A4C5C
+- Sunset: Dusk #3F5C8A → #F8A878; Ember #B4506A → #F9B26C; Coral #E8748A → #FCC98F; Afterglow #3E4A89 → #EE8D83; Last Light #C46A3C → #F6C1A0
+- Night: Midnight #0B1026 → #2C3A68; Deep Blue #050A1C → #14305C; Blue Hour #1C2A5A → #5A6CA8; Charcoal #0A0A0A → #2A2826; Moonlit #10181F → #3A4C5C
 
 ## Brand marks
 The Handmade wordmark is typographic, set in Familjen Grotesk (ink `#0A0A0A` in light mode, cream `#F7F4EE` in dark). Use it in the footer and the brand section — not in the nav. The header/nav, favicon and app icon use the official Handmade mark, an ink `h` on a cream rounded square (`/brand/handmade/icon.svg`), labelled `Handmade home`, at about 32px. Earlier mark options live in `/brand/handmade/alternates/` and are not the default.

@@ -198,13 +198,45 @@ export function configFromId(id: string): ThemeConfig | null {
   return decodeConfig(id.replace(/-/g, "+").replace(/_/g, "/"));
 }
 
+
+/** True when a hex is in the purple/violet/fuchsia range (hue 250–330, saturation above 25%). */
+export function isPurpleHex(hex: string): boolean {
+  const known = [
+    "#3D0066", "#B17FEB", "#4C1D95", "#5B21B6", "#6D28D9", "#7C3AED", "#8B5CF6",
+    "#A78BFA", "#C4B5FD", "#DDD6FE", "#EDE9FE", "#7E22CE", "#A855F7", "#C026D3",
+    "#D946EF", "#581C87", "#6B21A8",
+  ];
+  const value = hex.trim().toUpperCase();
+  if (known.includes(value)) return true;
+  const m = /^#([0-9A-F]{6})$/.exec(value);
+  if (!m) return false;
+  const n = parseInt(m[1], 16);
+  const r = ((n >> 16) & 255) / 255;
+  const g = ((n >> 8) & 255) / 255;
+  const b = (n & 255) / 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const delta = max - min;
+  const l = (max + min) / 2;
+  if (delta === 0) return false;
+  const s = l > 0.5 ? delta / (2 - max - min) : delta / (max + min);
+  let h = 0;
+  if (max === r) h = ((g - b) / delta + (g < b ? 6 : 0)) * 60;
+  else if (max === g) h = ((b - r) / delta + 2) * 60;
+  else h = ((r - g) / delta + 4) * 60;
+  return h >= 250 && h <= 330 && s > 0.25;
+}
+
 export function sanitizeConfig(input: unknown): ThemeConfig {
   const c = (input ?? {}) as Partial<ThemeConfig>;
   const isHex = (v: unknown): v is string => typeof v === "string" && /^#[0-9a-f]{6}$/i.test(v);
   const isFont = (v: unknown): v is string => typeof v === "string" && fonts.some((f) => f.name === v);
   return {
-    primary: isHex(c.primary) ? c.primary : defaultConfig.primary,
-    primaryDark: isHex(c.primaryDark) ? c.primaryDark : null,
+    // Old Melxels themes stored a purple primary; migrate those to ink/cream so buttons don't stay purple.
+    primary: isHex(c.primary) && !isPurpleHex(c.primary) ? c.primary : defaultConfig.primary,
+    primaryDark: isHex(c.primaryDark)
+      ? (isPurpleHex(c.primaryDark) ? defaultConfig.primaryDark : c.primaryDark)
+      : null,
     neutral: (["gray", "slate", "zinc", "stone", "tinted"] as const).includes(c.neutral as NeutralName)
       ? (c.neutral as NeutralName)
       : defaultConfig.neutral,
