@@ -235,7 +235,8 @@ popover:  w-72 rounded-parent-2xl bg-floating p-4 shadow-md (no border), same mo
     code: `command:  flex flex-col rounded-parent-2xl bg-floating
 input:    h-12 border-b border-line px-4, SearchIcon size-5 text-fg-subtle, text-body-sm placeholder:text-fg-subtle
 list:     max-h-80 overflow-y-auto p-2; group heading px-2 py-1 text-overline-xs text-fg-subtle
-item:     rounded-concentric-2 p-2 text-body-sm text-fg-muted; data-[selected=true]: bg-hover text-fg
+item:     rounded-concentric-2 p-2 text-body-sm text-fg-muted; data-[selected=true]: bg-brand-subtle text-fg, icon text-brand
+         Command.Root accepts inDialog, value, defaultValue, onValueChange, shouldFilter; Command.Item accepts onSelect, disabled. CommandDialog wraps the menu in a focus-trapped modal. The site palette is ⌘K.
 empty:    py-8 text-center text-body-sm text-fg-muted
 combobox trigger: the select trigger recipe with ChevronsUpDownIcon; chosen item bg-selected + CheckIcon text-primary`,
   },

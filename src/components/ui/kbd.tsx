@@ -2,11 +2,12 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 /** A key cap: h-5 rounded-xs, a hairline ring and muted text. Group keys of one shortcut with KbdGroup. */
-function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
+function Kbd({ className, style, ...props }: React.ComponentProps<"kbd">) {
   return (
     <kbd
       data-slot="kbd"
       className={cn("inline-flex h-5 min-w-5 items-center justify-center rounded-xs bg-surface px-1 font-sans text-ui-xs text-fg-subtle ring-1 ring-inset ring-line", className)}
+      style={{ fontFamily: 'system-ui, "Segoe UI Symbol", "Apple Symbols", "DejaVu Sans", sans-serif', ...style }}
       {...props}
     />
   );

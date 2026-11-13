@@ -13,6 +13,7 @@ Defaults: black `#0A0A0A` primary (cream `#F7F4EE` in dark mode) on a near-white
 - **Core components:** accordion, alert, avatar, badge, brand icons, button, card, checkbox, dialog, image placeholder, input, label, radio group, select, separator, slider, switch, tabs, textarea, tile group, tooltip and more.
 - **Extended components:** dropdown menu, popover, command palette, combobox, toast (Sonner), sheet and drawer, sortable table, pagination, breadcrumb, progress and progress ring, skeleton, empty state, kbd, stepper, segmented control, toggle and toggle group, calendar, date and date-range picker, input OTP, dropzone, chart helpers and sparkline.
 - **Widgets** (`src/components/widgets`): KPI stat card with sparkline, chart card, activity feed, agenda, checklist, weather, music player, profile, pricing and notifications.
+- **Docs:** a `/docs/get-started` guide and a page for every component, with a live preview, usage and a props table.
 - **Page patterns:** dashboard, marketing hero + features, auth, onboarding, settings, pricing section, checkout, inbox list-detail and file manager.
 
 ## Installation

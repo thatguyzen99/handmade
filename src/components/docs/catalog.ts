@@ -1,0 +1,654 @@
+/** Documentation catalog for existing Melxels UI components only. */
+export type PropRow = { name: string; type: string; description: string };
+export type PropGroup = { component: string; props: PropRow[] };
+
+export type DocEntry = {
+  slug: string;
+  title: string;
+  description: string;
+  usage: string;
+  props: PropGroup[];
+};
+
+export const getStartedHref = "/docs/get-started";
+
+export const componentDocs: DocEntry[] = [
+  {
+    slug: 'accordion',
+    title: 'Accordion',
+    description: 'A stacked set of expandable sections for short, related content.',
+    usage: '<Accordion type="single" defaultValue="one" className="w-full">\n  <AccordionItem value="one">\n    <AccordionTrigger>Is it accessible?</AccordionTrigger>\n    <AccordionContent>Yes. It follows the accordion pattern and keyboard support from Radix.</AccordionContent>\n  </AccordionItem>\n</Accordion>',
+    props: [
+    { component: 'Accordion', props: [
+        { name: 'type', type: '"single" | "multiple"', description: 'Whether one or many items can be open.' },
+        { name: 'defaultValue', type: 'string | string[]', description: 'Uncontrolled open item(s).' },
+        { name: 'value', type: 'string | string[]', description: 'Controlled open item(s).' },
+      ] },
+    { component: 'AccordionItem', props: [
+        { name: 'value', type: 'string', description: 'Stable id for the item.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'alert',
+    title: 'Alert',
+    description: 'An inline message for status, warnings or supporting context.',
+    usage: '<Alert>\n  <AlertTitle>Heads up</AlertTitle>\n  <AlertDescription>Your changes are saved on this device.</AlertDescription>\n</Alert>',
+    props: [
+    { component: 'Alert', props: [
+        { name: 'className', type: 'string', description: 'Additional classes.' },
+      ] },
+    { component: 'AlertTitle', props: [
+        { name: "—", type: "—", description: "No additional props beyond the native element." },
+      ] },
+    { component: 'AlertDescription', props: [
+        { name: "—", type: "—", description: "No additional props beyond the native element." },
+      ] },
+    ],
+  },
+  {
+    slug: 'avatar',
+    title: 'Avatar',
+    description: 'A photo, initials or fallback for a person, with optional group stacking.',
+    usage: '<Avatar size="48" src="/images/melvin.jpg" alt="Melvin Z. Freeman">MF</Avatar>',
+    props: [
+    { component: 'Avatar', props: [
+        { name: 'size', type: 'string | number', description: 'Pixel size of the avatar.' },
+        { name: 'src', type: 'string', description: 'Image URL.' },
+        { name: 'alt', type: 'string', description: 'Accessible name.' },
+        { name: 'objectPosition', type: 'string', description: 'CSS object-position for the photo.' },
+        { name: 'color', type: 'string', description: 'Fallback color token.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'badge',
+    title: 'Badge',
+    description: 'A compact pill for status, counts or short labels.',
+    usage: '<Badge status="highlight" size="small">Most popular</Badge>',
+    props: [
+    { component: 'Badge', props: [
+        { name: 'status', type: 'primary | neutral | danger | highlight | success | warning', description: 'Tone of the badge.' },
+        { name: 'variant', type: 'solid | tint | soft | outline | …', description: 'Fill style, including shadcn aliases.' },
+        { name: 'size', type: 'small | medium', description: 'Badge size.' },
+        { name: 'dot', type: 'boolean', description: 'Show a leading status dot.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'brand-icons',
+    title: 'Brand icons',
+    description: 'Inline SVGs for brand logos Lucide does not ship, including X, GitHub, Google and Apple.',
+    usage: '<Button variant="neutral" mode="outline"><XBrandIcon /> Follow along</Button>',
+    props: [
+    { component: 'XBrandIcon, GithubIcon, GoogleIcon, AppleIcon, GooglePlayIcon', props: [
+        { name: 'className', type: 'string', description: 'Size and color via currentColor.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'breadcrumb',
+    title: 'Breadcrumb',
+    description: 'A path of links that shows where the current page sits in the hierarchy.',
+    usage: '<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem><BreadcrumbPage>Docs</BreadcrumbPage></BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>',
+    props: [
+    { component: 'BreadcrumbLink', props: [
+        { name: 'href', type: 'string', description: 'Destination.' },
+      ] },
+    { component: 'BreadcrumbPage', props: [
+        { name: 'children', type: 'ReactNode', description: 'The current page label.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'button',
+    title: 'Button',
+    description: 'The primary action control. Variants, modes and sizes all share one radius and motion scale.',
+    usage: '<Button>Save</Button>\n<Button variant="neutral" mode="outline">Cancel</Button>\n<Button variant="danger" mode="outline">Delete</Button>',
+    props: [
+    { component: 'Button', props: [
+        { name: 'variant', type: 'primary | neutral | danger | link', description: 'Color role. Also accepts shadcn aliases.' },
+        { name: 'mode', type: 'solid | outline | soft | ghost | raised', description: 'Fill and elevation.' },
+        { name: 'size', type: 'medium | small | xsmall | xxsmall', description: 'Height and padding.' },
+        { name: 'iconOnly', type: 'boolean', description: 'Square icon button.' },
+        { name: 'flat', type: 'boolean', description: 'No shadow and no press squeeze.' },
+        { name: 'asChild', type: 'boolean', description: 'Render as a child element (Radix Slot).' },
+        { name: 'disabled', type: 'boolean', description: 'Disables the button.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'calendar',
+    title: 'Calendar',
+    description: 'A month grid for picking a single date or a date range.',
+    usage: '<Calendar mode="single" selected={date} onSelect={setDate} />',
+    props: [
+    { component: 'Calendar', props: [
+        { name: 'mode', type: 'single | range', description: 'Selection mode.' },
+        { name: 'selected', type: 'Date | DateRange', description: 'The selected date or range.' },
+        { name: 'onSelect', type: 'fn', description: 'Called when the selection changes.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'card',
+    title: 'Card',
+    description: 'The default grouping surface: rounded, white (or raised in dark mode), with a small shadow and no border.',
+    usage: '<Card className="p-6">\n  <CardHeader>\n    <CardTitle>Studio</CardTitle>\n    <CardDescription>For designers shipping client work.</CardDescription>\n  </CardHeader>\n</Card>',
+    props: [
+    { component: 'Card', props: [
+        { name: 'className', type: 'string', description: 'Layout classes. Do not add a border — the shadow is the edge.' },
+      ] },
+    { component: 'CardDivider', props: [
+        { name: "—", type: "—", description: "No additional props beyond the native element." },
+      ] },
+    ],
+  },
+  {
+    slug: 'chart',
+    title: 'Chart',
+    description: 'Helpers for Recharts: shared colors, axis, grid, tooltip and legend that follow the theme tokens.',
+    usage: '<LineChart data={data}>\n  <CartesianGrid {...chartGrid} />\n  <XAxis {...chartAxis} dataKey="name" />\n  <Line dataKey="value" stroke={chartColors[0]} />\n</LineChart>',
+    props: [
+    { component: 'chartColors', props: [
+        { name: '—', type: 'string[]', description: 'Token-derived series colors.' },
+      ] },
+    { component: 'ChartTooltip / ChartLegend', props: [
+        { name: "—", type: "—", description: "No additional props beyond the native element." },
+      ] },
+    ],
+  },
+  {
+    slug: 'checkbox',
+    title: 'Checkbox',
+    description: 'A binary choice, used in lists, forms and filters.',
+    usage: '<div className="flex items-center gap-2">\n  <Checkbox id="terms" defaultChecked />\n  <Label htmlFor="terms">Accept terms</Label>\n</div>',
+    props: [
+    { component: 'Checkbox', props: [
+        { name: 'checked', type: 'boolean', description: 'Controlled state.' },
+        { name: 'defaultChecked', type: 'boolean', description: 'Uncontrolled default.' },
+        { name: 'disabled', type: 'boolean', description: 'Disables the control.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'combobox',
+    title: 'Combobox',
+    description: 'A searchable single-select: a select-style trigger with a command list in a popover.',
+    usage: '<Combobox options={[{ value: "next", label: "Next.js" }]} defaultValue="next" aria-label="Framework" />',
+    props: [
+    { component: 'Combobox', props: [
+        { name: 'options', type: '{ value, label, icon?, hint? }[]', description: 'The items to search.' },
+        { name: 'value', type: 'string', description: 'Controlled value.' },
+        { name: 'defaultValue', type: 'string', description: 'Uncontrolled default.' },
+        { name: 'onValueChange', type: '(value: string) => void', description: 'Called when the selection changes.' },
+        { name: 'placeholder', type: 'string', description: 'Trigger placeholder.' },
+        { name: 'searchPlaceholder', type: 'string', description: 'Search field placeholder.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'command',
+    title: 'Command Bar',
+    description: 'A command menu for quick actions and navigation. Built on cmdk, with a modal dialog variant and an inline form.',
+    usage: '<Command>\n  <Command.Input placeholder="Type a command…" />\n  <Command.List>\n    <Command.Empty>No results.</Command.Empty>\n    <Command.Group heading="Suggestions">\n      <Command.Item onSelect={() => {}} disabled={false}>New project</Command.Item>\n    </Command.Group>\n  </Command.List>\n</Command>',
+    props: [
+    { component: 'Command.Root', props: [
+        { name: 'inDialog', type: 'boolean', description: 'Drop the root’s radius, fill and ring when it sits in a dialog.' },
+        { name: 'value', type: 'string', description: 'Controlled selected value.' },
+        { name: 'defaultValue', type: 'string', description: 'Uncontrolled selected value.' },
+        { name: 'onValueChange', type: '(value: string) => void', description: 'Called when the highlighted value changes.' },
+        { name: 'shouldFilter', type: 'boolean', description: 'Whether to filter items from the input. Defaults to true.' },
+      ] },
+    { component: 'Command.Item', props: [
+        { name: 'onSelect', type: '(value: string) => void', description: 'Called when the item is chosen with Enter or a click.' },
+        { name: 'value', type: 'string', description: 'The item’s searchable value.' },
+        { name: 'disabled', type: 'boolean', description: 'Prevents selection.' },
+      ] },
+    { component: 'Command.Group', props: [
+        { name: 'heading', type: 'string', description: 'Optional group label.' },
+      ] },
+    { component: 'Command.Input / List / Empty / Separator', props: [
+        { name: "—", type: "—", description: "No additional props beyond the native element." },
+      ] },
+    { component: 'CommandDialog', props: [
+        { name: 'open', type: 'boolean', description: 'Controlled open state.' },
+        { name: 'onOpenChange', type: '(open: boolean) => void', description: 'Open change handler.' },
+        { name: 'title', type: 'string', description: 'Accessible dialog title (visually hidden).' },
+        { name: 'description', type: 'string', description: 'Accessible dialog description (visually hidden).' },
+      ] },
+    ],
+  },
+  {
+    slug: 'date-picker',
+    title: 'Date picker',
+    description: 'A popover calendar for a single date, plus a range variant.',
+    usage: '<DatePicker value={date} onChange={setDate} />\n<DateRangePicker value={range} onChange={setRange} />',
+    props: [
+    { component: 'DatePicker', props: [
+        { name: 'value', type: 'Date', description: 'Selected date.' },
+        { name: 'onChange', type: '(date) => void', description: 'Change handler.' },
+      ] },
+    { component: 'DateRangePicker', props: [
+        { name: 'value', type: 'DateRange', description: 'Selected range.' },
+        { name: 'onChange', type: '(range) => void', description: 'Change handler.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'dialog',
+    title: 'Dialog',
+    description: 'A modal overlay with a focus trap, for short tasks that need the rest of the page to wait.',
+    usage: '<Dialog>\n  <DialogTrigger asChild><Button>Open</Button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader title="Confirm" description="This can’t be undone." />\n    <DialogFooter>\n      <DialogClose asChild><Button variant="neutral" mode="outline">Cancel</Button></DialogClose>\n      <Button>Confirm</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>',
+    props: [
+    { component: 'Dialog', props: [
+        { name: 'open', type: 'boolean', description: 'Controlled open state.' },
+        { name: 'onOpenChange', type: '(open: boolean) => void', description: 'Open change handler.' },
+      ] },
+    { component: 'DialogContent', props: [
+        { name: 'showClose', type: 'boolean', description: 'Show the top-right close button. Defaults to true.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'dropdown-menu',
+    title: 'Dropdown menu',
+    description: 'A contextual menu of actions, checkboxes or nested submenus.',
+    usage: '<DropdownMenu>\n  <DropdownMenuTrigger asChild><Button variant="neutral" mode="outline">Open</Button></DropdownMenuTrigger>\n  <DropdownMenuContent>\n    <DropdownMenuItem>Edit</DropdownMenuItem>\n    <DropdownMenuSeparator />\n    <DropdownMenuItem>Delete</DropdownMenuItem>\n  </DropdownMenuContent>\n</DropdownMenu>',
+    props: [
+    { component: 'DropdownMenu', props: [
+        { name: 'open', type: 'boolean', description: 'Controlled open state.' },
+      ] },
+    { component: 'DropdownMenuItem', props: [
+        { name: 'disabled', type: 'boolean', description: 'Prevents selection.' },
+        { name: 'onSelect', type: 'fn', description: 'Called when the item is chosen.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'dropzone',
+    title: 'Dropzone',
+    description: 'A file drop area with a click-to-upload label and an optional file list.',
+    usage: '<Dropzone onFiles={setFiles} hint="PNG, JPG or PDF up to 10MB" />',
+    props: [
+    { component: 'Dropzone', props: [
+        { name: 'onFiles', type: '(files: File[]) => void', description: 'Called with the dropped or chosen files.' },
+        { name: 'accept', type: 'string', description: 'The input accept string.' },
+        { name: 'multiple', type: 'boolean', description: 'Allow more than one file. Defaults to true.' },
+        { name: 'hint', type: 'ReactNode', description: 'Helper text under the label.' },
+        { name: 'disabled', type: 'boolean', description: 'Disables the drop area.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'empty-state',
+    title: 'Empty state',
+    description: 'A calm placeholder when a list, search or page has nothing to show yet.',
+    usage: '<EmptyState title="No projects yet" description="Start a project to see it here." />',
+    props: [
+    { component: 'EmptyState', props: [
+        { name: 'title', type: 'string', description: 'Heading.' },
+        { name: 'description', type: 'ReactNode', description: 'Supporting copy.' },
+        { name: 'icon', type: 'ReactNode', description: 'Optional leading icon.' },
+        { name: 'action', type: 'ReactNode', description: 'Optional action slot.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'image-placeholder',
+    title: 'Image placeholder',
+    description: 'A photograph when one is available, or a brand/sky gradient when one is not. Never a grey box.',
+    usage: '<ImagePlaceholder gradient="sunrise" className="aspect-video rounded-xl" />',
+    props: [
+    { component: 'ImagePlaceholder', props: [
+        { name: 'src', type: 'string', description: 'Optional photo URL.' },
+        { name: 'gradient', type: 'GradientId', description: 'Fallback brand or sky gradient.' },
+        { name: 'alt', type: 'string', description: 'Accessible name when a photo is shown.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'input',
+    title: 'Input',
+    description: 'A text field with an optional leading icon and error state.',
+    usage: '<Input placeholder="hello@example.com" leading={<MailIcon />} />',
+    props: [
+    { component: 'Input', props: [
+        { name: 'leading', type: 'ReactNode', description: 'Icon or mark on the left.' },
+        { name: 'hasError', type: 'boolean', description: 'Error tone and ring.' },
+        { name: 'disabled', type: 'boolean', description: 'Disables the field.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'input-otp',
+    title: 'Input OTP',
+    description: 'A one-time code field, grouped into slots.',
+    usage: '<InputOTP maxLength={6}>\n  <InputOTPGroup>\n    <InputOTPSlot index={0} />\n    {/* … */}\n  </InputOTPGroup>\n</InputOTP>',
+    props: [
+    { component: 'InputOTP', props: [
+        { name: 'maxLength', type: 'number', description: 'Number of characters.' },
+        { name: 'value', type: 'string', description: 'Controlled value.' },
+        { name: 'onChange', type: '(value: string) => void', description: 'Change handler.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'kbd',
+    title: 'Kbd',
+    description: 'A key cap for shortcuts. Group keys of one shortcut with KbdGroup.',
+    usage: '<KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>',
+    props: [
+    { component: 'Kbd', props: [
+        { name: 'children', type: 'ReactNode', description: 'The key label.' },
+      ] },
+    { component: 'KbdGroup', props: [
+        { name: "—", type: "—", description: "No additional props beyond the native element." },
+      ] },
+    ],
+  },
+  {
+    slug: 'label',
+    title: 'Label',
+    description: 'The accessible label for a field, with optional hint and message slots.',
+    usage: '<div className="space-y-2">\n  <Label htmlFor="email">Email</Label>\n  <Input id="email" />\n  <FieldMessage>We’ll only use this for the receipt.</FieldMessage>\n</div>',
+    props: [
+    { component: 'Label', props: [
+        { name: 'htmlFor', type: 'string', description: 'The associated control id.' },
+      ] },
+    { component: 'LabelHint / FieldMessage', props: [
+        { name: "—", type: "—", description: "No additional props beyond the native element." },
+      ] },
+    ],
+  },
+  {
+    slug: 'pagination',
+    title: 'Pagination',
+    description: 'Page controls for long lists and tables.',
+    usage: '<Pagination page={1} count={8} onPageChange={setPage} />',
+    props: [
+    { component: 'Pagination', props: [
+        { name: 'page', type: 'number', description: 'Current page, 1-indexed.' },
+        { name: 'pageCount', type: 'number', description: 'Total pages.' },
+        { name: 'onPageChange', type: '(page: number) => void', description: 'Called when the page changes.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'popover',
+    title: 'Popover',
+    description: 'A floating panel anchored to a trigger, for short contextual UI.',
+    usage: '<Popover>\n  <PopoverTrigger asChild><Button variant="neutral" mode="outline">Open</Button></PopoverTrigger>\n  <PopoverContent>A short note.</PopoverContent>\n</Popover>',
+    props: [
+    { component: 'Popover', props: [
+        { name: 'open', type: 'boolean', description: 'Controlled open state.' },
+      ] },
+    { component: 'PopoverContent', props: [
+        { name: 'align', type: 'start | center | end', description: 'Alignment on the trigger.' },
+        { name: 'sideOffset', type: 'number', description: 'Distance from the trigger.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'progress',
+    title: 'Progress',
+    description: 'A linear bar or a ring for determinate progress.',
+    usage: '<Progress value={72} label="Uploading invoice" />\n<ProgressRing value={72} />',
+    props: [
+    { component: 'Progress', props: [
+        { name: 'value', type: 'number', description: '0–100.' },
+        { name: 'size', type: 'small | medium', description: 'Bar thickness.' },
+        { name: 'label', type: 'string', description: 'Accessible name.' },
+      ] },
+    { component: 'ProgressRing', props: [
+        { name: 'value', type: 'number', description: '0–100.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'radio-group',
+    title: 'Radio group',
+    description: 'A set of mutually exclusive choices.',
+    usage: '<RadioGroup defaultValue="studio">\n  <div className="flex items-center gap-2">\n    <RadioGroupItem value="studio" id="r-studio" />\n    <Label htmlFor="r-studio">Studio</Label>\n  </div>\n</RadioGroup>',
+    props: [
+    { component: 'RadioGroup', props: [
+        { name: 'value', type: 'string', description: 'Controlled value.' },
+        { name: 'defaultValue', type: 'string', description: 'Uncontrolled default.' },
+        { name: 'onValueChange', type: '(value: string) => void', description: 'Change handler.' },
+      ] },
+    { component: 'RadioGroupItem', props: [
+        { name: 'value', type: 'string', description: 'The item’s value.' },
+        { name: 'disabled', type: 'boolean', description: 'Disables this item.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'segmented-control',
+    title: 'Segmented control',
+    description: 'A compact choice of two or more exclusive options, sitting in a recessed tray.',
+    usage: '<SegmentedControl defaultValue="monthly">\n  <SegmentedControlItem value="monthly">Monthly</SegmentedControlItem>\n  <SegmentedControlItem value="yearly">Yearly</SegmentedControlItem>\n</SegmentedControl>',
+    props: [
+    { component: 'SegmentedControl', props: [
+        { name: 'value', type: 'string', description: 'Controlled value.' },
+        { name: 'defaultValue', type: 'string', description: 'Uncontrolled default.' },
+        { name: 'onValueChange', type: '(value: string) => void', description: 'Change handler.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'select',
+    title: 'Select',
+    description: 'A standard select menu for choosing one option from a list.',
+    usage: '<Select defaultValue="studio">\n  <SelectTrigger className="w-48"><SelectValue placeholder="Plan" /></SelectTrigger>\n  <SelectContent>\n    <SelectItem value="studio">Studio</SelectItem>\n    <SelectItem value="team">Team</SelectItem>\n  </SelectContent>\n</Select>',
+    props: [
+    { component: 'Select', props: [
+        { name: 'value', type: 'string', description: 'Controlled value.' },
+        { name: 'defaultValue', type: 'string', description: 'Uncontrolled default.' },
+        { name: 'onValueChange', type: '(value: string) => void', description: 'Change handler.' },
+      ] },
+    { component: 'SelectItem', props: [
+        { name: 'value', type: 'string', description: 'The item’s value.' },
+        { name: 'disabled', type: 'boolean', description: 'Disables this item.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'separator',
+    title: 'Separator',
+    description: 'A hairline divider between sections, horizontally or vertically.',
+    usage: '<Separator />\n<Separator orientation="vertical" className="h-8" />',
+    props: [
+    { component: 'Separator', props: [
+        { name: 'orientation', type: 'horizontal | vertical', description: 'Axis of the rule. Defaults to horizontal.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'sheet',
+    title: 'Sheet',
+    description: 'A sliding overlay, typically from the right, for secondary views and forms.',
+    usage: '<Sheet>\n  <SheetTrigger asChild><Button variant="neutral" mode="outline">Open</Button></SheetTrigger>\n  <SheetContent>\n    <SheetHeader title="Settings" />\n    <SheetBody>…</SheetBody>\n  </SheetContent>\n</Sheet>',
+    props: [
+    { component: 'Sheet', props: [
+        { name: 'open', type: 'boolean', description: 'Controlled open state.' },
+      ] },
+    { component: 'SheetContent', props: [
+        { name: 'side', type: 'top | right | bottom | left', description: 'Edge the sheet enters from.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'skeleton',
+    title: 'Skeleton',
+    description: 'A pulsing placeholder that stands in for content that has not loaded yet.',
+    usage: '<Skeleton className="h-5 w-40" />',
+    props: [
+    { component: 'Skeleton', props: [
+        { name: 'className', type: 'string', description: 'Width, height and radius.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'slider',
+    title: 'Slider',
+    description: 'A range control for a numeric value.',
+    usage: '<Slider defaultValue={[50]} max={100} step={1} />',
+    props: [
+    { component: 'Slider', props: [
+        { name: 'value', type: 'number[]', description: 'Controlled value(s).' },
+        { name: 'defaultValue', type: 'number[]', description: 'Uncontrolled default.' },
+        { name: 'min / max / step', type: 'number', description: 'Range and increment.' },
+        { name: 'disabled', type: 'boolean', description: 'Disables the control.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'sparkline',
+    title: 'Sparkline',
+    description: 'A tiny line chart for a trend inside a stat or table cell.',
+    usage: '<Sparkline points={[4, 8, 6, 12, 9, 14]} className="h-10 w-24" />',
+    props: [
+    { component: 'Sparkline', props: [
+        { name: 'data', type: 'number[]', description: 'The series.' },
+        { name: 'className', type: 'string', description: 'Size of the graphic.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'stepper',
+    title: 'Stepper',
+    description: 'A short sequence of steps, with a current step and a trail of completed ones.',
+    usage: '<Stepper steps={[{ title: "Details" }, { title: "Preview" }, { title: "Publish" }]} current={1} />',
+    props: [
+    { component: 'Stepper', props: [
+        { name: 'steps', type: 'string[]', description: 'Step labels.' },
+        { name: 'current', type: 'number', description: 'The active index, 0-based.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'switch',
+    title: 'Switch',
+    description: 'A labeled on/off control for a setting.',
+    usage: '<div className="flex items-center justify-between gap-3">\n  <Label htmlFor="avail">Open to projects</Label>\n  <Switch id="avail" defaultChecked />\n</div>',
+    props: [
+    { component: 'Switch', props: [
+        { name: 'checked', type: 'boolean', description: 'Controlled state.' },
+        { name: 'defaultChecked', type: 'boolean', description: 'Uncontrolled default.' },
+        { name: 'disabled', type: 'boolean', description: 'Disables the control.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'table',
+    title: 'Table',
+    description: 'A data table with optional sortable headers and tabular numerals.',
+    usage: '<Table>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Client</TableHead>\n      <TableHead className="text-right">Amount</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>…</TableBody>\n</Table>',
+    props: [
+    { component: 'Table', props: [
+        { name: "—", type: "—", description: "No additional props beyond the native element." },
+      ] },
+    { component: 'TableSortButton / useTableSort', props: [
+        { name: 'key', type: 'string', description: 'Column to sort by.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'tabs',
+    title: 'Tabs',
+    description: 'A set of views in the same space, with a underline or segmented trigger row.',
+    usage: '<Tabs defaultValue="account">\n  <TabsList>\n    <TabsTrigger value="account">Account</TabsTrigger>\n    <TabsTrigger value="billing">Billing</TabsTrigger>\n  </TabsList>\n  <TabsContent value="account">…</TabsContent>\n</Tabs>',
+    props: [
+    { component: 'Tabs', props: [
+        { name: 'value', type: 'string', description: 'Controlled tab.' },
+        { name: 'defaultValue', type: 'string', description: 'Uncontrolled default.' },
+        { name: 'onValueChange', type: '(value: string) => void', description: 'Change handler.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'textarea',
+    title: 'Textarea',
+    description: 'A multi-line text field for longer copy.',
+    usage: '<Textarea placeholder="A few words about you…" rows={4} />',
+    props: [
+    { component: 'Textarea', props: [
+        { name: 'rows', type: 'number', description: 'Visible lines.' },
+        { name: 'hasError', type: 'boolean', description: 'Error tone and ring.' },
+        { name: 'disabled', type: 'boolean', description: 'Disables the field.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'tile-group',
+    title: 'Tile group',
+    description: 'A set of selectable tiles, for plans, templates or similar choices.',
+    usage: '<TileGroup defaultValue="studio">\n  <Tile value="studio">Studio</Tile>\n  <Tile value="team">Team</Tile>\n</TileGroup>',
+    props: [
+    { component: 'TileGroup', props: [
+        { name: 'value', type: 'string', description: 'Controlled value.' },
+        { name: 'defaultValue', type: 'string', description: 'Uncontrolled default.' },
+      ] },
+    { component: 'Tile', props: [
+        { name: 'value', type: 'string', description: 'The tile’s value.' },
+        { name: 'disabled', type: 'boolean', description: 'Disables this tile.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'toast',
+    title: 'Toast',
+    description: 'A short, fleeting message. Built on Sonner, themed to Melxels tokens.',
+    usage: '<Button onClick={() => toast("Draft saved")}>Notify</Button>',
+    props: [
+    { component: 'toast', props: [
+        { name: 'message', type: 'string', description: 'The title.' },
+        { name: 'description', type: 'string', description: 'Optional supporting copy.' },
+        { name: 'action', type: '{ label, onClick }', description: 'Optional action.' },
+      ] },
+    { component: 'Toaster', props: [
+        { name: '—', type: '—', description: 'Mount once near the root of the app.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'toggle-group',
+    title: 'Toggle group',
+    description: 'A cluster of toggles for one or many selected options, such as text alignment.',
+    usage: '<ToggleGroup type="single" defaultValue="left">\n  <ToggleGroupItem value="left" aria-label="Align left"><AlignLeftIcon /></ToggleGroupItem>\n</ToggleGroup>',
+    props: [
+    { component: 'ToggleGroup', props: [
+        { name: 'type', type: 'single | multiple', description: 'Selection mode.' },
+        { name: 'value', type: 'string | string[]', description: 'Controlled value.' },
+      ] },
+    { component: 'Toggle / ToggleGroupItem', props: [
+        { name: 'pressed', type: 'boolean', description: 'Controlled pressed state for a single Toggle.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'tooltip',
+    title: 'Tooltip',
+    description: 'A short label that appears on hover or focus, for icon-only controls and extra context.',
+    usage: '<Tooltip>\n  <TooltipTrigger asChild><Button variant="neutral" mode="ghost" iconOnly aria-label="Settings"><SettingsIcon /></Button></TooltipTrigger>\n  <TooltipContent>Settings</TooltipContent>\n</Tooltip>',
+    props: [
+    { component: 'TooltipProvider', props: [
+        { name: 'delayDuration', type: 'number', description: 'Delay before the tooltip opens.' },
+      ] },
+    { component: 'TooltipContent', props: [
+        { name: 'side', type: 'top | right | bottom | left', description: 'Preferred side.' },
+      ] },
+    ],
+  }
+];
+
+export const docsNav = [
+  { slug: "get-started", title: "Get started", href: getStartedHref },
+  ...componentDocs.map((c) => ({ slug: c.slug, title: c.title, href: `/docs/${c.slug}` })),
+];
+
+export function getComponentDoc(slug: string) {
+  return componentDocs.find((c) => c.slug === slug);
+}
+
+export const componentSlugs = componentDocs.map((c) => c.slug);

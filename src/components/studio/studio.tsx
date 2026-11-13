@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Popover } from "radix-ui";
 import { ArrowUpRightIcon, BookOpenIcon, CopyIcon, MenuIcon, SlidersHorizontalIcon, TerminalIcon, XIcon } from "lucide-react";
 import { Toaster } from "@/components/ui/toast";
@@ -15,6 +15,7 @@ import { Card } from "@/components/ui/card";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { people } from "@/lib/media";
+import { HandmadeMark } from "@/components/brand/handmade-mark";
 import { gradientCss } from "@/lib/gradients";
 import { AnimationTuner } from "./animation-tuner";
 import { Brand } from "./brand-section";
@@ -27,6 +28,7 @@ import { Colors, Shape, Spacing, Typography } from "./foundations";
 import { Patterns } from "./patterns";
 import { PromptDialog } from "./prompt-dialog";
 import { DocSection } from "./section";
+import { CommandPalette } from "./command-palette";
 import { ThemeProvider } from "./theme-provider";
 
 const nav = [
@@ -39,6 +41,7 @@ const nav = [
   { href: "/#widgets", label: "Widgets" },
   { href: "/#patterns", label: "Patterns" },
   { href: "/animation", label: "Animation" },
+  { href: "/docs/get-started", label: "Docs" },
 ];
 
 /** Shared chrome for every page: theme, header, customizer sidebar and credits. */
@@ -91,7 +94,7 @@ function MobileNav() {
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger asChild>
-        <Button variant="neutral" mode="ghost" iconOnly className="max-sm:hidden xl:hidden" aria-label={open ? "Close menu" : "Open menu"}>
+        <Button variant="neutral" mode="ghost" iconOnly className="xl:hidden" aria-label={open ? "Close menu" : "Open menu"}>
           {open ? <XIcon /> : <MenuIcon />}
         </Button>
       </Popover.Trigger>
@@ -119,15 +122,18 @@ function MobileNav() {
 
 function Shell({ children }: { children: React.ReactNode }) {
   const [panelOpen, setPanelOpen] = React.useState(false);
+  const pathname = usePathname() ?? "/";
+  const isDocs = pathname.startsWith("/docs");
   return (
     <div className="min-h-screen">
       <div id="studio">
         {/* Studio chrome: keeps default spacing and type size so it always lines up with the sidebar. */}
         <header className="relative z-40" style={{ "--ds-spacing": "4px", "--ds-font-scale": "1" } as React.CSSProperties}>
-          <div className="flex h-16 items-center gap-6 px-6">
+          <div className="flex h-16 items-center gap-3 sm:gap-6 px-6">
             <Link href="/" className="flex shrink-0 items-center" aria-label="Melxels home">
-              <Image src="/brand/melxels-icon-outline.png" alt="Melxels home" width={32} height={32} className="size-8 object-contain" priority />
+              <HandmadeMark className="size-8" alt="Melxels home" />
             </Link>
+            <CommandPalette />
             <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">
               {nav.map((n) => (
                 <Link key={n.href} href={n.href} className={navLinkClass}>
@@ -146,9 +152,11 @@ function Shell({ children }: { children: React.ReactNode }) {
               >
                 {people.melvin.initials}
               </Avatar>
-              <Button variant="neutral" mode="raised" className="xl:hidden" aria-label="Customize" onClick={() => setPanelOpen((o) => !o)}>
-                <SlidersHorizontalIcon /> <span className="max-sm:hidden">Customize</span>
-              </Button>
+              {!isDocs && (
+                <Button variant="neutral" mode="raised" className="xl:hidden" aria-label="Customize" onClick={() => setPanelOpen((o) => !o)}>
+                  <SlidersHorizontalIcon /> <span className="max-sm:hidden">Customize</span>
+                </Button>
+              )}
               <Button variant="neutral" mode="ghost" iconOnly asChild>
                 <a href={author.xUrl} target="_blank" rel="noreferrer" aria-label={`${author.name} on X`} title={`${author.handle} on X`}>
                   <XBrandIcon />
@@ -163,21 +171,27 @@ function Shell({ children }: { children: React.ReactNode }) {
         </header>
 
         <div className="flex">
-          <aside
-            className={cn(
-              CHROME_CLASS,
-              "fixed top-16 left-4 z-30 max-h-[calc(100vh-5rem)] w-[300px] shrink-0 scroll-pt-16 scroll-pb-4 overflow-y-auto rounded-2xl bg-surface shadow-sm transition-transform duration-300",
-              "xl:sticky xl:top-4 xl:max-h-[calc(100vh-2rem)] xl:ml-4 xl:self-start xl:translate-x-0",
-              panelOpen ? "translate-x-0 shadow-lg" : "-translate-x-[calc(100%+1rem)]",
-            )}
-          >
-            <Customizer />
-          </aside>
+          {!isDocs && (
+            <aside
+              className={cn(
+                CHROME_CLASS,
+                "fixed top-16 left-4 z-30 max-h-[calc(100vh-5rem)] w-[300px] shrink-0 scroll-pt-16 scroll-pb-4 overflow-y-auto rounded-2xl bg-surface shadow-sm transition-transform duration-300",
+                "xl:sticky xl:top-4 xl:max-h-[calc(100vh-2rem)] xl:ml-4 xl:self-start xl:translate-x-0",
+                panelOpen ? "translate-x-0 shadow-lg" : "-translate-x-[calc(100%+1rem)]",
+              )}
+            >
+              <Customizer />
+            </aside>
+          )}
           <main className="min-w-0 flex-1">
-            <div className="mx-auto max-w-[1080px] px-6 lg:px-10">
-              {children}
-              <Credits />
-            </div>
+            {isDocs ? (
+              children
+            ) : (
+              <div className="mx-auto max-w-[1080px] px-6 lg:px-10">
+                {children}
+                <Credits />
+              </div>
+            )}
           </main>
         </div>
       </div>

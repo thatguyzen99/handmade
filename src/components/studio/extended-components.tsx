@@ -205,16 +205,6 @@ const frameworks = [
 
 function CommandSpecimen() {
   const [open, setOpen] = React.useState(false);
-  React.useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setOpen((o) => !o);
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
   const items = (
     <>
       <CommandInput placeholder="Type a command or search…" />
@@ -243,7 +233,7 @@ function CommandSpecimen() {
             <Combobox options={frameworks} defaultValue="next" aria-label="Framework" searchPlaceholder="Search frameworks…" />
           </div>
           <Button variant="neutral" mode="outline" onClick={() => setOpen(true)}>
-            <SearchIcon /> Search <KbdGroup className="ml-2"><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>
+            <SearchIcon /> Open demo
           </Button>
         </div>
       </div>
