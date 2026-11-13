@@ -130,8 +130,8 @@ function Shell({ children }: { children: React.ReactNode }) {
         {/* Studio chrome: keeps default spacing and type size so it always lines up with the sidebar. */}
         <header className="relative z-40" style={{ "--ds-spacing": "4px", "--ds-font-scale": "1" } as React.CSSProperties}>
           <div className="flex h-16 items-center gap-3 sm:gap-6 px-6">
-            <Link href="/" className="flex shrink-0 items-center" aria-label="Melxels home">
-              <HandmadeMark className="size-8" alt="Melxels home" />
+            <Link href="/" className="flex shrink-0 items-center" aria-label="Handmade home">
+              <HandmadeMark className="size-8" alt="Handmade home" />
             </Link>
             <CommandPalette />
             <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">

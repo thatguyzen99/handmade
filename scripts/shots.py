@@ -1,4 +1,4 @@
-"""Full-page and section screenshots of the local Melxels studio."""
+"""Full-page and section screenshots of the local Handmade studio."""
 import json, sys
 from playwright.sync_api import sync_playwright
 
@@ -19,7 +19,7 @@ def page_for(browser, mode, width=1440, height=900, mobile=False, path="/"):
     if mode == "dark":
         ctx.add_init_script("""
           try {
-            const k = 'melxels:theme';
+            const k = 'handmade:theme';
             let c = {};
             try { c = JSON.parse(localStorage.getItem(k) || '{}') || {}; } catch (e) {}
             c.mode = 'dark';

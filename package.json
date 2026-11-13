@@ -1,9 +1,9 @@
 {
-  "name": "melxels",
+  "name": "handmade",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
-  "description": "Melxels by Melvin Z. Freeman: a customizable design system studio built on Cards by Oliur (MIT).",
+  "description": "Handmade by Melvin Z. Freeman: a customizable design system studio built on Cards by Oliur (MIT).",
   "scripts": {
     "theme": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/write-theme.mts",
     "skill": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/write-skill.mts",

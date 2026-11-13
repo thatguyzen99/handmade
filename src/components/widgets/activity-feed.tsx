@@ -6,10 +6,10 @@ import { Card, CardDivider, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { people } from "@/lib/media";
 
-type Activity = { who: string; initials: string; color: "blue" | "purple" | "orange" | "green"; src?: string; objectPosition?: string; alt?: string; action: React.ReactNode; time: string; icon: React.ReactNode; note?: string };
+type Activity = { who: string; initials: string; color: "blue" | "highlight" | "orange" | "green"; src?: string; objectPosition?: string; alt?: string; action: React.ReactNode; time: string; icon: React.ReactNode; note?: string };
 
 const items: Activity[] = [
-  { who: people.ama.name, initials: people.ama.initials, color: "purple", src: people.ama.src, alt: people.ama.alt, objectPosition: people.ama.objectPosition, action: <>commented on <b className="text-fg">Wayfold homepage</b></>, time: "12m", icon: <MessageSquareIcon />, note: "Love the new hero. Can we try the serif on the stats too?" },
+  { who: people.ama.name, initials: people.ama.initials, color: "highlight", src: people.ama.src, alt: people.ama.alt, objectPosition: people.ama.objectPosition, action: <>commented on <b className="text-fg">Wayfold homepage</b></>, time: "12m", icon: <MessageSquareIcon />, note: "Love the new hero. Can we try the serif on the stats too?" },
   { who: "You", initials: people.melvin.initials, color: "blue", src: people.melvin.src, alt: people.melvin.alt, objectPosition: people.melvin.objectPosition, action: <>uploaded <b className="text-fg">logo-system-v3.fig</b></>, time: "1h", icon: <FileUpIcon /> },
   { who: people.kojo.name, initials: people.kojo.initials, color: "green", src: people.kojo.src, alt: people.kojo.alt, objectPosition: people.kojo.objectPosition, action: <>approved <b className="text-fg">Jeety onboarding</b></>, time: "3h", icon: <CheckIcon /> },
   { who: people.lena.name, initials: people.lena.initials, color: "orange", src: people.lena.src, alt: people.lena.alt, objectPosition: people.lena.objectPosition, action: <>started <b className="text-fg">Greenvolt icons</b></>, time: "Yesterday", icon: <PenToolIcon /> },

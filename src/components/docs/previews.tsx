@@ -5,7 +5,7 @@ import {
   AlignLeftIcon, AlignCenterIcon, AlignRightIcon, BellIcon, CalendarDaysIcon, FileTextIcon,
   FolderPlusIcon, MailIcon, SearchIcon, SettingsIcon, UserIcon,
 } from "lucide-react";
-import { people } from "@/lib/media";
+import { people, photos } from "@/lib/media";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Avatar } from "@/components/ui/avatar";
@@ -22,7 +22,22 @@ import { DatePicker } from "@/components/ui/date-picker";
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTrigger } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Dropzone } from "@/components/ui/dropzone";
-import { EmptyState } from "@/components/ui/empty-state";
+import { EmptyState, ErrorState } from "@/components/ui/empty-state";
+import { ActiveBar } from "@/components/ui/active-bar";
+import { AudioPlayer } from "@/components/ui/audio-player";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Composer } from "@/components/ui/composer";
+import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, DrawerTrigger } from "@/components/ui/drawer";
+import { FilterBuilder, type FilterField, type FilterRow } from "@/components/ui/filter-builder";
+import { Highlights, HighlightsGrid } from "@/components/ui/highlights";
+import { MultiStepForm, MultiStepFormStep } from "@/components/ui/multi-step-form";
+import { Pill, Tag } from "@/components/ui/pill";
+import { QuestionTool } from "@/components/ui/question-tool";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { SectionHeader } from "@/components/ui/section-header";
+import { Spinner } from "@/components/ui/spinner";
+import { Statistic } from "@/components/ui/statistic";
+import { VideoPlayer } from "@/components/ui/video-player";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { Input } from "@/components/ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
@@ -90,7 +105,122 @@ function CommandDocsDemo() {
   );
 }
 
+
+function ActiveBarDemo() {
+  const [active, setActive] = React.useState(0);
+  const items = ["Dashboard", "Analytics", "Settings"];
+  return (
+    <nav className="relative w-56 rounded-xl bg-surface p-1 shadow-sm" style={{ "--item-height": "40px" } as React.CSSProperties}>
+      <ActiveBar top={4 + active * 40} leftOffset={4} rightOffset={4} />
+      {items.map((label, i) => (
+        <button key={label} type="button" onClick={() => setActive(i)} className="relative z-10 flex h-10 w-full items-center rounded-md px-3 text-left text-ui-sm text-fg outline-none focus-visible:shadow-focus">
+          {label}
+        </button>
+      ))}
+    </nav>
+  );
+}
+
+function FilterBuilderDemo() {
+  const fields: FilterField[] = [
+    { id: "status", label: "Status", type: "select", operators: [{ id: "is", label: "is" }, { id: "is-not", label: "is not" }], options: [{ id: "open", label: "Open" }, { id: "done", label: "Done" }] },
+    { id: "name", label: "Name", type: "text", operators: [{ id: "contains", label: "contains" }, { id: "is", label: "is" }] },
+  ];
+  const [filters, setFilters] = React.useState<FilterRow[]>([{ id: "1", field: "status", operator: "is", value: "open" }]);
+  return <FilterBuilder filters={filters} fields={fields} onChange={setFilters} />;
+}
+
+function PillDemo() {
+  const [tags, setTags] = React.useState(["Design", "Draft", "Accra"]);
+  return (
+    <div className="flex flex-wrap gap-2">
+      {tags.map((t) => (
+        <Pill key={t} tone={t === "Draft" ? "outline" : "highlight"} onRemove={() => setTags((xs) => xs.filter((x) => x !== t))}>{t}</Pill>
+      ))}
+      <Tag tone="success">Published</Tag>
+    </div>
+  );
+}
+
 const previews: Record<string, React.ComponentType> = {
+  "active-bar": () => <ActiveBarDemo />,
+  "audio-player": () => <AudioPlayer title="Harmattan Light" />,
+  collapsible: () => (
+    <Collapsible className="max-w-md rounded-xl bg-surface shadow-sm">
+      <CollapsibleTrigger>Advanced settings</CollapsibleTrigger>
+      <CollapsibleContent className="px-3 pb-3">Extra fields for people who want more control.</CollapsibleContent>
+    </Collapsible>
+  ),
+  composer: () => <Composer className="max-w-lg" attachments={<Pill onRemove={() => {}}>brief.pdf</Pill>} disclaimer="Handmade can make mistakes. Check important info." />,
+  drawer: () => (
+    <Drawer>
+      <DrawerTrigger asChild><Button variant="neutral" mode="outline">Open drawer</Button></DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader title="Filters" description="Narrow the list without leaving the page." />
+        <DrawerBody>
+          <p className="text-body-sm text-fg-muted">Drawer is the bottom sheet. Sheet stays for side panels.</p>
+        </DrawerBody>
+        <DrawerFooter>
+          <Button size="small">Apply</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  ),
+  "filter-builder": () => <FilterBuilderDemo />,
+  highlights: () => (
+    <HighlightsGrid columns={2} className="max-w-lg">
+      <Highlights title="Revenue" bigValue="$24.8k" statistic={<Statistic value={2.1} type="percentage" trend="up" showTrend />} />
+      <Highlights title="Visitors" bigValue="1,204" statistic={<Statistic value={3.4} type="percentage" trend="down" showTrend />} />
+    </HighlightsGrid>
+  ),
+  "multi-step-form": () => (
+    <MultiStepForm className="max-w-lg" steps={[{ title: "Account" }, { title: "Workspace" }]} onSubmit={() => {}}>
+      <MultiStepFormStep>
+        <Label htmlFor="ms-email">Email</Label>
+        <Input id="ms-email" type="email" defaultValue="melvin@handmade.studio" />
+      </MultiStepFormStep>
+      <MultiStepFormStep>
+        <Label htmlFor="ms-space">Workspace</Label>
+        <Input id="ms-space" defaultValue="handmade" />
+      </MultiStepFormStep>
+    </MultiStepForm>
+  ),
+  "pill-tag": () => <PillDemo />,
+  "question-tool": () => (
+    <QuestionTool
+      className="max-w-md"
+      questions={[
+        { id: "brand", title: "Which brand should this agent use?", type: "single", options: [{ id: "acme", label: "Acme", description: "Primary monitored brand" }, { id: "northwind", label: "Northwind" }] },
+        { id: "notes", title: "Anything else to add?", type: "text" },
+      ]}
+    />
+  ),
+  "scroll-area": () => (
+    <ScrollArea className="h-48 max-w-sm rounded-xl bg-surface p-4 shadow-sm" viewportLabel="Items">
+      {Array.from({ length: 12 }, (_, i) => <p key={i} className="py-2 text-body-sm text-fg">Item {i + 1}: scrollable content</p>)}
+    </ScrollArea>
+  ),
+  "section-header": () => (
+    <SectionHeader title="Dashboard overview" subtitle="Your weekly summary" badge={<Badge>Beta</Badge>}>
+      <Button size="small" variant="neutral" mode="outline">Export</Button>
+    </SectionHeader>
+  ),
+  spinner: () => (
+    <div className="flex items-center gap-4">
+      <Spinner size={16} />
+      <Spinner size={20} />
+      <Spinner size={32} />
+    </div>
+  ),
+  statistic: () => (
+    <div className="flex flex-wrap items-end gap-8">
+      <Statistic value={24.8} prefix="$" suffix="k" decimals={1} trend="up" showTrend />
+      <Statistic value={3.4} type="percentage" trend="down" showTrend />
+      <Statistic value={null} emptyText="No data" />
+    </div>
+  ),
+  "video-player": () => <VideoPlayer poster={photos.album} title="Studio sessions" description="A short cut from the session." className="max-w-lg" />,
+
   accordion: () => (
     <Accordion type="single" defaultValue="one" className="w-full">
       <AccordionItem value="one">
@@ -204,7 +334,12 @@ const previews: Record<string, React.ComponentType> = {
     </DropdownMenu>
   ),
   dropzone: () => <Dropzone hint="PNG, JPG or PDF up to 10MB" />,
-  "empty-state": () => <EmptyState title="No projects yet" description="Start a project to see it here." action={<Button size="small">New project</Button>} />,
+  "empty-state": () => (
+    <div className="grid gap-6 sm:grid-cols-2">
+      <EmptyState title="No invoices yet" description="Invoices appear here once you bill a customer." action={<Button size="small">New invoice</Button>} />
+      <ErrorState description="Something went wrong loading these chats." action={<Button size="small" variant="neutral" mode="outline">Try again</Button>} />
+    </div>
+  ),
   "image-placeholder": () => <ImagePlaceholder gradient="sunrise" className="aspect-video max-w-md rounded-xl" />,
   input: () => (
     <div className="max-w-sm space-y-2">

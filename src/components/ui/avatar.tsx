@@ -19,7 +19,7 @@ const avatarVariants = cva("relative inline-flex shrink-0 select-none items-cent
       blue: "bg-info-line text-info-fg",
       orange: "bg-warning-line text-warning-fg",
       green: "bg-success-line text-success-fg",
-      purple: "bg-highlight-line text-highlight-fg",
+      highlight: "bg-highlight-line text-highlight-fg",
       yellow: "bg-caution-line text-caution-fg",
       red: "bg-danger-line text-danger-fg",
     },

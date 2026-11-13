@@ -236,7 +236,7 @@ ${s.mode === "spring" ? `:root { --spring: ${easing}; }\n` : ""}@keyframes enter
     } else {
       update({ motion: { ...config.motion, duration: dur } });
     }
-    toast.success("Applied to the Melxels theme — duration and easing are in the export.");
+    toast.success("Applied to the Handmade theme — duration and easing are in the export.");
   };
 
   return (

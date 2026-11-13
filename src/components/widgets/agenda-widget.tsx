@@ -76,7 +76,7 @@ export function AgendaWidget({ className }: { className?: string }) {
               <AvatarGroup className="max-sm:hidden">
                 {e.people.map((p, i) => {
                   const person = Object.values(people).find((x) => x.initials === p);
-                  return <Avatar key={p} size="24" color={(["blue", "purple", "green", "orange"] as const)[i % 4]} src={person?.src} alt={person?.alt ?? p} objectPosition={person?.objectPosition}>{p}</Avatar>;
+                  return <Avatar key={p} size="24" color={(["blue", "highlight", "green", "orange"] as const)[i % 4]} src={person?.src} alt={person?.alt ?? p} objectPosition={person?.objectPosition}>{p}</Avatar>;
                 })}
               </AvatarGroup>
             )}

@@ -69,7 +69,7 @@ export type ShadowConfig = {
 export const defaultShadow: ShadowConfig = { y: 1, blur: 3, spread: 0, opacity: 8, opacityDark: 32, color: "neutral" };
 
 export const defaultConfig: ThemeConfig = {
-  // Melxels: ink/cream primary on a near-white cream canvas; near-black canvas in dark mode, purple accent.
+  // Handmade: ink/cream primary and accent on a near-white cream canvas; near-black canvas in dark mode.
   primary: brandColors.primary,
   primaryDark: brandColors.primaryDark,
   neutral: "stone",

@@ -209,7 +209,7 @@ function MarketingPattern() {
             <Button variant="neutral" mode="raised">See the components</Button>
           </div>
           <div className="flex items-center justify-center gap-3 text-body-sm text-fg-muted">
-            <AvatarGroup>{[people.ama, people.kojo, people.lena, people.telling].map((p, i) => <Avatar key={p.initials} size="24" color={(["purple", "green", "orange", "blue"] as const)[i]} src={p.src} alt={p.alt} objectPosition={p.objectPosition}>{p.initials}</Avatar>)}</AvatarGroup>
+            <AvatarGroup>{[people.ama, people.kojo, people.lena, people.telling].map((p, i) => <Avatar key={p.initials} size="24" color={(["highlight", "green", "orange", "blue"] as const)[i]} src={p.src} alt={p.alt} objectPosition={p.objectPosition}>{p.initials}</Avatar>)}</AvatarGroup>
             Loved by 2,400 designers
           </div>
         </div>
@@ -217,7 +217,7 @@ function MarketingPattern() {
         <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl bg-canvas shadow-sm ring-1 ring-inset ring-line">
           <div className="flex items-center gap-2 border-b border-line bg-surface px-4 py-3">
             {[0, 1, 2].map((i) => <span key={i} className="size-3 rounded-full bg-track" />)}
-            <span className="mx-auto rounded-md bg-subtle px-3 py-1 text-body-xs text-fg-subtle">melxels.app/dashboard</span>
+            <span className="mx-auto rounded-md bg-subtle px-3 py-1 text-body-xs text-fg-subtle">handmade.app/dashboard</span>
           </div>
           <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-3">
             {stats.slice(0, 3).map((s) => <StatCard key={s.label} {...s} />)}
@@ -245,7 +245,7 @@ function AuthPattern() {
     <PatternFrame id="pattern-auth" title="Auth / sign-in" description="Split screen: brand panel and a form with password or email-code sign-in.">
       <Card className="grid grid-cols-1 overflow-hidden lg:grid-cols-2">
         <div className="relative min-h-64 max-lg:hidden">
-          <ImagePlaceholder gradient="royal" src={photos.hero} alt="Mosaïk tower in Accra" className="absolute inset-0" />
+          <ImagePlaceholder gradient="midnight" src={photos.hero} alt="Mosaïk tower in Accra" className="absolute inset-0" />
           <div className="relative flex h-full flex-col justify-between p-8 text-white">
             <div className="flex items-center gap-2 text-ui-md"><Mark variant="solid" className="size-7 text-white" /><span>{systemName}</span></div>
             <figure className="space-y-4">
@@ -279,7 +279,7 @@ function AuthPattern() {
               <Button className="w-full" onClick={() => toast.success("Signed in", { description: "Welcome back, Melvin." })}>Sign in</Button>
             </TabsContent>
             <TabsContent value="code" className="space-y-4">
-              <p className="text-body-sm text-fg-muted">Enter the 6-digit code sent to <span className="text-fg">melvin@melxels.com</span>.</p>
+              <p className="text-body-sm text-fg-muted">Enter the 6-digit code sent to <span className="text-fg">melvin@handmade.studio</span>.</p>
               <InputOTP maxLength={6} aria-label="Sign-in code">
                 <InputOTPGroup>{[0, 1, 2, 3, 4, 5].map((i) => <InputOTPSlot key={i} index={i} />)}</InputOTPGroup>
               </InputOTP>
@@ -335,7 +335,7 @@ function OnboardingPattern() {
                   { v: "calm", g: "first-light" as const, t: "Calm", src: photos.dawn, alt: "Alpine dawn" },
                   { v: "bold", g: "ember" as const, t: "Bold", src: photos.workspace, alt: "Studio workshop" },
                   { v: "fresh", g: "solar" as const, t: "Fresh", src: photos.mosaik, alt: "Mosaïk, Accra" },
-                  { v: "night", g: "royal" as const, t: "Night", src: photos.nightCity, alt: "City at night" },
+                  { v: "night", g: "midnight" as const, t: "Night", src: photos.nightCity, alt: "City at night" },
                 ].map((o) => (
                   <Tile key={o.v} value={o.v} className="gap-2 p-2">
                     <ImagePlaceholder gradient={o.g} src={o.src} alt={o.alt} className="h-16 w-full rounded-concentric-2" />
@@ -349,7 +349,7 @@ function OnboardingPattern() {
             <>
               <div className="space-y-1"><h4 className="text-heading-6 text-fg">Name your workspace</h4><p className="text-body-sm text-fg-muted">This shows up on shared links and invoices.</p></div>
               <div className="space-y-2"><Label htmlFor="ob-name">Workspace name</Label><Input id="ob-name" defaultValue={systemName} /></div>
-              <div className="space-y-2"><Label htmlFor="ob-url">Workspace URL</Label><Input id="ob-url" defaultValue="melxels" leading={<span className="text-body-sm text-fg-subtle">melxels.app/</span>} /></div>
+              <div className="space-y-2"><Label htmlFor="ob-url">Workspace URL</Label><Input id="ob-url" defaultValue="handmade" leading={<span className="text-body-sm text-fg-subtle">handmade.app/</span>} /></div>
               <div className="flex items-center justify-between"><Label htmlFor="ob-invite" className="text-body-sm">Invite teammates after setup</Label><Switch id="ob-invite" /></div>
             </>
           )}
@@ -414,7 +414,7 @@ function SettingsPattern() {
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div className="space-y-2"><Label htmlFor="st-first">First name</Label><Input id="st-first" defaultValue="Melvin" /></div>
                 <div className="space-y-2"><Label htmlFor="st-last">Last name</Label><Input id="st-last" defaultValue="Freeman" /></div>
-                <div className="space-y-2"><Label htmlFor="st-email">Email</Label><Input id="st-email" type="email" defaultValue="melvin@melxels.com" leading={<MailIcon />} /></div>
+                <div className="space-y-2"><Label htmlFor="st-email">Email</Label><Input id="st-email" type="email" defaultValue="melvin@handmade.studio" leading={<MailIcon />} /></div>
                 <div className="space-y-2">
                   <Label>Time zone</Label>
                   <Select defaultValue="accra">
@@ -487,7 +487,7 @@ function PricingPattern() {
           <Accordion type="single" collapsible defaultValue="q1">
             {[
               { v: "q1", q: "Can I switch plans later?", a: "Yes. Upgrades apply immediately and downgrades at the end of your billing period." },
-              { v: "q2", q: "Do you offer refunds?", a: "If Melxels isn’t right for you, ask within 14 days for a full refund." },
+              { v: "q2", q: "Do you offer refunds?", a: "If Handmade isn’t right for you, ask within 14 days for a full refund." },
               { v: "q3", q: "Can I use it for client work?", a: "Every plan includes a commercial license for anything you design with it." },
             ].map((f) => (
               <AccordionItem key={f.v} value={f.v}>
@@ -506,7 +506,7 @@ function PricingPattern() {
 
 const lineItems = [
   { name: "Studio plan", note: "Yearly · 1 seat", price: 228, g: "solar" as const, src: photos.desk, alt: "Desk with wireframes" },
-  { name: "Brand kit add-on", note: "Logo, type and color sheets", price: 49, g: "royal" as const, src: photos.coffee, alt: "Latte" },
+  { name: "Brand kit add-on", note: "Logo, type and color sheets", price: 49, g: "sunrise" as const, src: photos.coffee, alt: "Latte" },
 ];
 
 function CheckoutPattern() {
@@ -523,7 +523,7 @@ function CheckoutPattern() {
             <CardDivider />
             <CardContent className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div className="space-y-2"><Label htmlFor="co-name">Full name</Label><Input id="co-name" defaultValue="Melvin Z. Freeman" /></div>
-              <div className="space-y-2"><Label htmlFor="co-email">Email</Label><Input id="co-email" defaultValue="melvin@melxels.com" /></div>
+              <div className="space-y-2"><Label htmlFor="co-email">Email</Label><Input id="co-email" defaultValue="melvin@handmade.studio" /></div>
             </CardContent>
           </Card>
           <Card>
@@ -583,7 +583,7 @@ function CheckoutPattern() {
 /* ---------- 8. Inbox / list-detail ---------- */
 
 const threads = [
-  { id: 1, from: people.ama.name, initials: people.ama.initials, src: people.ama.src, alt: people.ama.alt, objectPosition: people.ama.objectPosition, color: "purple" as const, subject: "Wayfold homepage, round 4", preview: "Love the new hero. Can we try the serif on the stats too?", time: "10:42", unread: true, starred: true },
+  { id: 1, from: people.ama.name, initials: people.ama.initials, src: people.ama.src, alt: people.ama.alt, objectPosition: people.ama.objectPosition, color: "highlight" as const, subject: "Wayfold homepage, round 4", preview: "Love the new hero. Can we try the serif on the stats too?", time: "10:42", unread: true, starred: true },
   { id: 2, from: people.kojo.name, initials: people.kojo.initials, src: people.kojo.src, alt: people.kojo.alt, objectPosition: people.kojo.objectPosition, color: "green" as const, subject: "Jeety onboarding sign-off", preview: "All approved on our side. Sending the PO this afternoon.", time: "09:15", unread: true, starred: false },
   { id: 3, from: people.telling.name, initials: people.telling.initials, src: people.telling.src, alt: people.telling.alt, objectPosition: people.telling.objectPosition, color: "orange" as const, subject: "Print proofs are ready", preview: "The tote and poster proofs are in the shared folder.", time: "Yesterday", unread: false, starred: false },
   { id: 4, from: people.lena.name, initials: people.lena.initials, src: people.lena.src, alt: people.lena.alt, objectPosition: people.lena.objectPosition, color: "blue" as const, subject: "Icon grid question", preview: "Should the 20px set share the 24px keylines or have its own?", time: "Tue", unread: false, starred: true },
@@ -658,7 +658,7 @@ function InboxPattern() {
                 </div>
                 <div className="space-y-3 text-body-sm text-fg-muted">
                   <p>Hi Melvin,</p>
-                  <p>{t.preview} The team loved how quiet the cards feel, and the purple only showing up on the one action is exactly what we wanted.</p>
+                  <p>{t.preview} The team loved how quiet the cards feel, and the highlight only showing up on the one action is exactly what we wanted.</p>
                   <p>Could you send the updated file before Monday?</p>
                 </div>
                 <div className="flex w-fit items-center gap-3 rounded-xl bg-subtle p-3 ring-1 ring-inset ring-line">

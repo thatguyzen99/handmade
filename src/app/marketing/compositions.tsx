@@ -144,7 +144,7 @@ function InviteCard({ className }: { className?: string }) {
       <div className="flex items-center justify-between">
         <AvatarGroup>
           <Avatar size="32" color="blue" src={people.ava.src} alt={people.ava.alt} objectPosition={people.ava.objectPosition}>A</Avatar>
-          <Avatar size="32" color="purple" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>M</Avatar>
+          <Avatar size="32" color="highlight" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>M</Avatar>
           <Avatar size="32" color="orange" src={people.jun.src} alt={people.jun.alt} objectPosition={people.jun.objectPosition}>J</Avatar>
         </AvatarGroup>
         <StatusBadge status="success">3 active</StatusBadge>
@@ -167,7 +167,7 @@ function SkillDialog({ className }: { className?: string }) {
         </Tabs>
         <pre className="rounded-xl bg-subtle p-4 font-mono text-body-xs whitespace-pre text-fg-muted ring-1 ring-inset ring-line">
           <span className="text-fg-subtle">$ </span>{`mkdir -p .claude/skills/zen && \\
-  curl -fsSL …/skill/melxels.md \\
+  curl -fsSL …/skill/handmade.md \\
   -o .claude/skills/zen/SKILL.md`}
         </pre>
         <ul className="mt-4 space-y-2 text-body-sm text-fg-muted">
@@ -361,7 +361,7 @@ function Parts() {
         {tile("Checkbox", <div className="flex items-center gap-2"><Checkbox defaultChecked /><Label className="text-body-sm">Remember me</Label></div>)}
         {tile("Slider", <Slider defaultValue={[64]} className="w-full" />)}
         {tile("Progress", <div className="w-full space-y-2"><Progress value={72} /><div className="text-body-xs text-fg-muted">72% complete</div></div>)}
-        {tile("Avatars", <AvatarGroup><Avatar size="40" color="blue" src={people.ava.src} alt={people.ava.alt} objectPosition={people.ava.objectPosition}>AL</Avatar><Avatar size="40" color="purple" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar><Avatar size="40" color="orange" src={people.jun.src} alt={people.jun.alt} objectPosition={people.jun.objectPosition}>JS</Avatar><Avatar size="40" color="green" src={people.rae.src} alt={people.rae.alt} objectPosition={people.rae.objectPosition}>RW</Avatar></AvatarGroup>)}
+        {tile("Avatars", <AvatarGroup><Avatar size="40" color="blue" src={people.ava.src} alt={people.ava.alt} objectPosition={people.ava.objectPosition}>AL</Avatar><Avatar size="40" color="highlight" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar><Avatar size="40" color="orange" src={people.jun.src} alt={people.jun.alt} objectPosition={people.jun.objectPosition}>JS</Avatar><Avatar size="40" color="green" src={people.rae.src} alt={people.rae.alt} objectPosition={people.rae.objectPosition}>RW</Avatar></AvatarGroup>)}
       </div>
     </Canvas>
   );

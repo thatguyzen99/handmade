@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function GetStartedPage() {
   const origin = siteUrl.includes("localhost") ? "https://melxels.vercel.app" : siteUrl;
-  const registry = `${origin}/r/melxels.json`;
-  const skill = `${origin}/skill/melxels.md`;
+  const registry = `${origin}/r/handmade.json`;
+  const skill = `${origin}/skill/handmade.md`;
   return (
     <article className="mx-auto max-w-2xl space-y-10">
       <header className="space-y-3">
@@ -46,8 +46,14 @@ export default function GetStartedPage() {
           your project so a coding agent can follow the tokens, recipes and rules:
         </p>
         <pre className="overflow-x-auto rounded-xl bg-subtle p-4 font-mono text-[12px] leading-[1.6] text-fg-muted ring-1 ring-inset ring-line">
-          {`mkdir -p .claude/skills/melxels && curl -fsSL ${skill} -o .claude/skills/melxels/SKILL.md`}
+          {`mkdir -p .claude/skills/handmade && curl -fsSL ${skill} -o .claude/skills/handmade/SKILL.md`}
         </pre>
+        <p className="text-body-md text-fg-muted">
+          Previous registry and skill URLs at <code className="font-mono text-ui-xs text-fg">/r/melxels.json</code>,{" "}
+          <code className="font-mono text-ui-xs text-fg">/skill/melxels.md</code>,{" "}
+          <code className="font-mono text-ui-xs text-fg">/r/zen.json</code> and{" "}
+          <code className="font-mono text-ui-xs text-fg">/skill/zen.md</code> still work as aliases.
+        </p>
         <p className="text-body-md text-fg-muted">
           The studio on the home page can also mint a prompt, a registry URL and a skill with your custom fonts, color
           and radius already baked in. Browse every component, with a live preview and a props table, from the sidebar.

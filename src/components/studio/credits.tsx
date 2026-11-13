@@ -63,7 +63,7 @@ const legalLinks = [
 export function Credits() {
   return (
     <footer className="space-y-6 py-8">
-      <Wordmark className="h-6 w-auto" />
+      <Wordmark className="text-[1.5rem]" />
       <h2 className="text-ui-xs text-fg-muted">Credits</h2>
       <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
         {groups.map((g) => (

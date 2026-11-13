@@ -19,9 +19,9 @@ import { Mark } from "@/components/brand/logo";
 import { systemName } from "@/design-system/brand";
 import { people } from "@/lib/media";
 
-const members: { name: string; email: string; role: string; status: Status; label: string; color: "blue" | "purple" | "orange" | "green"; src: string; alt: string; objectPosition?: string }[] = [
+const members: { name: string; email: string; role: string; status: Status; label: string; color: "blue" | "highlight" | "orange" | "green"; src: string; alt: string; objectPosition?: string }[] = [
   { name: people.ava.name, email: "ava@example.com", role: "Owner", status: "success", label: "Active", color: "blue", src: people.ava.src, alt: people.ava.alt, objectPosition: people.ava.objectPosition },
-  { name: people.milo.name, email: "milo@example.com", role: "Admin", status: "success", label: "Active", color: "purple", src: people.milo.src, alt: people.milo.alt, objectPosition: people.milo.objectPosition },
+  { name: people.milo.name, email: "milo@example.com", role: "Admin", status: "success", label: "Active", color: "highlight", src: people.milo.src, alt: people.milo.alt, objectPosition: people.milo.objectPosition },
   { name: people.jun.name, email: "jun@example.com", role: "Editor", status: "caution", label: "Invited", color: "orange", src: people.jun.src, alt: people.jun.alt, objectPosition: people.jun.objectPosition },
   { name: people.rae.name, email: "rae@example.com", role: "Viewer", status: "neutral", label: "Inactive", color: "green", src: people.rae.src, alt: people.rae.alt, objectPosition: people.rae.objectPosition },
 ];

@@ -244,12 +244,12 @@ export function ComponentsShowcase() {
             <div className="space-y-5">
               <div className="flex items-end gap-3">
                 <Avatar size="64" color="blue" src={people.ava.src} alt={people.ava.alt} objectPosition={people.ava.objectPosition}>AL</Avatar>
-                <Avatar size="48" color="purple" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar>
+                <Avatar size="48" color="highlight" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar>
                 <Avatar size="40" color="orange" src={people.jun.src} alt={people.jun.alt} objectPosition={people.jun.objectPosition}>JS</Avatar>
                 <Avatar size="32" color="green" src={people.rae.src} alt={people.rae.alt} objectPosition={people.rae.objectPosition}>RW</Avatar>
                 <Avatar size="24" color="red" src={people.esther.src} alt={people.esther.alt} objectPosition={people.esther.objectPosition}>EP</Avatar>
                 <AvatarGroup className="ml-auto">
-                  {["blue", "yellow", "green", "purple"].map((c, i) => (
+                  {["blue", "yellow", "green", "highlight"].map((c, i) => (
                     <Avatar key={c} size="32" color={c as "blue"}>{"ABCD"[i]}</Avatar>
                   ))}
                 </AvatarGroup>

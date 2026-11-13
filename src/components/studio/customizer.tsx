@@ -93,16 +93,14 @@ export function Customizer() {
           </div>
         </div>
         <div className="space-y-2">
-          <Label>Melxels samples</Label>
+          <Label>Handmade samples</Label>
           <div className="flex flex-wrap gap-2">
             {(
               [
                 { name: "Black", value: brandColors.ink, dark: brandColors.cream },
                 { name: "Cream", value: brandColors.cream, dark: brandColors.cream },
-                { name: "Purple", value: brandColors.purple, dark: brandColors.accentDark },
                 { name: "Yellow", value: brandColors.yellow, dark: brandColors.yellow },
                 { name: "Orange", value: brandColors.orange, dark: brandColors.orange },
-                { name: "Navy", value: brandColors.navy, dark: brandColors.accentDark },
               ] as const
             ).map((s) => (
               <button

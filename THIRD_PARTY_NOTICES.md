@@ -1,10 +1,10 @@
 # Third-party notices
 
-Melxels' own code is MIT-licensed (see [LICENSE](LICENSE)). It builds on the following work, each under its own license.
+Handmade's own code is MIT-licensed (see [LICENSE](LICENSE)). It builds on the following work, each under its own license.
 
 ## Upstream
 
-Built on Cards by Oliur (MIT). Melxels is a modified version of [Cards](https://github.com/oliur/cards), Copyright (c) 2026 Oliur, used under the MIT License. The original copyright and permission notice are kept in [LICENSE](LICENSE).
+Built on Cards by Oliur (MIT). Handmade is a modified version of [Cards](https://github.com/oliur/cards), Copyright (c) 2026 Oliur, used under the MIT License. The original copyright and permission notice are kept in [LICENSE](LICENSE).
 
 ## Design references
 
@@ -60,7 +60,7 @@ Studio photography is from [Pexels](https://www.pexels.com/license/) (free to us
 | vinyl.webp | Oleksii Piekhov | [Pexels 18337073](https://www.pexels.com/photo/18337073/) |
 | Other stills (desk, coffee, sky, score, record, dawn, night city, workspace) | Pexels contributors | [pexels.com](https://www.pexels.com/) |
 
-The Melxels wordmark and mark in `public/brand/` are original work by Melvin Z. Freeman.
+The Handmade wordmark (typographic, Familjen Grotesk) and mark (`public/brand/handmade/`) are original work by Melvin Z. Freeman. Earlier wordmark and outline-m files are kept unused in `public/brand/legacy/`.
 
 ## tactile-design license
 

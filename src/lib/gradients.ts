@@ -14,7 +14,6 @@ export const gradientGroups = [
         ],
       },
       { id: "solar", name: "Solar", from: "#FFCA05", to: "#FAAC18", dir: "to right" as const },
-      { id: "royal", name: "Royal", from: "#1B1A2E", to: "#3D0066", dir: "to right" as const },
     ],
   },
   {

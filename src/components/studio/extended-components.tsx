@@ -151,7 +151,7 @@ function MenusSpecimen() {
               <p className="text-body-xs text-fg-muted">Anyone with the link can view.</p>
             </div>
             <div className="flex gap-2">
-              <Input size="small" readOnly defaultValue="melxels.app/f/brand-kit" aria-label="Share link" />
+              <Input size="small" readOnly defaultValue="handmade.app/f/brand-kit" aria-label="Share link" />
               <Button size="small" onClick={() => toast.success("Link copied")}>Copy</Button>
             </div>
             <div className="flex items-center justify-between">
@@ -168,7 +168,7 @@ function MenusSpecimen() {
             <div className="text-ui-sm text-fg">Share this file</div>
             <p className="text-body-xs text-fg-muted">Anyone with the link can view.</p>
           </div>
-          <Input size="small" readOnly defaultValue="melxels.app/f/brand-kit" aria-label="Share link preview" />
+          <Input size="small" readOnly defaultValue="handmade.app/f/brand-kit" aria-label="Share link preview" />
           <div className="flex items-center justify-between"><span className="text-body-sm text-fg">Allow editing</span><Switch aria-label="Allow editing preview" defaultChecked /></div>
         </div>
       </div>
@@ -350,10 +350,10 @@ function NavigationSpecimen() {
 
 /* ---------- table ---------- */
 
-type Invoice = { id: string; client: string; initials: string; color: "blue" | "purple" | "orange" | "green" | "yellow"; amount: number; due: string; status: Status; label: string };
+type Invoice = { id: string; client: string; initials: string; color: "blue" | "highlight" | "orange" | "green" | "yellow"; amount: number; due: string; status: Status; label: string };
 const invoices: Invoice[] = [
   { id: "INV-1042", client: "Wayfold", initials: "WF", color: "blue", amount: 4800, due: "2026-11-02", status: "success", label: "Paid" },
-  { id: "INV-1043", client: "Jeety", initials: "JE", color: "purple", amount: 2350, due: "2026-11-18", status: "caution", label: "Pending" },
+  { id: "INV-1043", client: "Jeety", initials: "JE", color: "highlight", amount: 2350, due: "2026-11-18", status: "caution", label: "Pending" },
   { id: "INV-1044", client: "Greenvolt", initials: "GV", color: "green", amount: 7200, due: "2026-11-21", status: "info", label: "Sent" },
   { id: "INV-1045", client: "Telling", initials: "TE", color: "orange", amount: 1250, due: "2026-10-28", status: "danger", label: "Overdue" },
   { id: "INV-1046", client: "Aster House", initials: "AH", color: "yellow", amount: 3900, due: "2026-12-04", status: "neutral", label: "Draft" },
@@ -554,7 +554,7 @@ function OtpSpecimen() {
               <InputOTPSlot index={5} />
             </InputOTPGroup>
           </InputOTP>
-          <p className="text-body-xs text-fg-muted">Sent to m•••@melxels.com. <button type="button" className="text-brand underline-offset-4 hover:underline">Resend</button></p>
+          <p className="text-body-xs text-fg-muted">Sent to m•••@handmade.studio. <button type="button" className="text-brand underline-offset-4 hover:underline">Resend</button></p>
         </div>
         <div className="space-y-2">
           <Label>PIN <span className="text-fg-muted">(error)</span></Label>

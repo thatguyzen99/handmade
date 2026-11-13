@@ -10,9 +10,9 @@ export const uiFiles = [
   // core (from Cards)
   "accordion", "alert", "avatar", "badge", "brand-icons", "button", "card", "checkbox", "dialog", "image-placeholder",
   "input", "label", "misc", "radio", "radio-group", "select", "separator", "slider", "switch", "tabs", "textarea", "tile-group", "tooltip",
-  // extended (Melxels)
-  "breadcrumb", "calendar", "chart", "combobox", "command", "date-picker", "dropdown-menu", "dropzone", "empty-state", "input-otp", "kbd",
-  "pagination", "popover", "progress", "segmented-control", "sheet", "skeleton", "sparkline", "stepper", "table", "toast", "toggle-group",
+  // extended (Handmade)
+  "active-bar", "audio-player", "breadcrumb", "calendar", "chart", "collapsible", "combobox", "command", "composer", "date-picker", "drawer", "dropdown-menu", "dropzone", "empty-state", "filter-builder", "highlights", "input-otp", "kbd",
+  "multi-step-form", "pagination", "pill", "popover", "progress", "question-tool", "scroll-area", "section-header", "segmented-control", "sheet", "skeleton", "sparkline", "spinner", "statistic", "stepper", "table", "toast", "toggle-group", "video-player",
 ];
 /** Ready-made widgets, installed by the shadcn CLI into your components folder. */
 export const widgetFiles = [

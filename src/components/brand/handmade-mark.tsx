@@ -2,13 +2,13 @@ import { cn } from "@/lib/utils";
 
 /**
  * Default handmade mark (option 1 — ink h on cream).
- * Swap the filename to option-2.svg or option-3.svg to try the other marks.
+ * Official mark confirmed as option 1. Earlier options live in /brand/handmade/alternates/.
  */
 export const handmadeMarkSrc = "/brand/handmade/icon.svg";
 
 export function HandmadeMark({
   className,
-  alt = "Melxels home",
+  alt = "Handmade home",
   size = 32,
 }: {
   className?: string;

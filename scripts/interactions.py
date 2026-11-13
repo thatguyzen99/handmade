@@ -38,7 +38,7 @@ with sync_playwright() as pw:
         results["sorted_first_amount"] = sec.locator("[data-slot=table] tbody tr").first.locator("td").nth(2).inner_text()
     step("table-sorted", sort)
     # dark mode via the customizer toggle
-    p.evaluate("localStorage.setItem('melxels:theme', JSON.stringify({...JSON.parse(localStorage.getItem('melxels:theme')||'{}'), mode:'dark'}))")
+    p.evaluate("localStorage.setItem('handmade:theme', JSON.stringify({...JSON.parse(localStorage.getItem('handmade:theme')||'{}'), mode:'dark'}))")
     p.reload(wait_until="networkidle"); p.wait_for_timeout(800)
     sec = p.locator("#more-components")
     step("dropdown-dark", lambda: (sec.get_by_role("button", name="Account").scroll_into_view_if_needed(), sec.get_by_role("button", name="Account").click()))

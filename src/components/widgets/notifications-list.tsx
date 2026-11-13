@@ -12,10 +12,10 @@ import { cn } from "@/lib/utils";
 import { people } from "@/lib/media";
 import { systemName } from "@/design-system/brand";
 
-type Note = { id: number; who: string; initials: string; color: "blue" | "purple" | "orange" | "green" | "red"; src?: string; alt?: string; objectPosition?: string; text: React.ReactNode; time: string; unread: boolean; kind: "mention" | "system"; actions?: boolean };
+type Note = { id: number; who: string; initials: string; color: "blue" | "highlight" | "orange" | "green" | "red"; src?: string; alt?: string; objectPosition?: string; text: React.ReactNode; time: string; unread: boolean; kind: "mention" | "system"; actions?: boolean };
 
 const seed: Note[] = [
-  { id: 1, who: people.ama.name, initials: people.ama.initials, color: "purple", src: people.ama.src, alt: people.ama.alt, objectPosition: people.ama.objectPosition, text: <>mentioned you in <b>Wayfold / Home v4</b></>, time: "2m ago", unread: true, kind: "mention" },
+  { id: 1, who: people.ama.name, initials: people.ama.initials, color: "highlight", src: people.ama.src, alt: people.ama.alt, objectPosition: people.ama.objectPosition, text: <>mentioned you in <b>Wayfold / Home v4</b></>, time: "2m ago", unread: true, kind: "mention" },
   { id: 2, who: people.kojo.name, initials: people.kojo.initials, color: "green", src: people.kojo.src, alt: people.kojo.alt, objectPosition: people.kojo.objectPosition, text: <>invited you to <b>Jeety Design</b></>, time: "1h ago", unread: true, kind: "mention", actions: true },
   { id: 3, who: "Billing", initials: "$", color: "orange", text: <>Invoice <b>INV-1045</b> is 16 days overdue</>, time: "3h ago", unread: true, kind: "system" },
   { id: 4, who: systemName, initials: "M", color: "blue", text: <>Your registry export is ready</>, time: "Yesterday", unread: false, kind: "system" },

@@ -293,7 +293,7 @@ export function BlogCard() {
         <h3 className="text-heading-6 text-fg">Why every corner should come from one number</h3>
         <p className="text-body-sm text-fg-muted">A single base radius keeps a whole interface in step, from the smallest badge up to the largest dialog.</p>
         <div className="flex items-center gap-3 pt-1">
-          <Avatar size="32" color="purple" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar>
+          <Avatar size="32" color="highlight" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar>
           <div className="min-w-0">
             <div className="truncate text-ui-sm text-fg">Milo Kovac</div>
             <div className="truncate text-body-xs text-fg-muted">Mar 12 · 6 min read</div>
@@ -310,7 +310,7 @@ export function AppDownloadCard() {
   return (
     <Card className="p-5">
       <div className="flex items-center gap-4">
-        <ImagePlaceholder gradient="royal" className="flex size-16 shrink-0 items-center justify-center rounded-2xl text-white">
+        <ImagePlaceholder gradient="midnight" className="flex size-16 shrink-0 items-center justify-center rounded-2xl text-white">
           <MicIcon className="size-8" />
         </ImagePlaceholder>
         <div className="min-w-0 space-y-1">
@@ -470,7 +470,7 @@ export function StorageCard() {
         <div className="flex items-center justify-between gap-3">
           <AvatarGroup className="-space-x-1">
             <Avatar size="32" color="blue">AL</Avatar>
-            <Avatar size="32" color="purple" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar>
+            <Avatar size="32" color="highlight" src={people.milo.src} alt={people.milo.alt} objectPosition={people.milo.objectPosition}>MK</Avatar>
             <Avatar size="32" color="orange">JS</Avatar>
             <Avatar size="32" color="green">RW</Avatar>
           </AvatarGroup>

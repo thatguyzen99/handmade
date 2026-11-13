@@ -21,7 +21,7 @@ registerHooks({
 
 const { generateSkill } = await import("../src/design-system/skill.ts");
 const { defaultConfig } = await import("../src/design-system/config.ts");
-const { systemId } = await import("../src/design-system/brand.ts");
+const { systemId, legacySystemIds } = await import("../src/design-system/brand.ts");
 
 const dir = new URL(`../skills/${systemId}/`, import.meta.url);
 const out = new URL("SKILL.md", dir);
@@ -37,4 +37,10 @@ if (process.argv.includes("--check")) {
   mkdirSync(dir, { recursive: true });
   writeFileSync(out, content);
   console.log(`wrote skills/${systemId}/SKILL.md`);
+  for (const alias of legacySystemIds) {
+    const aliasDir = new URL(`../skills/${alias}/`, import.meta.url);
+    mkdirSync(aliasDir, { recursive: true });
+    writeFileSync(new URL("SKILL.md", aliasDir), content);
+    console.log(`wrote skills/${alias}/SKILL.md (alias)`);
+  }
 }

@@ -1,4 +1,4 @@
-/** Documentation catalog for existing Melxels UI components only. */
+/** Documentation catalog for existing Handmade UI components only. */
 export type PropRow = { name: string; type: string; description: string };
 export type PropGroup = { component: string; props: PropRow[] };
 
@@ -30,6 +30,20 @@ export const componentDocs: DocEntry[] = [
     ],
   },
   {
+    slug: 'active-bar',
+    title: 'Active Bar',
+    description: 'The sliding highlight behind the active item in a vertical navigation list.',
+    usage: '<nav className="relative" style={{ "--item-height": "40px" } as React.CSSProperties}>\n  <ActiveBar top={activeIndex * 40} />\n  <a className="relative z-10 flex h-10 items-center px-3">Dashboard</a>\n</nav>',
+    props: [
+    { component: 'ActiveBar', props: [
+        { name: 'top', type: 'number', description: 'Vertical offset in pixels of the active item.' },
+        { name: 'leftOffset', type: 'number', description: 'Inset from the left edge in pixels.' },
+        { name: 'rightOffset', type: 'number', description: 'Inset from the right edge in pixels.' },
+        { name: 'className', type: 'string', description: 'Additional classes, for example a z-index or custom transition.' },
+      ] },
+    ],
+  },
+  {
     slug: 'alert',
     title: 'Alert',
     description: 'An inline message for status, warnings or supporting context.',
@@ -43,6 +57,18 @@ export const componentDocs: DocEntry[] = [
       ] },
     { component: 'AlertDescription', props: [
         { name: "—", type: "—", description: "No additional props beyond the native element." },
+      ] },
+    ],
+  },
+  {
+    slug: 'audio-player',
+    title: 'Audio Player',
+    description: 'Play an audio file in a single control bar, with play, skip, a timeline, speed and volume.',
+    usage: '<AudioPlayer src="/audio/session.mp3" title="Harmattan Light" />',
+    props: [
+    { component: 'AudioPlayer', props: [
+        { name: 'src', type: 'string', description: 'Audio file URL. Omit to preview the bar without a source.' },
+        { name: 'title', type: 'string', description: 'Accessible name for the audio element.' },
       ] },
     ],
   },
@@ -172,6 +198,23 @@ export const componentDocs: DocEntry[] = [
     ],
   },
   {
+    slug: 'collapsible',
+    title: 'Collapsible',
+    description: 'Show or hide a section of content, with a trigger and a smooth open state.',
+    usage: '<Collapsible>\n  <CollapsibleTrigger>Advanced settings</CollapsibleTrigger>\n  <CollapsibleContent className="px-3 pb-3">Extra fields live here.</CollapsibleContent>\n</Collapsible>',
+    props: [
+    { component: 'Collapsible', props: [
+        { name: 'open', type: 'boolean', description: 'Controlled open state.' },
+        { name: 'defaultOpen', type: 'boolean', description: 'Uncontrolled initial open state.' },
+        { name: 'onOpenChange', type: '(open: boolean) => void', description: 'Called when the open state changes.' },
+        { name: 'disabled', type: 'boolean', description: 'Disables the trigger.' },
+      ] },
+    { component: 'CollapsibleContent', props: [
+        { name: 'forceMount', type: 'boolean', description: 'Keep the content mounted while closed.' },
+      ] },
+    ],
+  },
+  {
     slug: 'combobox',
     title: 'Combobox',
     description: 'A searchable single-select: a select-style trigger with a command list in a popover.',
@@ -220,6 +263,24 @@ export const componentDocs: DocEntry[] = [
     ],
   },
   {
+    slug: 'composer',
+    title: 'Composer',
+    description: 'A chat input card with attachments, a send or stop control, and activity chrome.',
+    usage: '<Composer onSubmit={() => send()} onStop={() => stop()} attachments={<Pill onRemove={() => {}} >brief.pdf</Pill>} disclaimer="Handmade can make mistakes." />',
+    props: [
+    { component: 'Composer', props: [
+        { name: 'activityState', type: 'idle | working | success | disabled', description: 'Visual chrome on the card.' },
+        { name: 'sendState', type: 'idle | typing | streaming', description: 'Send or stop. Defaults from activityState when omitted.' },
+        { name: 'sendDisabled', type: 'boolean', description: 'Blocks submitting a new message.' },
+        { name: 'onSubmit', type: '() => void', description: 'Called when the user sends.' },
+        { name: 'onStop', type: '() => void', description: 'Called when the user stops a stream.' },
+        { name: 'attachments', type: 'ReactNode', description: 'Attachment strip above the editor.' },
+        { name: 'disclaimer', type: 'ReactNode', description: 'Helper text below the card.' },
+        { name: 'validationMessage', type: 'ReactNode', description: 'Validation copy beneath the card.' },
+      ] },
+    ],
+  },
+  {
     slug: 'date-picker',
     title: 'Date picker',
     description: 'A popover calendar for a single date, plus a range variant.',
@@ -247,6 +308,25 @@ export const componentDocs: DocEntry[] = [
       ] },
     { component: 'DialogContent', props: [
         { name: 'showClose', type: 'boolean', description: 'Show the top-right close button. Defaults to true.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'drawer',
+    title: 'Drawer',
+    description: 'A bottom or side panel that slides over the page, distinct from Sheet, with a grab handle on the bottom and top placements.',
+    usage: '<Drawer>\n  <DrawerTrigger asChild><Button>Open drawer</Button></DrawerTrigger>\n  <DrawerContent>\n    <DrawerHeader title="Filters" />\n    <DrawerBody>…</DrawerBody>\n  </DrawerContent>\n</Drawer>',
+    props: [
+    { component: 'Drawer', props: [
+        { name: 'open', type: 'boolean', description: 'Controlled open state.' },
+        { name: 'onOpenChange', type: '(open: boolean) => void', description: 'Called when the open state changes.' },
+        { name: 'defaultOpen', type: 'boolean', description: 'Uncontrolled initial open state.' },
+      ] },
+    { component: 'DrawerContent', props: [
+        { name: 'placement', type: 'bottom | top | left | right', description: 'Edge the drawer appears from. Defaults to bottom.' },
+        { name: 'width', type: 'number', description: 'Width in pixels for left or right placements.' },
+        { name: 'showClose', type: 'boolean', description: 'Show a close button on side placements.' },
+        { name: 'withOverlay', type: 'boolean', description: 'Whether to render the backdrop. Defaults to true.' },
       ] },
     ],
   },
@@ -282,15 +362,56 @@ export const componentDocs: DocEntry[] = [
   },
   {
     slug: 'empty-state',
-    title: 'Empty state',
-    description: 'A calm placeholder when a list, search or page has nothing to show yet.',
-    usage: '<EmptyState title="No projects yet" description="Start a project to see it here." />',
+    title: 'Empty & Error States',
+    description: 'One shape for "there is nothing here" and "we couldn\'t load this", so a failed fetch is never mistaken for an empty list.',
+    usage: '<EmptyState title="No invoices yet" description="Invoices appear here once you bill a customer." action={<Button size="small">New invoice</Button>} />\n\n<ErrorState description="Something went wrong loading these chats." action={<Button size="small" variant="neutral" mode="outline">Try again</Button>} />',
     props: [
     { component: 'EmptyState', props: [
-        { name: 'title', type: 'string', description: 'Heading.' },
-        { name: 'description', type: 'ReactNode', description: 'Supporting copy.' },
-        { name: 'icon', type: 'ReactNode', description: 'Optional leading icon.' },
-        { name: 'action', type: 'ReactNode', description: 'Optional action slot.' },
+        { name: 'title', type: 'ReactNode', description: 'Optional heading. Omit on small surfaces where the description is enough.' },
+        { name: 'description', type: 'ReactNode', description: 'Supporting sentence.' },
+        { name: 'icon', type: 'ReactNode', description: 'Optional icon in a ring above the copy.' },
+        { name: 'action', type: 'ReactNode', description: 'Optional action, such as a create button.' },
+        { name: 'size', type: 'page | section | inline', description: 'How much space the state reserves. Defaults to section.' },
+      ] },
+    { component: 'ErrorState', props: [
+        { name: 'title', type: 'ReactNode', description: 'Always shown. Falls back to "We couldn\'t load this".' },
+        { name: 'description', type: 'ReactNode', description: 'What went wrong, in one sentence.' },
+        { name: 'action', type: 'ReactNode', description: 'A retry control, when retrying is useful.' },
+        { name: 'size', type: 'page | section | inline', description: 'How much space the state reserves. Defaults to section.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'filter-builder',
+    title: 'Filter Builder',
+    description: 'A set of field, operator and value rows for building a structured filter.',
+    usage: '<FilterBuilder filters={filters} fields={fields} onChange={setFilters} />',
+    props: [
+    { component: 'FilterBuilder', props: [
+        { name: 'filters', type: 'FilterRow[]', description: 'The current rows.' },
+        { name: 'fields', type: 'FilterField[]', description: 'Available fields, each with operators and an optional type.' },
+        { name: 'onChange', type: '(filters: FilterRow[]) => void', description: 'Called when a row changes or is removed.' },
+        { name: 'onAdd', type: '() => void', description: 'Optional add handler. Defaults to appending an empty row.' },
+        { name: 'onRemove', type: '(id: string) => void', description: 'Optional remove handler.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'highlights',
+    title: 'Highlights',
+    description: 'A compact metric tile with a title, a large value, and an optional statistic underneath.',
+    usage: '<HighlightsGrid columns={3}>\n  <Highlights title="Revenue" bigValue="$24.8k" statistic={<Statistic value={2.1} type="percentage" trend="up" showTrend />} />\n</HighlightsGrid>',
+    props: [
+    { component: 'Highlights', props: [
+        { name: 'title', type: 'ReactNode', description: 'Label of the highlights box.' },
+        { name: 'bigValue', type: 'ReactNode', description: 'The primary value, shown prominently.' },
+        { name: 'endIcon', type: 'ReactNode', description: 'Optional icon at the trailing edge of the title row.' },
+        { name: 'statistic', type: 'ReactNode', description: 'Content under the big value, usually a Statistic.' },
+        { name: 'isLoading', type: 'boolean', description: 'Replaces the value with a skeleton.' },
+      ] },
+    { component: 'HighlightsGrid', props: [
+        { name: 'columns', type: 'number', description: 'Number of columns in the grid.' },
+        { name: 'isLoading', type: 'boolean', description: 'Renders a skeleton tile in every column.' },
       ] },
     ],
   },
@@ -362,6 +483,21 @@ export const componentDocs: DocEntry[] = [
     ],
   },
   {
+    slug: 'multi-step-form',
+    title: 'Multi-step Form',
+    description: 'A stepped form built on the Stepper, with back, next and submit actions.',
+    usage: '<MultiStepForm steps={[{ title: "Account" }, { title: "Workspace" }]} onSubmit={save}>\n  <MultiStepFormStep>…</MultiStepFormStep>\n  <MultiStepFormStep>…</MultiStepFormStep>\n</MultiStepForm>',
+    props: [
+    { component: 'MultiStepForm', props: [
+        { name: 'steps', type: 'Step[]', description: 'Labels (and optional descriptions) passed to the Stepper.' },
+        { name: 'current', type: 'number', description: 'Controlled zero-based step index.' },
+        { name: 'defaultCurrent', type: 'number', description: 'Uncontrolled initial step.' },
+        { name: 'onCurrentChange', type: '(index: number) => void', description: 'Called when the step changes.' },
+        { name: 'onSubmit', type: '() => void', description: 'Called when the last step is submitted.' },
+      ] },
+    ],
+  },
+  {
     slug: 'pagination',
     title: 'Pagination',
     description: 'Page controls for long lists and tables.',
@@ -371,6 +507,23 @@ export const componentDocs: DocEntry[] = [
         { name: 'page', type: 'number', description: 'Current page, 1-indexed.' },
         { name: 'pageCount', type: 'number', description: 'Total pages.' },
         { name: 'onPageChange', type: '(page: number) => void', description: 'Called when the page changes.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'pill-tag',
+    title: 'Pill / Tag',
+    description: 'A compact, removable label for status, categories or attachments.',
+    usage: '<Pill tone="highlight" onRemove={() => {}} >Design</Pill>\n<Tag tone="outline" onRemove={() => {}} >Draft</Tag>',
+    props: [
+    { component: 'Pill', props: [
+        { name: 'tone', type: 'neutral | highlight | success | warning | danger | info | outline', description: 'Color of the pill.' },
+        { name: 'size', type: 'small | medium | large', description: 'Height and type size.' },
+        { name: 'onRemove', type: '() => void', description: 'Shows a remove button when provided.' },
+        { name: 'removeLabel', type: 'string', description: 'Accessible name for the remove button.' },
+      ] },
+    { component: 'Tag', props: [
+        { name: '—', type: '—', description: 'Same props as Pill, with slightly squarer corners.' },
       ] },
     ],
   },
@@ -406,6 +559,21 @@ export const componentDocs: DocEntry[] = [
     ],
   },
   {
+    slug: 'question-tool',
+    title: 'Question Tool',
+    description: 'An AI-style question card with single choice, multiple choice or free-text answers.',
+    usage: '<QuestionTool questions={[{ id: "brand", title: "Which brand?", type: "single", options: [{ id: "acme", label: "Acme" }] }]} onSubmitAnswer={console.log} />',
+    props: [
+    { component: 'QuestionTool', props: [
+        { name: 'questions', type: 'QuestionConfig[]', description: 'Prompt list. Each item is single, multi, or text.' },
+        { name: 'questionIndex', type: 'number', description: '1-based index when the host owns navigation.' },
+        { name: 'allowSkip', type: 'boolean', description: 'Shows the skip action. Defaults to true.' },
+        { name: 'onSubmitAnswer', type: '(answer: QuestionAnswer) => void', description: 'Called with the current answer.' },
+        { name: 'onSubmitAnswers', type: '(answers: Record<string, QuestionAnswer>) => void', description: 'Called with every answer on the last question.' },
+      ] },
+    ],
+  },
+  {
     slug: 'radio-group',
     title: 'Radio group',
     description: 'A set of mutually exclusive choices.',
@@ -419,6 +587,33 @@ export const componentDocs: DocEntry[] = [
     { component: 'RadioGroupItem', props: [
         { name: 'value', type: 'string', description: 'The item’s value.' },
         { name: 'disabled', type: 'boolean', description: 'Disables this item.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'scroll-area',
+    title: 'Scroll Area',
+    description: 'A scroll container with a thin custom scrollbar that matches the surface.',
+    usage: '<ScrollArea className="h-48" viewportLabel="Items">\n  {items.map((item) => <p key={item}>{item}</p>)}\n</ScrollArea>',
+    props: [
+    { component: 'ScrollArea', props: [
+        { name: 'orientation', type: 'vertical | horizontal | both', description: 'Which scrollbars to render. Defaults to vertical.' },
+        { name: 'viewportLabel', type: 'string', description: 'Accessible name. Also makes the viewport focusable so keyboard users can scroll it.' },
+      ] },
+    ],
+  },
+  {
+    slug: 'section-header',
+    title: 'Section Header',
+    description: 'A title, subtitle and actions row for a page section.',
+    usage: '<SectionHeader title="Dashboard" subtitle="Your weekly summary" badge={<Badge>Beta</Badge>}>\n  <Button size="small">Export</Button>\n</SectionHeader>',
+    props: [
+    { component: 'SectionHeader', props: [
+        { name: 'title', type: 'ReactNode', description: 'Section title.' },
+        { name: 'subtitle', type: 'ReactNode', description: 'Supporting text below the title.' },
+        { name: 'badge', type: 'ReactNode', description: 'Content shown next to the title.' },
+        { name: 'isTitleLoading', type: 'boolean', description: 'Replaces the title with a skeleton.' },
+        { name: 'isSubtitleLoading', type: 'boolean', description: 'Replaces the subtitle with a skeleton.' },
       ] },
     ],
   },
@@ -515,6 +710,36 @@ export const componentDocs: DocEntry[] = [
     ],
   },
   {
+    slug: 'spinner',
+    title: 'Spinner',
+    description: 'A compact loading indicator, for buttons, inline status and pending views.',
+    usage: '<Spinner size={20} label="Loading projects" />',
+    props: [
+    { component: 'Spinner', props: [
+        { name: 'size', type: 'number', description: 'Size of the spinner in pixels. Defaults to 20.' },
+        { name: 'label', type: 'string', description: 'Accessible name. Defaults to "Loading".' },
+      ] },
+    ],
+  },
+  {
+    slug: 'statistic',
+    title: 'Statistic',
+    description: 'A formatted number with an optional prefix, suffix and trend.',
+    usage: '<Statistic value={24.8} prefix="$" suffix="k" trend="up" showTrend decimals={1} />',
+    props: [
+    { component: 'Statistic', props: [
+        { name: 'value', type: 'number | null', description: 'The numerical value. Null shows emptyText.' },
+        { name: 'type', type: 'number | percentage', description: 'Formatting mode.' },
+        { name: 'trend', type: 'up | down | neutral', description: 'Visual trend indicator.' },
+        { name: 'showTrend', type: 'boolean', description: 'Whether to show the trend icon.' },
+        { name: 'decimals', type: 'number', description: 'Fraction digits to display.' },
+        { name: 'prefix', type: 'string', description: 'Text before the value.' },
+        { name: 'suffix', type: 'string', description: 'Text after the value.' },
+        { name: 'emptyText', type: 'string', description: 'Shown when value is null or undefined.' },
+      ] },
+    ],
+  },
+  {
     slug: 'stepper',
     title: 'Stepper',
     description: 'A short sequence of steps, with a current step and a trail of completed ones.',
@@ -598,7 +823,7 @@ export const componentDocs: DocEntry[] = [
   {
     slug: 'toast',
     title: 'Toast',
-    description: 'A short, fleeting message. Built on Sonner, themed to Melxels tokens.',
+    description: 'A short, fleeting message. Built on Sonner, themed to Handmade tokens.',
     usage: '<Button onClick={() => toast("Draft saved")}>Notify</Button>',
     props: [
     { component: 'toast', props: [
@@ -639,7 +864,22 @@ export const componentDocs: DocEntry[] = [
         { name: 'side', type: 'top | right | bottom | left', description: 'Preferred side.' },
       ] },
     ],
-  }
+  },
+  {
+    slug: 'video-player',
+    title: 'Video Player',
+    description: 'Play a video with a poster, title, description and a compact control bar.',
+    usage: '<VideoPlayer src="/video/studio.mp4" poster="/images/album.jpg" title="Studio sessions" description="A short cut from the session." />',
+    props: [
+    { component: 'VideoPlayer', props: [
+        { name: 'src', type: 'string', description: 'Video file URL.' },
+        { name: 'poster', type: 'string', description: 'Poster image shown before playback.' },
+        { name: 'title', type: 'string', description: 'Title under the frame.' },
+        { name: 'description', type: 'string', description: 'Supporting line under the title.' },
+      ] },
+    ],
+  },
+
 ];
 
 export const docsNav = [
