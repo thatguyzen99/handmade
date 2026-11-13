@@ -20,7 +20,7 @@ export const people = {
     src: "/images/melvin.jpg",
     alt: "Melvin Z. Freeman",
     // Face sits in the upper half; tune this if the source portrait changes.
-    objectPosition: "50% 22%",
+    objectPosition: "44% 12%",
   },
   ama: { name: "Ama Owusu", initials: "AO", src: "/images/people/ama.webp", alt: "Ama Owusu", objectPosition: "50% 30%" },
   kojo: { name: "Kojo Mensah", initials: "KM", src: "/images/people/kojo.webp", alt: "Kojo Mensah", objectPosition: "40% 28%" },
