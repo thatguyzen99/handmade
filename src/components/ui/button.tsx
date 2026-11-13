@@ -28,7 +28,7 @@ const buttonBase = cva(
       },
       // The squeeze gets deeper as the target gets smaller.
       flat: { true: "", false: "" },
-      iconOnly: { true: "px-0 not-disabled:[&_svg]:text-fg-muted has-[>svg:first-child]:pl-0 active:scale-[0.94] disabled:opacity-40", false: "active:scale-[0.97]" },
+      iconOnly: { true: "px-0 has-[>svg:first-child]:pl-0 active:scale-[0.94] disabled:opacity-40", false: "active:scale-[0.97]" },
     },
     compoundVariants: [
       // primary
@@ -45,8 +45,13 @@ const buttonBase = cva(
       { variant: "danger", mode: "soft", class: "bg-danger-subtle text-danger-fg ring-[0.5px] ring-danger-line hover:bg-danger-line" },
       { variant: "danger", mode: "ghost", class: "bg-transparent text-danger hover:bg-danger-subtle" },
       // text link
-      { variant: "link", class: "bg-transparent text-primary underline-offset-4 hover:underline" },
+      { variant: "link", class: "bg-transparent text-brand underline-offset-4 hover:underline" },
       // icon-only squares
+      // Muted glyphs on outlined/ghost icon buttons; solid fills keep their foreground.
+      { iconOnly: true, mode: ["outline", "soft", "ghost", "raised"], class: "not-disabled:[&_svg]:text-fg-muted" },
+      { iconOnly: true, variant: "primary", mode: "solid", class: "not-disabled:[&_svg]:text-primary-foreground" },
+      { iconOnly: true, variant: "neutral", mode: "solid", class: "not-disabled:[&_svg]:text-fg-inverse" },
+      { iconOnly: true, variant: "danger", mode: "solid", class: "not-disabled:[&_svg]:text-white" },
       { iconOnly: true, size: "medium", class: "w-9 max-md:w-11" },
       { iconOnly: true, size: "small", class: "w-8" },
       { iconOnly: true, size: "xsmall", class: "w-7" },

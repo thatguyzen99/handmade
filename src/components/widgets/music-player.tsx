@@ -47,7 +47,7 @@ export function MusicPlayer({ className }: { className?: string }) {
         <Button variant="neutral" mode="ghost" size="small" iconOnly aria-label="Shuffle"><ShuffleIcon /></Button>
         <div className="flex items-center gap-2">
           <Button variant="neutral" mode="ghost" iconOnly aria-label="Previous"><SkipBackIcon className="fill-current" /></Button>
-          <Button iconOnly className="size-12 rounded-full max-md:size-12 not-disabled:[&_svg]:text-[#F7F4EE]" aria-label={playing ? "Pause" : "Play"} onClick={() => setPlaying((p) => !p)}>
+          <Button iconOnly className="size-12 rounded-full max-md:size-12" aria-label={playing ? "Pause" : "Play"} onClick={() => setPlaying((p) => !p)}>
             {playing ? <PauseIcon className="size-5! fill-current" /> : <PlayIcon className="size-5! fill-current" />}
           </Button>
           <Button variant="neutral" mode="ghost" iconOnly aria-label="Next"><SkipForwardIcon className="fill-current" /></Button>

@@ -1,5 +1,6 @@
 import { converter, formatHex, interpolate, wcagContrast, parse } from "culori";
 import { cssFamily, defaultConfig, densityUnit, radiusStops, resolveHeadingWeight, textScale, type Mode, type ThemeConfig, type NeutralName } from "./config";
+import { brandColors } from "./brand";
 
 const toOklch = converter("oklch");
 
@@ -17,8 +18,8 @@ const fixedNeutrals: Record<Exclude<NeutralName, "tinted">, string[]> = {
   gray: ["#FFFFFF", "#FAFAFA", "#F5F5F5", "#E5E5E5", "#D4D4D4", "#A1A1A1", "#737373", "#525252", "#404040", "#262626", "#171717", "#0A0A0A"],
   slate: ["#FFFFFF", "#F8FAFC", "#F1F5F9", "#E2E8F0", "#CAD5E2", "#90A1B9", "#62748E", "#45556C", "#314158", "#1D293D", "#0F172B", "#020618"],
   zinc: ["#FFFFFF", "#FAFAFA", "#F4F4F5", "#E4E4E7", "#D4D4D8", "#9F9FA9", "#71717B", "#52525C", "#3F3F46", "#27272A", "#18181B", "#09090B"],
-  // Melxels stone: cream canvas (#F7F4EE at 100) and navy canvas (#1A1A2E at 900), warm in between.
-  stone: ["#FFFFFF", "#FAF8F3", "#F7F4EE", "#E8E2D6", "#D3CBBA", "#A89F8E", "#7A7368", "#5C564E", "#3E3B48", "#2A2840", "#1A1A2E", "#10101C"],
+  // Melxels stone: cream canvas (#F7F4EE at 100), warm midtones, true near-black canvas (#111111 at 900).
+  stone: ["#FFFFFF", "#FAF8F3", "#F7F4EE", "#E8E2D6", "#D3CBBA", "#A89F8E", "#7A7368", "#5C564E", "#3F3C38", "#2A2826", "#111111", "#0A0A0A"],
 };
 
 const toScale = (values: string[]): Scale =>
@@ -103,8 +104,8 @@ export const stateColors = {
   warning: { fg: "#7E2A0C", base: "#FF6900", line: "#FFD6A7", subtle: "#FFF7ED" }, // orange
   success: { fg: "#0D542B", base: "#00C950", line: "#B9F8CF", subtle: "#F0FDF4" }, // green
   info: { fg: "#1C398E", base: "#2B7FFF", line: "#BEDBFF", subtle: "#EFF6FF" }, // blue
-  highlight: { fg: "#1A1A2E", base: "#FFCA05", line: "#FFE38A", subtle: "#FFF9E0" }, // Melxels yellow
-  caution: { fg: "#1A1A2E", base: "#FAAC18", line: "#FFE3A3", subtle: "#FFF6E0" }, // Melxels orange
+  highlight: { fg: "#0A0A0A", base: "#FFCA05", line: "#FFE38A", subtle: "#FFF9E0" }, // Melxels yellow
+  caution: { fg: "#0A0A0A", base: "#FAAC18", line: "#FFE3A3", subtle: "#FFF6E0" }, // Melxels orange
 } as const;
 export type StateName = keyof typeof stateColors | "neutral";
 
@@ -118,12 +119,14 @@ export function semanticTokens(config: ThemeConfig, mode: "light" | "dark"): Tok
 
   const primary = primaryFor(config, mode);
   const onPrimary = wcagContrast(primary, "#FFFFFF") >= 4.5 ? "#FFFFFF" : n[950];
+  const brand = formatHex(parse(mode === "light" ? brandColors.accent : brandColors.accentDark)!).toUpperCase();
+  const onBrand = wcagContrast(brand, "#FFFFFF") >= 4.5 ? "#FFFFFF" : n[950];
   const L = toOklch(parse(primary))!.l;
   const hoverDir = light ? (L < 0.3 ? 1 : -1) : L > 0.85 ? -1 : 1;
 
   const t: TokenMap = {
     // backgrounds. Light: canvas grey, cards white, wells a touch darker.
-    // Dark: lightness = elevation. The canvas is a dark grey (never black) and each level up is
+    // Dark: lightness = elevation. The canvas is near-black (never crushed #000) and each level up is
     // one shade lighter; wells and trays sit between the canvas and the card they're recessed into.
     "canvas": light ? n[100] : n[900],
     "inverse": pick(950, 0),
@@ -148,8 +151,8 @@ export function semanticTokens(config: ThemeConfig, mode: "light" | "dark"): Tok
     "table-head": light ? n[50] : shift(n[900], DARK_LEVEL_BASE + 0.06),
     // hover tint works on every level: darkens in light mode, lightens in dark mode
     "hover": light ? alpha(n[950], 0.04) : alpha(n[0], 0.06),
-    // the chosen item in a menu: one step past hover, so a highlight never matches it
-    "selected": light ? alpha(n[950], 0.08) : alpha(n[0], 0.12),
+    // the chosen item in a menu or list: a soft accent tint, a step past hover
+    "selected": light ? alpha(brand, 0.1) : alpha(brand, 0.16),
     // text
     "fg": pick(950, 0),
     "fg-muted": pick(600, 400),
@@ -157,7 +160,8 @@ export function semanticTokens(config: ThemeConfig, mode: "light" | "dark"): Tok
     "fg-disabled": pick(300, 600),
     "fg-inverse": pick(0, 950),
     // strokes — translucent white in dark mode so they read the same on every surface
-    "line-focus": pick(950, 0),
+    // Focus rings use the purple accent so they stay distinct from the black/cream primary.
+    "line-focus": brand,
     "line-strong": light ? n[300] : alpha(n[0], 0.18),
     "line": light ? n[200] : alpha(n[0], DARK_LINE_ALPHA),
     "line-inverse": light ? n[0] : shift(n[900], DARK_LEVEL_BASE + 0.03), // matches the card surface
@@ -175,6 +179,13 @@ export function semanticTokens(config: ThemeConfig, mode: "light" | "dark"): Tok
     "primary-subtle-stronger": alpha(primary, 0.24),
     "primary-subtle-strong": alpha(primary, 0.16),
     "primary-subtle": alpha(primary, 0.1),
+    // accent (purple): links, focus, selection, badges, chart-1 — not the solid primary
+    "brand": brand,
+    "brand-hover": mix(brand, onBrand, 0.07),
+    "brand-foreground": onBrand,
+    "brand-subtle-stronger": alpha(brand, 0.24),
+    "brand-subtle-strong": alpha(brand, 0.16),
+    "brand-subtle": alpha(brand, 0.1),
     // static
     "black": "#0A0A0A",
     "white": "#FFFFFF",
@@ -217,8 +228,8 @@ export function semanticTokens(config: ThemeConfig, mode: "light" | "dark"): Tok
     "destructive-foreground": t["white"],
     border: t["line"],
     input: t["line"],
-    ring: t["primary"],
-    "chart-1": t["primary"],
+    ring: t["brand"],
+    "chart-1": t["brand"],
     "chart-2": t["highlight"],
     "chart-3": t["caution"],
     "chart-4": t["success"],
@@ -230,7 +241,7 @@ export function semanticTokens(config: ThemeConfig, mode: "light" | "dark"): Tok
     "sidebar-accent": t["hover"],
     "sidebar-accent-foreground": t["fg"],
     "sidebar-border": t["line"],
-    "sidebar-ring": t["primary"],
+    "sidebar-ring": t["brand"],
   });
 
   return t;
@@ -339,6 +350,7 @@ export function staticTokens(config: ThemeConfig): TokenMap {
   const duration = config.motion?.duration ?? 160;
   t["ease-tactile"] = `cubic-bezier(${ease.join(", ")})`;
   t["duration-enter"] = `${duration}ms`;
+  t["gradient-sunrise"] = "linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%)";
   return t;
 }
 

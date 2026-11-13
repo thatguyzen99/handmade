@@ -3,6 +3,16 @@ export const gradientGroups = [
   {
     title: "Brand",
     gradients: [
+      {
+        id: "sunrise",
+        name: "Sunrise",
+        angle: "90deg",
+        stops: [
+          { color: "#FFE7A3", at: "0%" },
+          { color: "#FFCA05", at: "50%" },
+          { color: "#FAAC18", at: "100%" },
+        ],
+      },
       { id: "solar", name: "Solar", from: "#FFCA05", to: "#FAAC18", dir: "to right" as const },
       { id: "royal", name: "Royal", from: "#1B1A2E", to: "#3D0066", dir: "to right" as const },
     ],
@@ -53,10 +63,32 @@ export const gradients = gradientGroups.flatMap<(typeof gradientGroups)[number][
 
 export type GradientId = (typeof gradients)[number]["id"];
 
+export const sunriseCss = "linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%)";
+
 export function gradientCss(id: GradientId) {
   const g = gradients.find((gradient) => gradient.id === id)!;
-  if ("from" in g && g.from) {
+  if ("stops" in g && g.stops) {
+    return `linear-gradient(${g.angle}, ${g.stops.map((s) => `${s.color} ${s.at}`).join(", ")})`;
+  }
+  if ("from" in g && "to" in g) {
     return `linear-gradient(${g.dir} in oklab, ${g.from}, ${g.to})`;
   }
-  return `linear-gradient(to bottom in oklab, ${g.top}, ${g.bottom})`;
+  if ("top" in g && "bottom" in g) {
+    return `linear-gradient(to bottom in oklab, ${g.top}, ${g.bottom})`;
+  }
+  return sunriseCss;
+}
+
+/** One-line description for the prompt, skill, and Brand captions. */
+export function describeGradient(g: (typeof gradients)[number]) {
+  if ("stops" in g && g.stops) {
+    return `${g.name} ${g.stops.map((s) => `${s.color} ${s.at}`).join(" → ")} (${g.angle})`;
+  }
+  if ("from" in g && "to" in g) {
+    return `${g.name} ${g.from} → ${g.to} (${g.dir})`;
+  }
+  if ("top" in g && "bottom" in g) {
+    return `${g.name} ${g.top} → ${g.bottom}`;
+  }
+  return g.name;
 }

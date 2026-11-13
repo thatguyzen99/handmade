@@ -7,12 +7,12 @@
 export { systemName, systemId, siteUrl, repoUrl, author, upstream } from "./brand";
 
 export const aesthetic =
-  "Minimalism with soul: quiet, precise and tactile, and card-based. Every screen is a very light grey canvas with content grouped into white cards; hairline strokes and generous whitespace do the rest, and color is reserved for intent (actions, status, focus) so it always means something. Depth comes from one crisp, small shadow rather than borders or heavy drop shadows. Typography does the heavy lifting: tight tracking, medium-weight labels and a clear size hierarchy.";
+  "Minimalism with soul: quiet, precise and tactile, and card-based. Every screen is a cream canvas with content grouped into white cards; hairline strokes and generous whitespace do the rest, and color is reserved for intent (actions, status, focus) so it always means something. Depth comes from one crisp, small shadow rather than borders or heavy drop shadows. Typography does the heavy lifting: tight tracking, medium-weight labels and a clear size hierarchy.";
 
 export const principles = [
   {
     title: "Neutral first, color with intent",
-    body: "95% of any screen is neutral tokens (surface/canvas backgrounds, fg-* text, line-* strokes). Primary appears on the single most important action and on focus/selection. Status colors only communicate state, never decoration.",
+    body: "95% of any screen is neutral tokens (surface/canvas backgrounds, fg-* text, line-* strokes). Primary appears on the single most important action. Brand accent (purple, text-brand / bg-brand) is for links, focus, selection and accent badges. Status colors only communicate state, never decoration.",
   },
   {
     title: "Semantic tokens only",
@@ -20,7 +20,7 @@ export const principles = [
   },
   {
     title: "Cards on a canvas",
-    body: "The page background is always bg-canvas (very light grey). All content lives in white cards: rounded-2xl bg-surface shadow-sm. Never put content directly on the canvas except page titles and section headings. Don't nest cards; divide a card's sections with full-bleed h-px bg-line dividers.",
+    body: "The page background is always bg-canvas (cream in the Melxels default). All content lives in white cards: rounded-2xl bg-surface shadow-sm. Never put content directly on the canvas except page titles and section headings. Don't nest cards; divide a card's sections with full-bleed h-px bg-line dividers.",
   },
   {
     title: "One shadow, scaled",
@@ -32,7 +32,7 @@ export const principles = [
   },
   {
     title: "Higher is lighter in dark mode",
-    body: "In dark mode elevation is shown with lightness, not shadow: the page is a dark grey, never black, cards are one shade lighter, and the further above the page something sits, the lighter its surface. Always pick the surface token for the element's height (canvas → surface → raised → floating; subtle for recessed wells) instead of reusing surface everywhere, and never hard-code dark colours. Dark strokes are translucent white so they read the same on every level.",
+    body: "In dark mode elevation is shown with lightness, not shadow: the page is a near-black grey (never crushed #000), cards are one shade lighter, and the further above the page something sits, the lighter its surface. Always pick the surface token for the element's height (canvas → surface → raised → floating; subtle for recessed wells) instead of reusing surface everywhere, and never hard-code dark colours. Dark strokes are translucent white so they read the same on every level.",
   },
   {
     title: "Concentric corners",
@@ -68,6 +68,8 @@ export const colorRules = [
   "Primary tints: bg-primary-subtle for selected rows, primary-subtle-strong and primary-subtle-stronger for focus halos.",
   "Status: use {state}-subtle backgrounds with {state} icons/text for inline messages; solid {state} fills only for small high-signal marks (badges, dots).",
   "Text on primary uses text-primary-foreground (automatically black or white for contrast).",
+  "Brand accent: text-brand, bg-brand and bg-brand-subtle for links, focus, selection and accent badges. Do not reuse bg-primary for those.",
+  "The featured brand gradient is Sunrise (linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%), also --gradient-sunrise). Text on it is always ink (#0A0A0A), never white. Use it as a small accent, not a large background. Solar and Royal remain available.",
 ];
 
 export const doAndDont = {

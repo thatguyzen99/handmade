@@ -1,4 +1,4 @@
-import { gradientGroups } from "@/lib/gradients";
+import { describeGradient, gradientGroups } from "@/lib/gradients";
 import { densities, fontStylesheets, radiusStopNumber, radiusStops, resolveHeadingWeight, textScale, type ThemeConfig } from "./config";
 import { aesthetic, colorRules, doAndDont, extendedRecipes, principles, recipes, systemName, upstream } from "./guidelines";
 import { tailwindTheme } from "./theme";
@@ -60,14 +60,15 @@ ${principles.map((p, i) => `${i + 1}. **${p.title}.** ${p.body}`).join("\n")}
 ## Color usage
 ${colorRules.map((c) => `- ${c}`).join("\n")}
 
-Primary color: \`${primaryFor(config, "light")}\` in light mode, \`${primaryFor(config, "dark")}\` in dark mode. Neutral ramp: ${config.neutral}.
+Primary color: \`${primaryFor(config, "light")}\` in light mode, \`${primaryFor(config, "dark")}\` in dark mode. Neutral ramp: ${config.neutral}. Defaults are ink \`#0A0A0A\` on a cream canvas, and cream on a near-black \`#111111\` canvas in dark mode.
+Accent (links, focus rings, selection, accent badges, chart-1): purple \`#3D0066\` in light mode (\`text-brand\`, \`bg-brand\`, \`bg-brand-subtle\`), lighter \`#B17FEB\` in dark. Do not use the shadcn \`accent\` token for this — that is a hover tint. Yellow \`#FFCA05\` and orange \`#FAAC18\` are secondary highlights. Featured brand gradient: Sunrise; Solar and Royal remain available.
 
 ## Images
-Wherever an image would go (thumbnails, covers, album art, avatars, heroes), use a real photograph when one is available — free-licensed photos from Pexels or Unsplash, stored under \`/images/\`. Prefer Black/African people for portraits and people photos. Any imagery of people or places in Africa must be modern, aspirational and middle-class (professionals, creatives, modern cities like Accra or Monrovia, studios, cafés) — never poverty or hardship. Melvin Z. Freeman's portrait is \`/images/melvin.jpg\` (swap that one file to update every Melvin avatar). When no photo is available, use one of these brand or sky gradients — never a grey box. They stay the same in light and dark mode. Write them as \`linear-gradient(<direction> in oklab, from, to)\`.
-${gradientGroups.map((group) => `- ${group.title}: ${group.gradients.map((g) => "from" in g && (g as { from?: string }).from ? `${g.name} ${(g as { from: string }).from} → ${(g as { to: string }).to} (${(g as { dir: string }).dir})` : `${g.name} ${(g as { top: string }).top} → ${(g as { bottom: string }).bottom}`).join("; ")}`).join("\n")}
+Wherever an image would go (thumbnails, covers, album art, avatars, heroes), use a real photograph when one is available — free-licensed photos from Pexels or Unsplash, stored under \`/images/\`. Prefer Black/African people for portraits and people photos. Any imagery of people or places in Africa must be modern, aspirational and middle-class (professionals, creatives, modern cities like Accra or Monrovia, studios, cafés) — never poverty or hardship. Melvin Z. Freeman's portrait is \`/images/melvin.jpg\` (swap that one file to update every Melvin avatar). When no photo is available, use one of these brand or sky gradients — never a grey box. They stay the same in light and dark mode. Write two-stop gradients as \`linear-gradient(<direction> in oklab, from, to)\`. The featured brand gradient is Sunrise, written exactly as \`linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%)\`; any text over it is ink \`#0A0A0A\`.
+${gradientGroups.map((group) => `- ${group.title}: ${group.gradients.map((g) => describeGradient(g)).join("; ")}`).join("\n")}
 
 ## Brand marks
-The Melxels wordmark and mark live in \`/brand/\` (SVG, recolorable). Use the wordmark in nav and footer (purple \`#3D0066\` in light mode, cream \`#F7F4EE\` in dark). Use the mark as the app icon; in dark mode fill it cream so the navy end of the royal gradient does not vanish on a navy canvas.
+The Melxels wordmark and solid mark live in \`/brand/\` (SVG, recolorable via currentColor). Use them in nav and footer (ink \`#0A0A0A\` in light mode, cream \`#F7F4EE\` in dark). The app icon and favicon is the outline mark with a Sunrise gold outer stroke and a white letter interior (\`/brand/melxels-icon-outline.png\`). Purple and royal-gradient marks are accent alternates, not the default logo. Navy \`#1A1A2E\` is an optional accent and the start of Royal, not the dark canvas.
 
 ## Motion
 Easing and entrance duration are theme tokens, tunable in the Animation Tuner: \`--ease-tactile: cubic-bezier(${config.motion.ease.join(", ")})\` and \`--duration-enter: ${config.motion.duration}ms\`.
@@ -87,7 +88,7 @@ rounded-xs ${r.xs} · rounded-sm ${r.sm} · rounded-md ${r.md} · rounded-lg ${r
 - Alerts, menu items' containers: rounded-xl. Cards and popovers: rounded-2xl. Dialogs and sheets: rounded-3xl.
 
 ## Layout
-Card-based: the page is \`bg-canvas\` (very light grey) and every block of content is a white card (\`bg-surface\`). Page titles and section headings sit on the canvas; everything else goes in cards.
+Card-based: the page is \`bg-canvas\` (cream in the Melxels default, near-black in dark mode) and every block of content is a white card (\`bg-surface\`). Page titles and section headings sit on the canvas; everything else goes in cards.
 
 ## Spacing (${density.label.toLowerCase()} density — ${unit}pt grid)
 Tailwind's spacing base is ${unit}px (\`--spacing: var(--ds-spacing)\`, set to ${unit}px in the tokens). Every padding, margin, gap and control height is a whole multiple of it — never half steps (\`p-1.5\`, \`gap-2.5\`, \`px-3.5\`) or arbitrary pixel values. Changing density only changes the unit, so always use the step classes below.

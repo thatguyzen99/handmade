@@ -8,7 +8,7 @@ description: Applies the Melxels design system (colors, type, radius, spacing, s
 You are building user interfaces with the Melxels design system (Built on Cards by Oliur (MIT)). Apply every rule below to all UI you create or edit in this project. When something isn't covered, extrapolate from these principles rather than falling back to generic defaults.
 
 ## Aesthetic
-Minimalism with soul: quiet, precise and tactile, and card-based. Every screen is a very light grey canvas with content grouped into white cards; hairline strokes and generous whitespace do the rest, and color is reserved for intent (actions, status, focus) so it always means something. Depth comes from one crisp, small shadow rather than borders or heavy drop shadows. Typography does the heavy lifting: tight tracking, medium-weight labels and a clear size hierarchy.
+Minimalism with soul: quiet, precise and tactile, and card-based. Every screen is a cream canvas with content grouped into white cards; hairline strokes and generous whitespace do the rest, and color is reserved for intent (actions, status, focus) so it always means something. Depth comes from one crisp, small shadow rather than borders or heavy drop shadows. Typography does the heavy lifting: tight tracking, medium-weight labels and a clear size hierarchy.
 
 ## Stack & conventions
 - React + Tailwind CSS v4. Components follow **shadcn/ui** conventions: Radix UI primitives (`radix-ui`), variants with `class-variance-authority`, a `cn()` helper (clsx + tailwind-merge), `data-slot` attributes, `asChild` via Radix Slot. Colors and type come only from Melxels's semantic tokens (defined below).
@@ -23,12 +23,12 @@ const twMerge = extendTailwindMerge({ extend: { classGroups: { "font-size": [{ t
 ```
 
 ## Principles
-1. **Neutral first, color with intent.** 95% of any screen is neutral tokens (surface/canvas backgrounds, fg-* text, line-* strokes). Primary appears on the single most important action and on focus/selection. Status colors only communicate state, never decoration.
+1. **Neutral first, color with intent.** 95% of any screen is neutral tokens (surface/canvas backgrounds, fg-* text, line-* strokes). Primary appears on the single most important action. Brand accent (purple, text-brand / bg-brand) is for links, focus, selection and accent badges. Status colors only communicate state, never decoration.
 2. **Semantic tokens only.** Never use raw hex values or Tailwind's default palette. Use semantic tokens (bg-surface, text-fg-muted, ring-line). They flip automatically in dark mode.
-3. **Cards on a canvas.** The page background is always bg-canvas (very light grey). All content lives in white cards: rounded-2xl bg-surface shadow-sm. Never put content directly on the canvas except page titles and section headings. Don't nest cards; divide a card's sections with full-bleed h-px bg-line dividers.
+3. **Cards on a canvas.** The page background is always bg-canvas (cream in the Melxels default). All content lives in white cards: rounded-2xl bg-surface shadow-sm. Never put content directly on the canvas except page titles and section headings. Don't nest cards; divide a card's sections with full-bleed h-px bg-line dividers.
 4. **One shadow, scaled.** Elevation is a single shadow scaled into a ladder: shadow-xs on resting inputs, shadow-sm on cards, shadow-md on floating layers (popovers, toasts), shadow-lg on dialogs. Buttons, badges and menus sit outside the ladder with their own crisp tokens: shadow-button, shadow-primary, shadow-inverse, shadow-danger, shadow-badge and shadow-menu, a fine ring and a tight drop in light mode, a solid 0.5px outline and a black drop in dark. Shadowed surfaces (cards, popovers, dialogs) get no border or ring: the shadow alone defines the edge, and a stroke on top of it reads as a muddy double edge. Rings are for controls (inputs, checkboxes) that carry no real shadow. Never invent new shadows.
 5. **One radius, scaled.** Every corner derives from a single base radius. Buttons use their own tokens, rounded-button (medium) and rounded-button-sm (compact), which either follow the scale or are pills. Other controls use rounded-lg (base), compact controls rounded-md, small marks rounded-xs/sm, cards rounded-2xl, dialogs rounded-3xl. People (avatars) and toggles are always rounded-full.
-6. **Higher is lighter in dark mode.** In dark mode elevation is shown with lightness, not shadow: the page is a dark grey, never black, cards are one shade lighter, and the further above the page something sits, the lighter its surface. Always pick the surface token for the element's height (canvas → surface → raised → floating; subtle for recessed wells) instead of reusing surface everywhere, and never hard-code dark colours. Dark strokes are translucent white so they read the same on every level.
+6. **Higher is lighter in dark mode.** In dark mode elevation is shown with lightness, not shadow: the page is a near-black grey (never crushed #000), cards are one shade lighter, and the further above the page something sits, the lighter its surface. Always pick the surface token for the element's height (canvas → surface → raised → floating; subtle for recessed wells) instead of reusing surface everywhere, and never hard-code dark colours. Dark strokes are translucent white so they read the same on every level.
 7. **Concentric corners.** When a rounded element sits inside another with a small gap (segmented triggers in their tray, menu items in a popover, content hugging a card's corner), the inner radius is the outer radius minus the gap so both curves share a centre. Put rounded-parent-{size} on the container and rounded-concentric-{n} on the child, where n is the container's padding in spacing steps (p-2 → rounded-concentric-2). Never give a nested element the same radius as its container.
 8. **Type tokens, not font utilities.** Set type with the named styles (text-heading-4, text-ui-sm, text-body-sm, text-overline-xs) which bundle size, line-height, tracking and weight. Do not combine them with font-size, leading, tracking or font-weight utilities. Never set words or sentences in full uppercase unless the user asks for it.
 9. **Numbers line up.** Any number that gets compared, scanned or updates in place uses tabular-nums so its digits share one width and columns, totals and timers don't jitter: tables, stat and revenue cards, prices, deltas, chart axes and tooltips, timestamps, durations and counters. Put it on the table or the container rather than every cell. Running text ("3 new messages") keeps proportional figures. Monospace text is already tabular.
@@ -44,19 +44,22 @@ const twMerge = extendTailwindMerge({ extend: { classGroups: { "font-size": [{ t
 - Primary tints: bg-primary-subtle for selected rows, primary-subtle-strong and primary-subtle-stronger for focus halos.
 - Status: use {state}-subtle backgrounds with {state} icons/text for inline messages; solid {state} fills only for small high-signal marks (badges, dots).
 - Text on primary uses text-primary-foreground (automatically black or white for contrast).
+- Brand accent: text-brand, bg-brand and bg-brand-subtle for links, focus, selection and accent badges. Do not reuse bg-primary for those.
+- The featured brand gradient is Sunrise (linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%), also --gradient-sunrise). Text on it is always ink (#0A0A0A), never white. Use it as a small accent, not a large background. Solar and Royal remain available.
 
-Primary color: `#3D0066` in light mode, `#B17FEB` in dark mode. Neutral ramp: stone.
+Primary color: `#0A0A0A` in light mode, `#F7F4EE` in dark mode. Neutral ramp: stone. Defaults are ink `#0A0A0A` on a cream canvas, and cream on a near-black `#111111` canvas in dark mode.
+Accent (links, focus rings, selection, accent badges, chart-1): purple `#3D0066` in light mode (`text-brand`, `bg-brand`, `bg-brand-subtle`), lighter `#B17FEB` in dark. Do not use the shadcn `accent` token for this — that is a hover tint. Yellow `#FFCA05` and orange `#FAAC18` are secondary highlights. Featured brand gradient: Sunrise; Solar and Royal remain available.
 
 ## Images
-Wherever an image would go (thumbnails, covers, album art, avatars, heroes), use a real photograph when one is available — free-licensed photos from Pexels or Unsplash, stored under `/images/`. Prefer Black/African people for portraits and people photos. Any imagery of people or places in Africa must be modern, aspirational and middle-class (professionals, creatives, modern cities like Accra or Monrovia, studios, cafés) — never poverty or hardship. Melvin Z. Freeman's portrait is `/images/melvin.jpg` (swap that one file to update every Melvin avatar). When no photo is available, use one of these brand or sky gradients — never a grey box. They stay the same in light and dark mode. Write them as `linear-gradient(<direction> in oklab, from, to)`.
-- Brand: Solar #FFCA05 → #FAAC18 (to right); Royal #1B1A2E → #3D0066 (to right)
+Wherever an image would go (thumbnails, covers, album art, avatars, heroes), use a real photograph when one is available — free-licensed photos from Pexels or Unsplash, stored under `/images/`. Prefer Black/African people for portraits and people photos. Any imagery of people or places in Africa must be modern, aspirational and middle-class (professionals, creatives, modern cities like Accra or Monrovia, studios, cafés) — never poverty or hardship. Melvin Z. Freeman's portrait is `/images/melvin.jpg` (swap that one file to update every Melvin avatar). When no photo is available, use one of these brand or sky gradients — never a grey box. They stay the same in light and dark mode. Write two-stop gradients as `linear-gradient(<direction> in oklab, from, to)`. The featured brand gradient is Sunrise, written exactly as `linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%)`; any text over it is ink `#0A0A0A`.
+- Brand: Sunrise #FFE7A3 0% → #FFCA05 50% → #FAAC18 100% (90deg); Solar #FFCA05 → #FAAC18 (to right); Royal #1B1A2E → #3D0066 (to right)
 - Morning: First Light #A9C8E8 → #FBDCC8; Dawn Rose #B7B4DC → #F9CFCB; Soft Haze #D5DEE8 → #F7E8D8; Golden Hour #BFD9E6 → #FDE3A8; Mist #C9D8DE → #EEF1EA
 - Day: Clear Sky #5BA4EC → #CFE7F8; High Noon #2F86E0 → #9AD0F5; Summer #49B4EA → #E6F6FB; Thin Cloud #9CC4E8 → #F1F5F8; Coastal #4FA3C7 → #D4EFE6
 - Sunset: Dusk #6C63A8 → #F8A878; Ember #B4506A → #F9B26C; Coral #E8748A → #FCC98F; Afterglow #3E4A89 → #EE8D83; Last Light #8D5FA6 → #F6C1A0
 - Night: Midnight #0B1026 → #2C3A68; Deep Blue #050A1C → #14305C; Blue Hour #1C2A5A → #5A6CA8; Aubergine #120C2C → #45305F; Moonlit #10181F → #3A4C5C
 
 ## Brand marks
-The Melxels wordmark and mark live in `/brand/` (SVG, recolorable). Use the wordmark in nav and footer (purple `#3D0066` in light mode, cream `#F7F4EE` in dark). Use the mark as the app icon; in dark mode fill it cream so the navy end of the royal gradient does not vanish on a navy canvas.
+The Melxels wordmark and solid mark live in `/brand/` (SVG, recolorable via currentColor). Use them in nav and footer (ink `#0A0A0A` in light mode, cream `#F7F4EE` in dark). The app icon and favicon is the outline mark with a Sunrise gold outer stroke and a white letter interior (`/brand/melxels-icon-outline.png`). Purple and royal-gradient marks are accent alternates, not the default logo. Navy `#1A1A2E` is an optional accent and the start of Royal, not the dark canvas.
 
 ## Motion
 Easing and entrance duration are theme tokens, tunable in the Animation Tuner: `--ease-tactile: cubic-bezier(0.23, 1, 0.32, 1)` and `--duration-enter: 160ms`.
@@ -92,7 +95,7 @@ rounded-xs 4px · rounded-sm 6px · rounded-md 8px · rounded-lg 10px · rounded
 - Alerts, menu items' containers: rounded-xl. Cards and popovers: rounded-2xl. Dialogs and sheets: rounded-3xl.
 
 ## Layout
-Card-based: the page is `bg-canvas` (very light grey) and every block of content is a white card (`bg-surface`). Page titles and section headings sit on the canvas; everything else goes in cards.
+Card-based: the page is `bg-canvas` (cream in the Melxels default, near-black in dark mode) and every block of content is a white card (`bg-surface`). Page titles and section headings sit on the canvas; everything else goes in cards.
 
 ## Spacing (default density — 4pt grid)
 Tailwind's spacing base is 4px (`--spacing: var(--ds-spacing)`, set to 4px in the tokens). Every padding, margin, gap and control height is a whole multiple of it — never half steps (`p-1.5`, `gap-2.5`, `px-3.5`) or arbitrary pixel values. Changing density only changes the unit, so always use the step classes below.
@@ -431,21 +434,21 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --neutral-400: #A89F8E;
   --neutral-500: #7A7368;
   --neutral-600: #5C564E;
-  --neutral-700: #3E3B48;
-  --neutral-800: #2A2840;
-  --neutral-900: #1A1A2E;
-  --neutral-950: #10101C;
-  --primary-50: #F9F4FF;
-  --primary-100: #F4E5FF;
-  --primary-200: #E9D2FF;
-  --primary-300: #D7B6FF;
-  --primary-400: #BE93F2;
-  --primary-500: #3D0066;
-  --primary-600: #2F0054;
-  --primary-700: #220040;
-  --primary-800: #16002E;
-  --primary-900: #0E0021;
-  --primary-950: #080016;
+  --neutral-700: #3F3C38;
+  --neutral-800: #2A2826;
+  --neutral-900: #111111;
+  --neutral-950: #0A0A0A;
+  --primary-50: #F7F7F7;
+  --primary-100: #EDEDED;
+  --primary-200: #DEDEDE;
+  --primary-300: #C7C7C7;
+  --primary-400: #ABABAB;
+  --primary-500: #0A0A0A;
+  --primary-600: #060606;
+  --primary-700: #030303;
+  --primary-800: #010101;
+  --primary-900: #010101;
+  --primary-950: #000000;
   --ds-font-sans: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif;
   --ds-font-display: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif;
   --ds-font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -463,9 +466,10 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --ds-radius-button-sm: 8px;
   --ease-tactile: cubic-bezier(0.23, 1, 0.32, 1);
   --duration-enter: 160ms;
+  --gradient-sunrise: linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%);
   --canvas: #F7F4EE;
-  --inverse: #10101C;
-  --inverse-hover: #21212C;
+  --inverse: #0A0A0A;
+  --inverse-hover: #1B1B1B;
   --track-strong: #D3CBBA;
   --track: #E8E2D6;
   --subtle: #FAF8F3;
@@ -478,33 +482,39 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --control-hover: #FAF8F3;
   --field-line: #E8E2D6;
   --table-head: #FAF8F3;
-  --hover: rgb(16 16 28 / 0.04);
-  --selected: rgb(16 16 28 / 0.08);
-  --fg: #10101C;
+  --hover: rgb(10 10 10 / 0.04);
+  --selected: rgb(61 0 102 / 0.1);
+  --fg: #0A0A0A;
   --fg-muted: #5C564E;
   --fg-subtle: #A89F8E;
   --fg-disabled: #D3CBBA;
   --fg-inverse: #FFFFFF;
-  --line-focus: #10101C;
+  --line-focus: #3D0066;
   --line-strong: #D3CBBA;
   --line: #E8E2D6;
   --line-inverse: #FFFFFF;
-  --primary: #3D0066;
-  --primary-hover: #4B1271;
-  --primary-active: #633391;
+  --primary: #0A0A0A;
+  --primary-hover: #1B1B1B;
+  --primary-active: #2A2A2A;
   --primary-foreground: #FFFFFF;
-  --switch-on: #3D0066;
-  --switch-on-hover: #4F1C7B;
-  --primary-subtle-stronger: rgb(61 0 102 / 0.24);
-  --primary-subtle-strong: rgb(61 0 102 / 0.16);
-  --primary-subtle: rgb(61 0 102 / 0.1);
+  --switch-on: #0A0A0A;
+  --switch-on-hover: #191919;
+  --primary-subtle-stronger: rgb(10 10 10 / 0.24);
+  --primary-subtle-strong: rgb(10 10 10 / 0.16);
+  --primary-subtle: rgb(10 10 10 / 0.1);
+  --brand: #3D0066;
+  --brand-hover: #4B1271;
+  --brand-foreground: #FFFFFF;
+  --brand-subtle-stronger: rgb(61 0 102 / 0.24);
+  --brand-subtle-strong: rgb(61 0 102 / 0.16);
+  --brand-subtle: rgb(61 0 102 / 0.1);
   --black: #0A0A0A;
   --white: #FFFFFF;
-  --neutral-fg: #2A2840;
+  --neutral-fg: #2A2826;
   --neutral: #7A7368;
   --neutral-line: #E8E2D6;
   --neutral-subtle: #F7F4EE;
-  --overlay: rgb(16 16 28 / 0.24);
+  --overlay: rgb(10 10 10 / 0.24);
   --danger: #FB2C36;
   --danger-fg: #82181A;
   --danger-line: #FFC9C9;
@@ -522,11 +532,11 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --info-line: #BEDBFF;
   --info-subtle: #EFF6FF;
   --highlight: #FFCA05;
-  --highlight-fg: #1A1A2E;
+  --highlight-fg: #0A0A0A;
   --highlight-line: #FFE38A;
   --highlight-subtle: #FFF9E0;
   --caution: #FAAC18;
-  --caution-fg: #1A1A2E;
+  --caution-fg: #0A0A0A;
   --caution-line: #FFE3A3;
   --caution-subtle: #FFF6E0;
   --ds-shadow-xs: 0 0.5px 1.5px 0px rgb(0 0 0 / 0.07);
@@ -535,24 +545,24 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --ds-shadow-lg: 0 8px 24px 0px rgb(0 0 0 / 0.22), 0 0 0 1px rgb(14 18 27 / 0.04);
   --ds-shadow-field: 0 0.5px 1.5px 0px rgb(0 0 0 / 0.07);
   --ds-shadow-control: 0 0.5px 1.5px 0px rgb(0 0 0 / 0.07);
-  --ds-shadow-button: 0 0 0 1px rgb(16 16 28 / 0.08), 0 1px 2px 0 rgb(16 16 28 / 0.12);
-  --ds-shadow-primary: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #3D0066, 0 1px 2px 0 rgb(16 16 28 / 0.24), 0 3px 6px -2px rgb(16 16 28 / 0.2);
-  --ds-shadow-inverse: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #10101C, 0 1px 2px 0 rgb(16 16 28 / 0.24), 0 3px 6px -2px rgb(16 16 28 / 0.2);
-  --ds-shadow-danger: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #FB2C36, 0 1px 2px 0 rgb(16 16 28 / 0.24), 0 3px 6px -2px rgb(16 16 28 / 0.2);
+  --ds-shadow-button: 0 0 0 1px rgb(10 10 10 / 0.08), 0 1px 2px 0 rgb(10 10 10 / 0.12);
+  --ds-shadow-primary: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #0A0A0A, 0 1px 2px 0 rgb(10 10 10 / 0.24), 0 3px 6px -2px rgb(10 10 10 / 0.2);
+  --ds-shadow-inverse: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #0A0A0A, 0 1px 2px 0 rgb(10 10 10 / 0.24), 0 3px 6px -2px rgb(10 10 10 / 0.2);
+  --ds-shadow-danger: inset 0 1px 0 0 rgb(255 255 255 / 0.16), 0 0 0 1px #FB2C36, 0 1px 2px 0 rgb(10 10 10 / 0.24), 0 3px 6px -2px rgb(10 10 10 / 0.2);
   --ds-shadow-badge: 0 0 0 1px color-mix(in srgb, currentColor 14%, transparent), 0 1px 2px 0 color-mix(in srgb, currentColor 16%, transparent);
-  --ds-shadow-menu: 0 0 0 1px rgb(16 16 28 / 0.08), 0 1px 2px 0 rgb(16 16 28 / 0.12), 0 4px 8px -4px rgb(16 16 28 / 0.16);
+  --ds-shadow-menu: 0 0 0 1px rgb(10 10 10 / 0.08), 0 1px 2px 0 rgb(10 10 10 / 0.12), 0 4px 8px -4px rgb(10 10 10 / 0.16);
   --background: #F7F4EE;
-  --foreground: #10101C;
+  --foreground: #0A0A0A;
   --card: #FFFFFF;
-  --card-foreground: #10101C;
+  --card-foreground: #0A0A0A;
   --popover: #FFFFFF;
-  --popover-foreground: #10101C;
+  --popover-foreground: #0A0A0A;
   --secondary: #FAF8F3;
-  --secondary-foreground: #10101C;
+  --secondary-foreground: #0A0A0A;
   --muted-foreground: #5C564E;
   --muted: #FAF8F3;
-  --accent: rgb(16 16 28 / 0.04);
-  --accent-foreground: #10101C;
+  --accent: rgb(10 10 10 / 0.04);
+  --accent-foreground: #0A0A0A;
   --destructive: #FB2C36;
   --destructive-foreground: #FFFFFF;
   --border: #E8E2D6;
@@ -564,67 +574,73 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --chart-4: #00C950;
   --chart-5: #2B7FFF;
   --sidebar: #FFFFFF;
-  --sidebar-foreground: #10101C;
-  --sidebar-primary: #3D0066;
+  --sidebar-foreground: #0A0A0A;
+  --sidebar-primary: #0A0A0A;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: rgb(16 16 28 / 0.04);
-  --sidebar-accent-foreground: #10101C;
+  --sidebar-accent: rgb(10 10 10 / 0.04);
+  --sidebar-accent-foreground: #0A0A0A;
   --sidebar-border: #E8E2D6;
   --sidebar-ring: #3D0066;
 }
 
 .dark {
-  --primary-50: #F9F4FF;
-  --primary-100: #F4E5FF;
-  --primary-200: #EAD1FF;
-  --primary-300: #D7B5FF;
-  --primary-400: #BF92F6;
-  --primary-500: #B17FEB;
-  --primary-600: #8A5BBE;
-  --primary-700: #673F92;
-  --primary-800: #4A296C;
-  --primary-900: #361C51;
-  --primary-950: #26123A;
-  --canvas: #1A1A2E;
+  --primary-50: #F7F7F6;
+  --primary-100: #F7F6F4;
+  --primary-200: #F7F5F2;
+  --primary-300: #F7F5F1;
+  --primary-400: #F7F4EF;
+  --primary-500: #F7F4EE;
+  --primary-600: #BEBBB6;
+  --primary-700: #8E8B87;
+  --primary-800: #666460;
+  --primary-900: #4B4946;
+  --primary-950: #363533;
+  --canvas: #111111;
   --inverse: #FFFFFF;
-  --inverse-hover: #EEEEEF;
+  --inverse-hover: #EEEEEE;
   --track-strong: #5C564E;
-  --track: #3E3B48;
-  --subtle: #232438;
-  --tray: #1A1A2E;
-  --surface: #28283E;
-  --raised: #2F3046;
-  --floating: #37384E;
-  --field: #212136;
-  --control: #2F3046;
-  --control-hover: #37384E;
+  --track: #3F3C38;
+  --subtle: #1A1A1A;
+  --tray: #111111;
+  --surface: #1F1F1F;
+  --raised: #262626;
+  --floating: #2D2D2D;
+  --field: #181818;
+  --control: #262626;
+  --control-hover: #2D2D2D;
   --field-line: transparent;
-  --table-head: #2F3046;
+  --table-head: #262626;
   --hover: rgb(255 255 255 / 0.06);
-  --selected: rgb(255 255 255 / 0.12);
+  --selected: rgb(177 127 235 / 0.16);
   --fg: #FFFFFF;
   --fg-muted: #A89F8E;
   --fg-subtle: #7A7368;
   --fg-disabled: #5C564E;
-  --fg-inverse: #10101C;
-  --line-focus: #FFFFFF;
+  --fg-inverse: #0A0A0A;
+  --line-focus: #B17FEB;
   --line-strong: rgb(255 255 255 / 0.18);
   --line: rgb(255 255 255 / 0.07);
-  --line-inverse: #28283E;
-  --primary: #B17FEB;
-  --primary-hover: #A677DD;
-  --primary-active: #DEABFF;
-  --primary-foreground: #10101C;
-  --switch-on: #B17FEB;
-  --switch-on-hover: #C795FF;
-  --primary-subtle-stronger: rgb(177 127 235 / 0.24);
-  --primary-subtle-strong: rgb(177 127 235 / 0.16);
-  --primary-subtle: rgb(177 127 235 / 0.1);
+  --line-inverse: #1F1F1F;
+  --primary: #F7F4EE;
+  --primary-hover: #E6E4DE;
+  --primary-active: #C9C6C0;
+  --primary-foreground: #0A0A0A;
+  --switch-on: #7A7368;
+  --switch-on-hover: #8F887C;
+  --primary-subtle-stronger: rgb(247 244 238 / 0.24);
+  --primary-subtle-strong: rgb(247 244 238 / 0.16);
+  --primary-subtle: rgb(247 244 238 / 0.1);
+  --brand: #B17FEB;
+  --brand-hover: #A577DB;
+  --brand-foreground: #0A0A0A;
+  --brand-subtle-stronger: rgb(177 127 235 / 0.24);
+  --brand-subtle-strong: rgb(177 127 235 / 0.16);
+  --brand-subtle: rgb(177 127 235 / 0.1);
   --black: #0A0A0A;
   --white: #FFFFFF;
   --neutral-fg: #E8E2D6;
   --neutral: #7A7368;
-  --neutral-line: #3E3B48;
+  --neutral-line: #3F3C38;
   --neutral-subtle: rgb(255 255 255 / 0.1);
   --overlay: rgb(0 0 0 / 0.6);
   --danger: #FB2C36;
@@ -652,27 +668,27 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --caution-line: rgb(250 172 24 / 0.24);
   --caution-subtle: rgb(250 172 24 / 0.16);
   --ds-shadow-xs: 0 0.5px 1.5px 0px rgb(0 0 0 / 0.28);
-  --ds-shadow-sm: 0 0 0 1px #37374C, 0 1px 3px 0px rgb(0 0 0 / 0.32);
-  --ds-shadow-md: 0 0 0 1px #45465A, 0 4px 12px 0px rgb(0 0 0 / 0.56);
-  --ds-shadow-lg: 0 0 0 1px #45465A, 0 8px 24px 0px rgb(0 0 0 / 0.8);
+  --ds-shadow-sm: 0 0 0 1px #2F2F2F, 0 1px 3px 0px rgb(0 0 0 / 0.32);
+  --ds-shadow-md: 0 0 0 1px #3C3C3C, 0 4px 12px 0px rgb(0 0 0 / 0.56);
+  --ds-shadow-lg: 0 0 0 1px #3C3C3C, 0 8px 24px 0px rgb(0 0 0 / 0.8);
   --ds-shadow-field: inset 0 1px 3px 0px rgb(0 0 0 / 0.32);
   --ds-shadow-control: 0 1px 3px 0px rgb(0 0 0 / 0.32);
-  --ds-shadow-button: 0 0 0 0.5px #47475F, 0 1px 2px 0 rgb(0 0 0 / 0.5);
-  --ds-shadow-primary: 0 0 0 0.5px #B17FEB, 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --ds-shadow-button: 0 0 0 0.5px #3C3C3C, 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --ds-shadow-primary: 0 0 0 0.5px #F7F4EE, 0 1px 2px 0 rgb(0 0 0 / 0.5);
   --ds-shadow-inverse: 0 0 0 0.5px #FFFFFF, 0 1px 2px 0 rgb(0 0 0 / 0.5);
   --ds-shadow-danger: 0 0 0 0.5px #FB2C36, 0 1px 2px 0 rgb(0 0 0 / 0.5);
   --ds-shadow-badge: 0 0 0 0.5px color-mix(in srgb, currentColor 34%, #000), 0 1px 2px 0 rgb(0 0 0 / 0.5);
-  --ds-shadow-menu: 0 0 0 0.5px #47475F, 0 1px 2px 0 rgb(0 0 0 / 0.5), 0 4px 8px -4px rgb(0 0 0 / 0.5);
-  --background: #1A1A2E;
+  --ds-shadow-menu: 0 0 0 0.5px #3C3C3C, 0 1px 2px 0 rgb(0 0 0 / 0.5), 0 4px 8px -4px rgb(0 0 0 / 0.5);
+  --background: #111111;
   --foreground: #FFFFFF;
-  --card: #28283E;
+  --card: #1F1F1F;
   --card-foreground: #FFFFFF;
-  --popover: #37384E;
+  --popover: #2D2D2D;
   --popover-foreground: #FFFFFF;
-  --secondary: #232438;
+  --secondary: #1A1A1A;
   --secondary-foreground: #FFFFFF;
   --muted-foreground: #A89F8E;
-  --muted: #232438;
+  --muted: #1A1A1A;
   --accent: rgb(255 255 255 / 0.06);
   --accent-foreground: #FFFFFF;
   --destructive: #FB2C36;
@@ -685,10 +701,10 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --chart-3: #FAAC18;
   --chart-4: #00C950;
   --chart-5: #2B7FFF;
-  --sidebar: #28283E;
+  --sidebar: #1F1F1F;
   --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #B17FEB;
-  --sidebar-primary-foreground: #10101C;
+  --sidebar-primary: #F7F4EE;
+  --sidebar-primary-foreground: #0A0A0A;
   --sidebar-accent: rgb(255 255 255 / 0.06);
   --sidebar-accent-foreground: #FFFFFF;
   --sidebar-border: rgb(255 255 255 / 0.07);
@@ -766,6 +782,13 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --color-primary-subtle-stronger: var(--primary-subtle-stronger);
   --color-primary-subtle-strong: var(--primary-subtle-strong);
   --color-primary-subtle: var(--primary-subtle);
+
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-subtle-stronger: var(--brand-subtle-stronger);
+  --color-brand-subtle-strong: var(--brand-subtle-strong);
+  --color-brand-subtle: var(--brand-subtle);
 
   --color-black: var(--black);
   --color-white: var(--white);
@@ -948,12 +971,13 @@ Put this in the global stylesheet (e.g. `app/globals.css`). It is the complete t
   --shadow-sm: var(--ds-shadow-sm);
   --shadow-md: var(--ds-shadow-md);
   --shadow-lg: var(--ds-shadow-lg);
-  --shadow-focus-primary: 0 0 0 2px var(--surface), 0 0 0 4px var(--primary-subtle-stronger);
-  --shadow-focus: 0 0 0 2px var(--surface), 0 0 0 4px rgb(161 161 161 / 0.24);
+  --shadow-focus-primary: 0 0 0 2px var(--surface), 0 0 0 4px var(--brand-subtle-stronger);
+  --shadow-focus: 0 0 0 2px var(--surface), 0 0 0 4px var(--brand-subtle-stronger);
   --shadow-focus-danger: 0 0 0 2px var(--surface), 0 0 0 4px rgb(251 44 54 / 0.24);
 
   --ease-tactile: cubic-bezier(0.23, 1, 0.32, 1);
   --duration-enter: 160ms;
+  --gradient-sunrise: linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%);
   --animate-in: ds-in var(--duration-enter) var(--ease-tactile);
   --animate-menu-in: ds-menu-in 150ms var(--ease-tactile);
   --animate-menu-out: ds-menu-out 120ms var(--ease-tactile) forwards;

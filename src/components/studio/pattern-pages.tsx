@@ -226,7 +226,7 @@ function MarketingPattern() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
             <Card key={f.title} className="space-y-3 p-6">
-              <span className="flex size-10 items-center justify-center rounded-full bg-primary-subtle text-primary [&_svg]:size-5">{f.icon}</span>
+              <span className="flex size-10 items-center justify-center rounded-full bg-brand-subtle text-brand [&_svg]:size-5">{f.icon}</span>
               <div className="text-ui-md text-fg">{f.title}</div>
               <p className="text-body-sm text-fg-muted">{f.body}</p>
             </Card>
@@ -286,7 +286,7 @@ function AuthPattern() {
               <Button className="w-full">Verify and sign in</Button>
             </TabsContent>
           </Tabs>
-          <p className="text-center text-body-sm text-fg-muted">New here? <a href="#pattern-onboarding" className="text-primary underline-offset-4 hover:underline">Create an account</a></p>
+          <p className="text-center text-body-sm text-fg-muted">New here? <a href="#pattern-onboarding" className="text-brand underline-offset-4 hover:underline">Create an account</a></p>
         </div>
       </Card>
     </PatternFrame>
@@ -391,7 +391,7 @@ function SettingsPattern() {
               aria-current={section === n.label ? "page" : undefined}
               className={cn(
                 "flex shrink-0 items-center gap-3 rounded-lg px-3 py-2 text-left text-ui-sm outline-none transition-colors focus-visible:shadow-focus [&_svg]:size-4",
-                section === n.label ? "bg-surface text-fg shadow-sm [&_svg]:text-primary" : "text-fg-muted hover:bg-hover hover:text-fg [&_svg]:text-fg-subtle",
+                section === n.label ? "bg-surface text-fg shadow-sm [&_svg]:text-brand" : "text-fg-muted hover:bg-hover hover:text-fg [&_svg]:text-fg-subtle",
               )}
             >
               {n.icon} {n.label}
@@ -609,7 +609,7 @@ function InboxPattern() {
                   role="option"
                   aria-selected={m.id === active}
                   onClick={() => setActive(m.id)}
-                  className={cn("flex w-full gap-3 px-4 py-3 text-left outline-none transition-colors focus-visible:shadow-focus", m.id === active ? "bg-primary-subtle" : "hover:bg-hover")}
+                  className={cn("flex w-full gap-3 px-4 py-3 text-left outline-none transition-colors focus-visible:shadow-focus", m.id === active ? "bg-brand-subtle" : "hover:bg-hover")}
                 >
                   <Avatar size="32" color={m.color} src={m.src} alt={m.alt} objectPosition={m.objectPosition}>{m.initials}</Avatar>
                   <div className="min-w-0 flex-1 space-y-1">
@@ -620,7 +620,7 @@ function InboxPattern() {
                     <div className={cn("truncate text-body-sm", m.unread ? "text-fg" : "text-fg-muted")}>{m.subject}</div>
                     <div className="truncate text-body-xs text-fg-subtle">{m.preview}</div>
                   </div>
-                  {m.unread && <span aria-label="Unread" className="mt-2 size-2 shrink-0 rounded-full bg-primary" />}
+                  {m.unread && <span aria-label="Unread" className="mt-2 size-2 shrink-0 rounded-full bg-brand" />}
                 </button>
               </li>
             ))}
@@ -733,7 +733,7 @@ function FileManagerPattern() {
             {folders.map((f) => (
               <Card key={f.name} className="group space-y-3 p-4 transition hover:shadow-md">
                 <div className="flex items-start justify-between">
-                  <span className="flex size-10 items-center justify-center rounded-xl bg-primary-subtle text-primary [&_svg]:size-5">
+                  <span className="flex size-10 items-center justify-center rounded-xl bg-brand-subtle text-brand [&_svg]:size-5">
                     <FolderOpenIcon />
                   </span>
                   <Button variant="neutral" mode="ghost" size="xxsmall" iconOnly aria-label={`More for ${f.name}`}><MoreHorizontalIcon /></Button>

@@ -387,7 +387,7 @@ export function MusicCard() {
       <div className="flex items-center justify-between">
         <Button variant={shuffle ? "primary" : "neutral"} mode="ghost" size="small" iconOnly aria-label="Shuffle" aria-pressed={shuffle} onClick={() => setShuffle((s) => !s)}><ShuffleIcon /></Button>
         <Button variant="neutral" mode="ghost" size="small" iconOnly aria-label="Previous track" onClick={() => skip(-1)}><SkipBackIcon fill="currentColor" /></Button>
-        <Button iconOnly className="not-disabled:[&_svg]:text-[#F7F4EE]" aria-label={playing ? "Pause" : "Play"} data-music-play onClick={() => setPlaying((p) => !p)}>
+        <Button iconOnly aria-label={playing ? "Pause" : "Play"} data-music-play onClick={() => setPlaying((p) => !p)}>
           {playing ? <PauseIcon fill="currentColor" /> : <PlayIcon fill="currentColor" />}
         </Button>
         <Button variant="neutral" mode="ghost" size="small" iconOnly aria-label="Next track" onClick={() => skip(1)}><SkipForwardIcon fill="currentColor" /></Button>
@@ -519,7 +519,7 @@ export function RecorderCard() {
       </div>
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <Button iconOnly size="small" className="not-disabled:[&_svg]:text-[#F7F4EE]" aria-label={playing ? "Pause recording" : "Play recording"} onClick={() => setPlaying((p) => !p)}>
+          <Button iconOnly size="small" aria-label={playing ? "Pause recording" : "Play recording"} onClick={() => setPlaying((p) => !p)}>
             {playing ? <PauseIcon fill="currentColor" /> : <PlayIcon fill="currentColor" />}
           </Button>
           <Button variant="neutral" mode="outline" iconOnly size="small" aria-label="Stop" onClick={() => { setPlaying(false); setPosition(0); }}><SquareIcon /></Button>

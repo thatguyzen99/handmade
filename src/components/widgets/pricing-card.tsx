@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDivider } from "@/components/ui/card";
 import { SegmentedControl, SegmentedControlItem } from "@/components/ui/segmented-control";
 import { cn } from "@/lib/utils";
+import { gradientCss } from "@/lib/gradients";
 
 export type Plan = { name: string; blurb: string; monthly: number; yearly: number; features: string[]; featured?: boolean; cta: string };
 
@@ -14,11 +15,16 @@ export type Plan = { name: string; blurb: string; monthly: number; yearly: numbe
 export function PricingCard({ plan, billing, className }: { plan: Plan; billing: "monthly" | "yearly"; className?: string }) {
   const price = billing === "monthly" ? plan.monthly : plan.yearly;
   return (
-    <Card data-slot="pricing-card" className={cn("flex flex-col tabular-nums", plan.featured && "ring-2 ring-primary", className)}>
+    <Card data-slot="pricing-card" className={cn("relative flex flex-col overflow-hidden tabular-nums", plan.featured && "ring-2 ring-primary", className)}>
+      {plan.featured && <div aria-hidden className="absolute inset-x-0 top-0 h-1" style={{ backgroundImage: gradientCss("sunrise") }} />}
       <div className="space-y-4 p-6">
         <div className="flex items-center justify-between gap-2">
           <div className="text-ui-md text-fg">{plan.name}</div>
-          {plan.featured && <Badge status="primary" size="small">Most popular</Badge>}
+          {plan.featured && (
+            <Badge size="small" className="border-0 bg-transparent shadow-none text-[#0A0A0A]" style={{ backgroundImage: gradientCss("sunrise") }}>
+              Most popular
+            </Badge>
+          )}
         </div>
         <p className="text-body-sm text-fg-muted">{plan.blurb}</p>
         <div className="flex items-baseline gap-1">

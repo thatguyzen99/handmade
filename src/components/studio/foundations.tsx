@@ -34,6 +34,7 @@ export function Colors() {
     { title: "Text", hint: "text-{token}", tokens: ["fg", "fg-muted", "fg-subtle", "fg-disabled", "fg-inverse"] },
     { title: "Line", hint: "ring-{token} / border-{token}", tokens: ["line-focus", "line-strong", "line", "line-inverse"] },
     { title: "Primary", hint: "bg-primary*", tokens: ["primary", "primary-hover", "primary-active", "primary-subtle-stronger", "primary-subtle-strong", "primary-subtle"] },
+    { title: "Accent", hint: "bg-brand*", tokens: ["brand", "brand-hover", "brand-subtle-stronger", "brand-subtle-strong", "brand-subtle"] },
   ];
 
   return (

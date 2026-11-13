@@ -48,8 +48,8 @@ function TabTrigger({ className, ...props }: React.ComponentProps<typeof TabsPri
     <TabsPrimitive.Trigger
       className={cn(
         "relative -mb-px flex h-12 items-center gap-2 text-ui-sm whitespace-nowrap text-fg-muted outline-none transition duration-200 ease-out [&_svg]:size-5 [&_svg]:text-fg-subtle",
-        "after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-primary after:opacity-0 after:transition",
-        "hover:text-fg data-[state=active]:text-fg data-[state=active]:after:opacity-100 data-[state=active]:[&_svg]:text-primary",
+        "after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-brand after:opacity-0 after:transition",
+        "hover:text-fg data-[state=active]:text-fg data-[state=active]:after:opacity-100 data-[state=active]:[&_svg]:text-brand",
         className,
       )}
       {...props}

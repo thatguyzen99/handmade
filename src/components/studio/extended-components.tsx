@@ -564,7 +564,7 @@ function OtpSpecimen() {
               <InputOTPSlot index={5} />
             </InputOTPGroup>
           </InputOTP>
-          <p className="text-body-xs text-fg-muted">Sent to m•••@melxels.com. <button type="button" className="text-primary underline-offset-4 hover:underline">Resend</button></p>
+          <p className="text-body-xs text-fg-muted">Sent to m•••@melxels.com. <button type="button" className="text-brand underline-offset-4 hover:underline">Resend</button></p>
         </div>
         <div className="space-y-2">
           <Label>PIN <span className="text-fg-muted">(error)</span></Label>

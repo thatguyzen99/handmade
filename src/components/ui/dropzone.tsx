@@ -48,7 +48,7 @@ function Dropzone({ onFiles, accept, multiple = true, hint = "PNG, JPG or PDF up
       </div>
       <div className="space-y-1">
         <div className="text-ui-sm text-fg">
-          <label htmlFor={id} className="cursor-pointer text-primary underline-offset-4 hover:underline">Click to upload</label> or drag and drop
+          <label htmlFor={id} className="cursor-pointer text-brand underline-offset-4 hover:underline">Click to upload</label> or drag and drop
         </div>
         {hint && <p className="text-body-xs text-fg-subtle">{hint}</p>}
       </div>

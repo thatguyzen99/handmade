@@ -32,22 +32,27 @@ export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:31
 export const repoUrl = (process.env.NEXT_PUBLIC_REPO_URL || "").replace(/\/+$/, "");
 
 /** The open-source project this studio is built on. Keep this credit. */
-/** Melvin's Melxels palette, sampled from his brand sheet. */
+/** Melvin's Melxels palette: black/cream primary, purple and warm accents. */
 export const brandColors = {
   cream: "#F7F4EE",
   orange: "#FAAC18",
   yellow: "#FFCA05",
+  /** Pale butter start of the Sunrise gradient (the app icon's outer stroke). */
+  butter: "#FFE7A3",
   purple: "#3D0066",
   navy: "#1A1A2E",
   /** Slightly different navy used as the start of the royal gradient. */
   navyDeep: "#1B1A2E",
-  /** Light-mode primary (purple on cream). */
-  primary: "#3D0066",
-  /**
-   * Dark-mode primary: a lighter, still-saturated purple derived from #3D0066.
-   * 5.8:1 on navy (AA for text). White on it fails AA, so button labels use navy.
-   */
-  primaryDark: "#B17FEB",
+  ink: "#0A0A0A",
+  canvasDark: "#111111",
+  /** Light-mode primary: near-black ink. */
+  primary: "#0A0A0A",
+  /** Dark-mode primary: cream, so solid buttons stay on-brand and AA on a near-black canvas. */
+  primaryDark: "#F7F4EE",
+  /** Accent (links, focus, selection, badges, chart-1). */
+  accent: "#3D0066",
+  /** Dark-mode accent: lighter purple that meets AA as text on #111111. */
+  accentDark: "#B17FEB",
 } as const;
 
 export const upstream = {

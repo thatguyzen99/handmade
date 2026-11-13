@@ -77,6 +77,13 @@ export const tailwindTheme = String.raw`@custom-variant dark (&:where(.dark, .da
   --color-primary-subtle-strong: var(--primary-subtle-strong);
   --color-primary-subtle: var(--primary-subtle);
 
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-subtle-stronger: var(--brand-subtle-stronger);
+  --color-brand-subtle-strong: var(--brand-subtle-strong);
+  --color-brand-subtle: var(--brand-subtle);
+
   --color-black: var(--black);
   --color-white: var(--white);
   --color-overlay: var(--overlay);
@@ -258,12 +265,13 @@ export const tailwindTheme = String.raw`@custom-variant dark (&:where(.dark, .da
   --shadow-sm: var(--ds-shadow-sm);
   --shadow-md: var(--ds-shadow-md);
   --shadow-lg: var(--ds-shadow-lg);
-  --shadow-focus-primary: 0 0 0 2px var(--surface), 0 0 0 4px var(--primary-subtle-stronger);
-  --shadow-focus: 0 0 0 2px var(--surface), 0 0 0 4px rgb(161 161 161 / 0.24);
+  --shadow-focus-primary: 0 0 0 2px var(--surface), 0 0 0 4px var(--brand-subtle-stronger);
+  --shadow-focus: 0 0 0 2px var(--surface), 0 0 0 4px var(--brand-subtle-stronger);
   --shadow-focus-danger: 0 0 0 2px var(--surface), 0 0 0 4px rgb(251 44 54 / 0.24);
 
   --ease-tactile: cubic-bezier(0.23, 1, 0.32, 1);
   --duration-enter: 160ms;
+  --gradient-sunrise: linear-gradient(90deg, #FFE7A3 0%, #FFCA05 50%, #FAAC18 100%);
   --animate-in: ds-in var(--duration-enter) var(--ease-tactile);
   --animate-menu-in: ds-menu-in 150ms var(--ease-tactile);
   --animate-menu-out: ds-menu-out 120ms var(--ease-tactile) forwards;

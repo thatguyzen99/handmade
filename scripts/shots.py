@@ -23,8 +23,8 @@ def page_for(browser, mode, width=1440, height=900, mobile=False, path="/"):
             let c = {};
             try { c = JSON.parse(localStorage.getItem(k) || '{}') || {}; } catch (e) {}
             c.mode = 'dark';
-            if (!c.primary) c.primary = '#3D0066';
-            if (!c.primaryDark) c.primaryDark = '#B17FEB';
+            c.primary = '#0A0A0A';
+            c.primaryDark = '#F7F4EE';
             localStorage.setItem(k, JSON.stringify(c));
           } catch (e) {}
         """)
@@ -63,6 +63,30 @@ with sync_playwright() as pw:
                 el.screenshot(path=f"{OUT}/{sid}-{mode}.png")
         report[mode] = errors
         report[f"{mode}_overflow_1440"] = overflow_at(p)
+
+        # Close-ups: play buttons, pricing highlight
+        music = p.locator("[data-slot='music-player']")
+        if music.count():
+            music.first.scroll_into_view_if_needed(); p.wait_for_timeout(300)
+            music.first.screenshot(path=f"{OUT}/widget-music-{mode}.png")
+            play = music.first.locator("[aria-label='Play']")
+            if play.count():
+                play.first.screenshot(path=f"{OUT}/play-music-{mode}.png")
+        featured = p.get_by_text("Most popular", exact=True)
+        if featured.count():
+            card = featured.first.locator("xpath=ancestor::*[@data-slot='pricing-card']")
+            if card.count():
+                card.first.scroll_into_view_if_needed(); p.wait_for_timeout(200)
+                card.first.screenshot(path=f"{OUT}/pricing-featured-{mode}.png")
+        patt_play = p.locator("[data-music-play]")
+        if patt_play.count():
+            patt_play.first.scroll_into_view_if_needed(); p.wait_for_timeout(200)
+            # wider crop around the control
+            patt_play.first.screenshot(path=f"{OUT}/play-pattern-music-{mode}.png")
+        rec = p.get_by_role("button", name="Play recording")
+        if rec.count():
+            rec.first.scroll_into_view_if_needed(); p.wait_for_timeout(200)
+            rec.first.screenshot(path=f"{OUT}/play-standup-{mode}.png")
         ctx.close()
 
         # animation route

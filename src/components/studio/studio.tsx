@@ -15,6 +15,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { Wordmark } from "@/components/brand/logo";
 import { people } from "@/lib/media";
+import { gradientCss } from "@/lib/gradients";
 import { AnimationTuner } from "./animation-tuner";
 import { Brand } from "./brand-section";
 import { ComponentsShowcase } from "./components-showcase";
@@ -73,7 +74,7 @@ export function HomeSections() {
           description="Fine-tune an entrance animation with live knobs, then copy CSS or Framer Motion, or apply easing and duration to the theme export."
         >
           <p className="text-body-sm text-fg-muted">
-            Prefer a focused page? <Link href="/animation" className="text-primary underline-offset-4 hover:underline">Open the Animation Tuner</Link>.
+            Prefer a focused page? <Link href="/animation" className="text-brand underline-offset-4 hover:underline">Open the Animation Tuner</Link>.
           </p>
           <AnimationTuner />
         </DocSection>
@@ -187,6 +188,7 @@ function Shell({ children }: { children: React.ReactNode }) {
 function Hero() {
   return (
     <section className="space-y-6 pt-12 pb-8">
+      <div aria-hidden className="h-1 w-14 rounded-full" style={{ backgroundImage: gradientCss("sunrise") }} />
       <h1 className="max-w-3xl text-heading-2 text-fg">A calm, card-based design language for products, sites and brands.</h1>
       <p className="max-w-2xl text-body-lg text-fg-muted">
         {systemName} is {author.name}&apos;s working system. Tune the color, type and radius on the left; every token, component, widget and pattern on this page updates live, and the prompt, skill and registry you copy carry all of it.

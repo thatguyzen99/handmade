@@ -97,11 +97,12 @@ export function Customizer() {
           <div className="flex flex-wrap gap-2">
             {(
               [
-                { name: "Purple", value: brandColors.purple, dark: brandColors.primaryDark },
+                { name: "Black", value: brandColors.ink, dark: brandColors.cream },
+                { name: "Cream", value: brandColors.cream, dark: brandColors.cream },
+                { name: "Purple", value: brandColors.purple, dark: brandColors.accentDark },
                 { name: "Yellow", value: brandColors.yellow, dark: brandColors.yellow },
                 { name: "Orange", value: brandColors.orange, dark: brandColors.orange },
-                { name: "Navy", value: brandColors.navy, dark: brandColors.primaryDark },
-                { name: "Cream", value: brandColors.cream, dark: brandColors.cream },
+                { name: "Navy", value: brandColors.navy, dark: brandColors.accentDark },
               ] as const
             ).map((s) => (
               <button
