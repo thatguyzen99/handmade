@@ -64,7 +64,7 @@ import { toast } from "@/components/ui/toast";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { SubHeading } from "@/components/studio/section";
-import { FileIcon, ImageIcon, PenLineIcon, LinkIcon, PaletteIcon, CameraIcon, LandmarkIcon, BookOpenIcon } from "lucide-react";
+import { FileIcon, ImageIcon, PenLineIcon, LinkIcon } from "lucide-react";
 import { MegaMenu, MegaMenuCardGrid, MegaMenuPreviewList, MegaMenuSimpleList } from "@/components/ui/mega-menu";
 import { Checklist } from "@/components/ui/checklist";
 import { ProgressPopover, useProgressRun } from "@/components/ui/progress-popover";
@@ -235,17 +235,7 @@ function SpeedDialDemo() {
 }
 
 function DonutChartDemo() {
-  return (
-    <DonutChart
-      label="Time spent"
-      data={[
-        { id: "design", label: "Design", value: 42, color: "#0A0A0A", icon: <PaletteIcon /> },
-        { id: "photo", label: "Photo", value: 28, color: "#FFCA05", icon: <CameraIcon /> },
-        { id: "type", label: "Type", value: 18, color: "#FAAC18", icon: <BookOpenIcon /> },
-        { id: "place", label: "Place", value: 12, color: "#FFE7A3", icon: <LandmarkIcon /> },
-      ]}
-    />
-  );
+  return <DonutChart />;
 }
 
 function BentoGridDemo() {

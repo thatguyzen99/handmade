@@ -355,13 +355,15 @@ export const componentDocs: DocEntry[] = [
 {
     slug: 'donut-chart',
     title: 'Donut Chart',
-    description: 'An SVG ring of categories with orbiting badges. Hover or focus a segment to thicken it, read the amount, and count the centre up.',
-    usage: '<DonutChart data={[{ id: "design", label: "Design", value: 42, color: "#FFCA05" }]} />',
+    description: 'An expenses ring with badges sitting on the stroke. Hover a segment to thicken and lengthen it; the centre rolls to the amount like an odometer.',
+    usage: '<DonutChart />\n<DonutChart data={[{ id: "food", label: "Food", value: 816, color: "#E07A14" }]} />',
     props: [
     { component: 'DonutChart', props: [
-        { name: 'data', type: 'DonutSlice[]', description: 'Slices with id, label, value, color and optional icon.' },
-        { name: 'size', type: 'number', description: 'SVG width and height in pixels. Default 240.' },
-        { name: 'label', type: 'string', description: 'Accessible name for the chart.' },
+        { name: 'data', type: 'DonutSlice[]', description: 'Slices with id, label, value, color and optional icon. Defaults to a seven-category expenses set.' },
+        { name: 'title', type: 'string', description: 'Card heading. Defaults to Expenses.' },
+        { name: 'restLabel', type: 'string', description: 'Centre top label when nothing is selected. Defaults to This month.' },
+        { name: 'unitLabel', type: 'string', description: 'Centre bottom label. Defaults to spent.' },
+        { name: 'label', type: 'string', description: 'Accessible name for the chart. Defaults to the title.' },
       ] },
     ],
   },
